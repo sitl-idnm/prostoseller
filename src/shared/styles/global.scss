@@ -1,4 +1,4 @@
-@import 'mixins';
+@import "mixins";
 
 :root {
   /* stylelint-disable */
@@ -8,9 +8,11 @@
   --color-transparent: rgba(255 255 255 / 0%);
 
   // project colors
-  --color-blue: #2c39f2;
-  --color-blue-border: #dadcfa;
-/* stylelint-enable */
+  --color-primary: #a452d7;
+  --color-purple: #be55ff;
+  --color-purple-dark: #7b49ff;
+  --color-purple-light: #fa457e;
+  /* stylelint-enable */
 }
 
 * {
