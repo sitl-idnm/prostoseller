@@ -1,0 +1,47 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	width: 100%;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: func.rem(16);
+
+	@include mixins.tablet-small {
+		display: block;
+		white-space: nowrap;
+		overflow-x: auto;
+		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none; /* IE 10+ */
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+}
+
+.cell {
+	min-width: 0;
+}
+
+.cell_wide2 {
+	grid-column: span 2;
+}
+
+.cell_wide3 {
+	grid-column: span 3;
+}
+
+/* mobile items inline */
+.item {
+	@include mixins.tablet-small {
+		display: inline-block;
+		width: calc(100% / 4 - #{func.rem(12)});
+		margin-right: func.rem(12);
+		vertical-align: top;
+	}
+}

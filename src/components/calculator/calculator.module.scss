@@ -1,0 +1,130 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	border-radius: func.rem(16);
+	padding: func.rem(20);
+	background: var(--color-white-default);
+}
+
+.tabsGroup {
+	display: flex;
+	justify-content: center;
+	margin-bottom: func.rem(16);
+}
+
+.tabs {
+	display: flex;
+	gap: func.rem(12);
+	background: transparent;
+	border: 1px solid #d6c4ff;
+	border-radius: func.rem(999);
+	padding: func.rem(6);
+}
+
+.tab {
+	padding: func.rem(10) func.rem(24);
+	border-radius: func.rem(999);
+	border: none;
+	color: var(--color-purple);
+	background: transparent;
+	cursor: pointer;
+	min-width: func.rem(150);
+}
+
+.tab_active {
+	color: var(--color-white-default);
+	background: linear-gradient(90deg, var(--color-purple), var(--color-purple-dark));
+}
+
+.title {
+	text-align: center;
+	font-weight: 700;
+	font-size: func.rem(20);
+	margin-bottom: func.rem(10);
+}
+
+.hint {
+	text-align: center;
+	font-size: func.rem(12);
+	color: rgba(0, 0, 0, 0.7);
+	margin-bottom: func.rem(8);
+}
+
+.rangeWrap {
+	position: relative;
+	padding: 0 func.rem(8);
+	margin-bottom: func.rem(16);
+}
+
+.range {
+	width: 100%;
+	appearance: none;
+	height: func.rem(10);
+	border-radius: func.rem(999);
+	background: #eadcff;
+	outline: none;
+}
+
+.range::-webkit-slider-thumb {
+	appearance: none;
+	width: func.rem(24);
+	height: func.rem(24);
+	border-radius: 50%;
+	background: transparent;
+	border: none;
+}
+
+.badge {
+	position: absolute;
+	top: func.rem(-18);
+	left: 0;
+	transform: translateX(calc(var(--pos, 0) * 1% - 50%));
+	background: #e8d8ff;
+	color: #7b49ff;
+	font-weight: 700;
+	font-size: func.rem(12);
+	padding: 0 func.rem(8);
+	border-radius: func.rem(6);
+	pointer-events: none;
+}
+
+.stick {
+	position: absolute;
+	top: func.rem(2);
+	left: 0;
+	width: func.rem(2);
+	height: func.rem(16);
+	background: #d9caff;
+	transform: translateX(calc(var(--pos, 0) * 1% - 50%));
+	pointer-events: none;
+}
+
+.incomeRow {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	gap: func.rem(8);
+	margin-bottom: func.rem(16);
+}
+
+.incomeLabel {
+	font-weight: 700;
+}
+.incomeValue {
+	font-weight: 800;
+	font-size: func.rem(28);
+	display: inline-block;
+	background: linear-gradient(90deg, #ff4f88, #7b49ff);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.cta {
+	display: flex;
+	justify-content: center;
+}

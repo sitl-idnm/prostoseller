@@ -1,5 +1,122 @@
 @use "@styles/func";
 @use "@styles/mixins";
 @use "@styles/variables";
-  
-.root {}
+
+.root {
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: func.rem(12);
+	margin-bottom: func.rem(20);
+}
+
+.switch {
+	display: flex;
+	gap: func.rem(12);
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: func.rem(16);
+
+	@include mixins.tablet-small {
+		grid-template-columns: 1fr;
+	}
+}
+
+.card {
+	border-radius: func.rem(16);
+	background: var(--color-white-default);
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	padding: func.rem(20);
+}
+
+.planTitle {
+	font-weight: 700;
+	margin-bottom: func.rem(6);
+}
+
+.planSub {
+	color: rgba(0, 0, 0, 0.7);
+	margin-bottom: func.rem(12);
+}
+
+.features {
+	display: grid;
+	gap: func.rem(8);
+	margin: func.rem(12) 0;
+}
+
+.feature {
+	display: flex;
+	align-items: flex-start;
+	gap: func.rem(8);
+}
+
+.featureIcon {
+	width: func.rem(18);
+	height: func.rem(18);
+	flex: 0 0 auto;
+}
+
+.feature_absent {
+	opacity: 0.5;
+}
+.feature_hidden {
+	display: none;
+}
+.feature_addon {
+	color: var(--color-purple);
+}
+
+.priceRow {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: func.rem(12);
+}
+
+.priceValue {
+	font-weight: 800;
+	font-size: func.rem(28);
+	display: inline-block;
+}
+
+.priceValue_bump {
+	animation: price-bump 0.5s ease;
+}
+
+.priceValue_flash {
+	animation: price-flash 0.7s ease;
+}
+
+@keyframes price-bump {
+	0% {
+		transform: translateY(6px);
+		opacity: 0;
+	}
+	60% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	100% {
+		transform: none;
+	}
+}
+
+@keyframes price-flash {
+	0% {
+		color: var(--color-purple);
+		transform: scale(1.06);
+	}
+	60% {
+		transform: scale(1);
+	}
+	100% {
+		color: inherit;
+	}
+}

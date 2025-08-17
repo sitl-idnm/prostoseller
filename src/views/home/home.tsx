@@ -7,8 +7,32 @@ import styles from './home.module.scss'
 import { HomeProps } from './home.types'
 import { Content } from '@/modules/content'
 import { TitleHandler } from '@/modules/titleHandler'
-import PlusMinus from '@/components/plusMinus/plusMinus'
-import Faq from '@/modules/faq/faq'
+import { PlusMinus } from '@/components/plusMinus'
+import { Faq } from '@/modules/faq'
+import { Price } from '@/modules/price'
+import { CardHolder } from '@/modules/cardHolder'
+import { Calculator } from '@/components/calculator'
+
+const cards = [
+  { key: 'accuracy', icon: <Image src="/images/icon-rocket.svg" alt="Точность" width={24} height={24} />, title: 'Точность данных', text: 'Реальные данные напрямую с API Wildberries и Ozon — никаких искажений и задержек.', animated: true },
+  { key: 'simplicity', icon: <Image src="/images/icon-rocket.svg" alt="Простота" width={24} height={24} />, title: 'Простота и удобство', text: 'Интуитивный интерфейс, понятный даже новичкам.', animated: true },
+  { key: 'profit', icon: <Image src="/images/icon-rocket.svg" alt="Прибыль" width={24} height={24} />, title: 'Рост и управление прибылью', text: 'Видите, какие товары приносят деньги, а какие — убытки', animated: true },
+  { key: 'time', icon: <Image src="/images/icon-rocket.svg" alt="Экономия времени" width={24} height={24} />, title: 'Экономия времени', text: 'Больше не нужно считать вручную. Ваша аналитика всегда актуальна и автоматизирована', animated: true },
+  { key: 'stocks', icon: <Image src="/images/icon-rocket.svg" alt="Планирование остатков" width={24} height={24} />, title: 'Планирование остатков', text: 'Заранее знаете, когда пополнять склад, чтобы никогда не терять продажи и прибыль', animated: true },
+  { key: 'calc', icon: <Image src="/images/icon-rocket.svg" alt="Калькулятор" width={24} height={24} />, title: 'Встроенный калькулятор цен', text: 'Больше не нужно считать вручную. Ваша аналитика всегда актуальна и автоматизирована', animated: true },
+  { key: 'two-mp', icon: <Image src="/images/icon-rocket.svg" alt="Два маркетплейса" width={24} height={24} />, title: 'Один сервис для двух маркетплейсов', text: 'Вы с комфортом управляете бизнесом через единую платформу аналитики и зарабатываете больше', animated: true },
+  {
+    key: 'cta',
+    icon: <Image src="/images/icon-rocket.svg" alt="CTA" width={24} height={24} />,
+    title: 'Начните управлять своим бизнесом уже сегодня!',
+    action: (
+      <Button as="a" isRouteLink href="/login" variant="gradient" size="md">
+        Подключить бесплатно →
+      </Button>
+    ),
+    animated: true,
+  },
+]
 
 const Home: FC<HomeProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
@@ -111,12 +135,21 @@ const Home: FC<HomeProps> = ({ className }) => {
           />
         </TitleHandler>
         <TitleHandler
+          title="Наши преимущества"
+          titleTagName="h2"
+          titleSize="lg"
+          mark={<>Почему <b>Prostoseller</b></>}>
+          <CardHolder cards={cards} />
+        </TitleHandler>
+        <Price />
+        <TitleHandler
           title="Часто задаваемые вопросы"
           titleTagName="h2"
           titleSize="lg"
           mark={<>FAQ <b>Prostoseller</b></>}>
           <Faq />
         </TitleHandler>
+        <Calculator />
       </Wrapper>
     </main >
   )

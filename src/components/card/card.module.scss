@@ -1,0 +1,85 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	position: relative;
+	border-radius: func.rem(16);
+	background: var(--color-white-default);
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	padding: func.rem(24);
+	overflow: hidden;
+	will-change: transform;
+	transition: transform variables.$transition;
+}
+
+.inner {
+	position: relative;
+	z-index: 1;
+}
+
+.root:hover {
+	transform: translateY(calc(-1 * func.rem(5)));
+}
+
+.icon {
+	font-size: 0;
+	margin-bottom: func.rem(12);
+}
+
+.title {
+	font-weight: 700;
+	font-size: func.rem(28);
+	line-height: 1.2;
+	margin-bottom: func.rem(12);
+}
+
+.text {
+	color: rgba(0, 0, 0, 0.8);
+	margin-bottom: func.rem(16);
+}
+
+.controls {
+	margin-top: func.rem(8);
+}
+
+/* Animated corner */
+.corner {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: func.rem(72);
+	height: func.rem(72);
+	background: linear-gradient(135deg, var(--color-purple), var(--color-purple-dark));
+	clip-path: polygon(100% 0, 0 0, 100% 100%);
+	z-index: 0;
+	transition: transform variables.$transition;
+	transform-origin: top right;
+	transform: scale(1);
+}
+
+.root_animated {
+	&:hover .corner {
+		transform: scale(1.6);
+	}
+
+	/* text color morph where corner overlaps - via mix-blend-mode + overlay */
+	&:hover .overlay {
+		opacity: 1;
+	}
+}
+
+.overlay {
+	position: absolute;
+	inset: 0;
+	background: #000;
+	mix-blend-mode: color;
+	opacity: 0;
+	transition: opacity variables.$transition;
+	pointer-events: none;
+}
+
+.content {
+	position: relative;
+	z-index: 1;
+}
