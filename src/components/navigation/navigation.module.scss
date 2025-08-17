@@ -4,5 +4,63 @@
 
 .root {
 	display: flex;
-	gap: 10px;
+	gap: func.rem(24);
+}
+
+.item {
+	position: relative;
+}
+
+.link,
+.trigger {
+	@include mixins.reset-btn;
+	font-size: func.rem(16);
+	line-height: 1;
+	padding: func.rem(10) func.rem(12);
+	border-radius: func.rem(10);
+	background: transparent;
+	border: none;
+}
+
+.caret {
+	margin-left: func.rem(6);
+}
+
+.dropdown:hover .menu,
+.dropdown:focus-within .menu {
+	opacity: 1;
+	pointer-events: auto;
+	transform: translateY(0);
+}
+
+.menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	min-width: func.rem(180);
+	padding: func.rem(8);
+	border-radius: func.rem(10);
+	background: #fff;
+	box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(8px);
+	transition: variables.$transition;
+}
+
+.menuItem {
+}
+
+.menuLink {
+	display: block;
+	padding: func.rem(8) func.rem(12);
+	border-radius: func.rem(8);
+	white-space: nowrap;
+	color: var(--color-black-default);
+
+	@include mixins.desktop-only {
+		&:hover {
+			background: rgba(0, 0, 0, 0.05);
+		}
+	}
 }

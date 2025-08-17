@@ -1,6 +1,6 @@
-@use '@styles/func';
-@use '@styles/variables';
-@use '@styles/mixins';
+@use "@styles/func";
+@use "@styles/variables";
+@use "@styles/mixins";
 
 .root {
   @include mixins.reset-btn;
@@ -11,11 +11,9 @@
   font-weight: 500;
   font-size: func.rem(18);
   line-height: func.rem(20);
-  color: var(--color-white-default);
-  background-color: var(--color-blue);
   cursor: pointer;
   transition: variables.$transition;
-  transition-property: color, background-color;
+  transition-property: color, background-color, border-color;
   outline: none;
   user-select: none;
 
@@ -34,14 +32,59 @@
     }
   }
 
-  &_white {
-    color: var(--color-black-default);
-    background-color: var(--color-white-default);
-  }
-
   &:disabled {
     color: var(--color-black);
     background-color: var(--color-grey-hover);
     pointer-events: none;
   }
+}
+
+/* Variants */
+.root_gradient {
+  color: var(--color-white-default);
+  background: linear-gradient(90deg, var(--color-purple) 0%, var(--color-purple-dark) 100%);
+  border: none;
+}
+
+.root_gradientOutline {
+  color: var(--color-purple);
+  background: transparent;
+  border: 1px solid transparent;
+  background-image: linear-gradient(var(--color-white-default), var(--color-white-default)),
+    linear-gradient(90deg, var(--color-purple) 0%, var(--color-purple-dark) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.root_purple {
+  color: var(--color-white-default);
+  background: var(--color-purple);
+  border: none;
+}
+
+.root_purpleOutline {
+  color: var(--color-purple);
+  background: transparent;
+  border: 1px solid var(--color-purple);
+}
+
+.root_white {
+  color: var(--color-purple);
+  background: var(--color-white-default);
+  border: none;
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon {
+  display: inline-flex;
+  opacity: 0;
+}
+
+.text {
+  display: inline-flex;
+  transition: transform variables.$transition;
 }

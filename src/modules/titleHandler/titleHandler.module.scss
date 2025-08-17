@@ -1,0 +1,35 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	width: 100%;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: func.rem(16);
+}
+
+.title {
+	display: inline-flex;
+	align-items: center;
+	gap: func.rem(10);
+}
+
+.mark {
+	display: inline-flex;
+	align-items: center;
+	gap: func.rem(8);
+}
+
+.description {
+	margin-top: func.rem(8);
+	margin-bottom: func.rem(16);
+}
+
+.content {
+	width: 100%;
+}

@@ -1,0 +1,65 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	width: 100%;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: func.rem(8);
+}
+
+.item {
+	border-radius: func.rem(12);
+	background: var(--color-white-default);
+	border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.itemHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: func.rem(12);
+	padding: func.rem(16) func.rem(20);
+	cursor: pointer;
+	transition: background-color variables.$transition;
+
+	@include mixins.text;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.02);
+	}
+}
+
+.itemTitle {
+	font-weight: 600;
+}
+
+.itemArrow {
+	flex: 0 0 auto;
+	width: func.rem(24);
+	height: func.rem(24);
+	transform: rotate(0deg);
+	transition: transform variables.$transition;
+}
+
+.item_open {
+	.itemArrow {
+		transform: rotate(180deg);
+	}
+}
+
+.itemContent {
+	padding: 0 func.rem(20);
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height variables.$transition;
+	border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.itemContent_inner {
+	padding: func.rem(12) 0 func.rem(16);
+}

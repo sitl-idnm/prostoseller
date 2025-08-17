@@ -1,0 +1,65 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	width: 100%;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: func.rem(20);
+
+	@include mixins.tablet-small {
+		// На мобильных скрываем десктопную сетку
+		display: none;
+	}
+}
+
+.column {
+	display: grid;
+}
+
+.pair {
+	display: none;
+
+	@include mixins.tablet-small {
+		display: block;
+	}
+}
+
+.card {
+	padding: func.rem(16);
+	border-radius: func.rem(12);
+	background: #ffe8ea;
+	box-shadow: 0 0 0 func.rem(10) rgba(255, 0, 0, 0.05) inset;
+}
+
+.card_success {
+	background: #eaffef;
+	box-shadow: 0 0 0 func.rem(10) rgba(0, 200, 0, 0.05) inset;
+}
+
+.cardHeader {
+	display: flex;
+	align-items: center;
+	gap: func.rem(10);
+	font-weight: 600;
+	margin-bottom: func.rem(8);
+}
+
+.icon {
+	width: func.rem(28);
+	height: func.rem(28);
+	flex: 0 0 auto;
+}
+
+.title {
+	font-weight: 600;
+	margin-bottom: func.rem(8);
+}
+
+.list {
+	display: block;
+}

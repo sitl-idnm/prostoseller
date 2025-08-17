@@ -4,21 +4,33 @@ import classNames from 'classnames'
 import styles from './navigation.module.scss'
 import { NavigationProps } from './navigation.types'
 
-const Navigation: FC<NavigationProps> = ({
-  className
-}) => {
+const Navigation: FC<NavigationProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
 
   return (
     <ul className={rootClassName}>
-      <li className={styles.item}><a href="/">Главная</a></li>
-      <li className={styles.item}><a href="/blog">Блог</a></li>
-      <li className={styles.item}><a href="/company">О компании</a></li>
-      <li className={styles.item}><a href="/contacts">Контакты</a></li>
-      <li className={styles.item}><a href="/inviteFriend">Пригласить друга</a></li>
-      <li className={styles.item}><a href="/partners">Парнёрам</a></li>
-      <li className={styles.item}><a href="/price">Тарифы</a></li>
-      <li className={styles.item}><a href="/thanks">Спасибо</a></li>
+      <li className={styles.item}><a href="/price" className={styles.link}>Тарифы</a></li>
+
+      <li className={classNames(styles.item, styles.dropdown)}>
+        <button className={styles.trigger} type="button">
+          Партнёрам <span className={styles.caret} aria-hidden>▾</span>
+        </button>
+        <ul className={styles.menu}>
+          <li className={styles.menuItem}><a className={styles.menuLink} href="/inviteFriend">Пригласи друга</a></li>
+          <li className={styles.menuItem}><a className={styles.menuLink} href="/partners">Партнерская программа</a></li>
+        </ul>
+      </li>
+
+      <li className={classNames(styles.item, styles.dropdown)}>
+        <button className={styles.trigger} type="button">
+          О нас <span className={styles.caret} aria-hidden>▾</span>
+        </button>
+        <ul className={styles.menu}>
+          <li className={styles.menuItem}><a className={styles.menuLink} href="/company">О компании</a></li>
+          <li className={styles.menuItem}><a className={styles.menuLink} href="/contacts">Контакты</a></li>
+          <li className={styles.menuItem}><a className={styles.menuLink} href="/blog">Блог</a></li>
+        </ul>
+      </li>
     </ul>
   )
 }

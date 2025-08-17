@@ -1,0 +1,12 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	padding: func.rem(16) func.rem(20);
+	border-radius: func.rem(12);
+	background: var(--color-white-default);
+	box-shadow:
+		0 0 func.rem(1) rgba(0, 0, 0, 0.05),
+		0 func.rem(8) func.rem(24) rgba(0, 0, 0, 0.05);
+}
