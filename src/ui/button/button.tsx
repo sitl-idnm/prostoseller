@@ -39,7 +39,7 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   const TagName = as || defaultElement
   const isLink = !!(isRouteLink && TagName === 'a')
 
-  const iconRef = useRef<SVGElement | HTMLSpanElement | null>(null)
+  const iconRef = useRef<HTMLSpanElement | null>(null)
   const textRef = useRef<HTMLSpanElement | null>(null)
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   const content = (
     <span className={styles.content} style={{ gap: `${iconGap}px`, flexDirection: iconPosition === 'right' ? 'row' : 'row-reverse' }}>
       {icon && (
-        <span className={styles.icon} ref={iconRef as any} aria-hidden="true">
+        <span className={styles.icon} ref={iconRef} aria-hidden="true">
           {icon}
         </span>
       )}
@@ -94,7 +94,7 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   )
 
   return isLink ? (
-    <Link {...props} href={(props as any).href} className={elClassName}>
+    <Link {...(props as Record<string, unknown>)} href={(props as Record<string, string>).href} className={elClassName}>
       {content}
     </Link>
   ) : (

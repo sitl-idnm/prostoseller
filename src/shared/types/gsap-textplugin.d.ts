@@ -1,5 +1,5 @@
 declare module 'gsap/TextPlugin' {
-	const TextPlugin: any
+	const TextPlugin: unknown
 	export default TextPlugin
 }
 
