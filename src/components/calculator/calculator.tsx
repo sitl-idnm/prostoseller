@@ -36,17 +36,15 @@ const Calculator: FC<CalculatorProps> = ({
     if (prevValue.current === income) return
     const run = async () => {
       try {
-        const gsapModule: any = await import('gsap')
-        const gsap = gsapModule.default || gsapModule
+        const { default: gsap } = await import('gsap')
         // content flip: fade old up, fade new in with slight spring + pulse class
         const newText = `${income.toLocaleString('ru-RU')} ${currency}`
         await gsap.to(el, { y: -8, autoAlpha: 0, duration: 0.15, ease: 'power1.out' })
         el.textContent = newText
-        try { el.classList.remove(styles.incomeValue_pulse) } catch { }
+        el.classList.remove(styles.incomeValue_pulse)
         // force reflow to restart pulse
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        void (el as any).offsetHeight
-        try { el.classList.add(styles.incomeValue_pulse) } catch { }
+        void el.offsetHeight
+        el.classList.add(styles.incomeValue_pulse)
         await gsap.fromTo(
           el,
           { y: 8, autoAlpha: 0 },
@@ -74,20 +72,25 @@ const Calculator: FC<CalculatorProps> = ({
       </div>
       <div className={styles.title}>Тариф {plan === 'base' ? 'базовый' : 'оптимальный'}</div>
       <div className={styles.hint}>Укажите количество проведенных оплат клиентов:</div>
-      <div className={styles.rangeWrap} style={{ ['--pos' as any]: posPercent }}>
-        <div className={styles.badge}>{count}</div>
-        <div className={styles.stick} />
-        <input
-          className={styles.range}
-          type="range"
-          min={min}
-          max={max}
-          step={step}
-          value={clamped}
-          onChange={(e) => setCount(Number(e.target.value))}
-          onInput={(e) => setCount(Number((e.target as HTMLInputElement).value))}
-        />
-      </div>
+      {(() => {
+        const cssVar = { '--pos': posPercent } as React.CSSProperties
+        return (
+          <div className={styles.rangeWrap} style={cssVar}>
+            <div className={styles.badge}>{count}</div>
+            <div className={styles.stick} />
+            <input
+              className={styles.range}
+              type="range"
+              min={min}
+              max={max}
+              step={step}
+              value={clamped}
+              onChange={(e) => setCount(Number(e.target.value))}
+              onInput={(e) => setCount(Number((e.target as HTMLInputElement).value))}
+            />
+          </div>
+        )
+      })()}
       <div className={styles.incomeRow}>
         <span className={styles.incomeLabel}>Ваш доход:</span>
         <span ref={valueRef} className={styles.incomeValue}>

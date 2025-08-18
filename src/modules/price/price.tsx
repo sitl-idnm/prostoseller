@@ -121,8 +121,8 @@ const Price: FC<PriceProps> = ({
 
   const AnimatedPrice: FC<{ id: string; value: number }> = ({ id, value }) => {
     const elRef = useRef<HTMLDivElement | null>(null)
-    const tlRef = useRef<any>(null)
-    const splitRef = useRef<any>(null)
+    const tlRef = useRef<unknown>(null)
+    const splitRef = useRef<{ revert?: () => void } | null>(null)
 
     useEffect(() => {
       const el = elRef.current
@@ -132,15 +132,18 @@ const Price: FC<PriceProps> = ({
 
       // if no change or 0 -> 0 then just set text
       if (prev === value || (prev === 0 && value === 0)) {
-        // stop any running animation
+        // stop any running animation (no dynamic import here to avoid await in non-async branch)
         try {
-          const gsapModule: any = require('gsap')
-          const gsap = gsapModule.default || gsapModule
-          if (tlRef.current) tlRef.current.kill()
-          if (splitRef.current?.revert) splitRef.current.revert()
-          gsap.killTweensOf(el)
-          gsap.killTweensOf(el.children)
-        } catch (_) { }
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
+          import('gsap').then(({ default: gsap }) => {
+            if (tlRef.current && typeof (tlRef.current as { kill: () => void }).kill === 'function') {
+              ; (tlRef.current as { kill: () => void }).kill()
+            }
+            splitRef.current?.revert?.()
+            gsap.killTweensOf(el)
+            gsap.killTweensOf(el.children)
+          })
+        } catch { /* noop */ }
         el.textContent = targetText
         prevPricesRef.current[id] = value
         return
@@ -148,23 +151,29 @@ const Price: FC<PriceProps> = ({
 
       const run = async () => {
         try {
-          const gsapModule: any = await import('gsap')
-          const gsap = gsapModule.default || gsapModule
-          const SplitTextModule: any = await import('gsap/SplitText')
-          const SplitText = SplitTextModule.SplitText || SplitTextModule.default || SplitTextModule
-          gsap.registerPlugin(SplitText)
+          const { default: gsap } = await import('gsap')
+          const SplitTextModule = await import('gsap/SplitText')
+          const SplitTextAny = (SplitTextModule as unknown as { default?: unknown; SplitText?: unknown }).SplitText || (SplitTextModule as { default: unknown }).default || SplitTextModule
+          // register plugin (runtime API, typings shimmed)
+          gsap.registerPlugin(SplitTextAny as Record<string, unknown>)
 
           // kill previous
-          if (tlRef.current) tlRef.current.kill()
-          if (splitRef.current?.revert) splitRef.current.revert()
+          if (tlRef.current && typeof (tlRef.current as { kill: () => void }).kill === 'function') {
+            ; (tlRef.current as { kill: () => void }).kill()
+          }
+          splitRef.current?.revert?.()
           gsap.killTweensOf(el)
           gsap.killTweensOf(el.children)
 
           // set text and split
           el.textContent = targetText
-          splitRef.current = SplitText.create(el, { type: 'chars' })
-          gsap.set(splitRef.current.chars, { y: 12, autoAlpha: 0 })
-          tlRef.current = gsap.to(splitRef.current.chars, {
+          // runtime API usage
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+          splitRef.current = (SplitTextAny as any).create(el, { type: 'chars' })
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          gsap.set((splitRef.current as unknown as { chars: Element[] }).chars, { y: 12, autoAlpha: 0 })
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          tlRef.current = gsap.to((splitRef.current as unknown as { chars: Element[] }).chars, {
             duration: 0.6,
             y: 0,
             autoAlpha: 1,
@@ -192,9 +201,11 @@ const Price: FC<PriceProps> = ({
       return () => {
         // cleanup on unmount or deps change
         try {
-          if (tlRef.current) tlRef.current.kill()
+          if (tlRef.current && typeof (tlRef.current as { kill: () => void }).kill === 'function') {
+            ; (tlRef.current as { kill: () => void }).kill()
+          }
           if (splitRef.current?.revert) splitRef.current.revert()
-        } catch (_) { }
+        } catch { /* noop */ }
       }
     }, [id, value])
 
@@ -252,7 +263,7 @@ const Price: FC<PriceProps> = ({
             </div>
             <div className={styles.priceRow}>
               <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />
-              <Button as={Link as any} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink>
+              <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink>
                 Подключить →
               </Button>
             </div>

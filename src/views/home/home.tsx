@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { Button, Heading, Wrapper } from '@/ui'
+import { Button, Wrapper } from '@/ui'
 import classNames from 'classnames'
 
 import styles from './home.module.scss'
