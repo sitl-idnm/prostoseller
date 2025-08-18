@@ -20,15 +20,17 @@ const TitleHandler: FC<TitleHandlerProps> = ({
   return (
     <section className={rootClassName} style={{ background }}>
       <div>
-        <div className={styles.header}>
-          {title && (
-            <Heading tagName={titleTagName} size={titleSize} className={styles.title}>
-              {title}
-            </Heading>
-          )}
-          {mark && <div className={styles.mark}>{mark}</div>}
+        <div className={styles.inner}>
+          <div className={styles.header}>
+            {title && (
+              <Heading tagName={titleTagName} size={titleSize} className={styles.title}>
+                {title}
+              </Heading>
+            )}
+            {mark && <div className={styles.mark}>{mark}</div>}
+          </div>
+          {description && <div className={styles.description}>{description}</div>}
         </div>
-        {description && <div className={styles.description}>{description}</div>}
         <div className={styles.content}>{children}</div>
       </div>
     </section>

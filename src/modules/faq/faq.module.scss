@@ -9,13 +9,20 @@
 .grid {
 	display: grid;
 	grid-template-columns: 1fr;
-	gap: func.rem(8);
+	border-radius: 16px;
 }
 
 .item {
-	border-radius: func.rem(12);
 	background: var(--color-white-default);
 	border: 1px solid rgba(0, 0, 0, 0.08);
+
+	&:first-child {
+		border-radius: 16px 16px 0 0;
+	}
+
+	&:last-child {
+		border-radius: 0 0 16px 16px;
+	}
 }
 
 .itemHeader {
@@ -23,7 +30,7 @@
 	align-items: center;
 	justify-content: space-between;
 	gap: func.rem(12);
-	padding: func.rem(16) func.rem(20);
+	padding: 24px 24px 30px;
 	cursor: pointer;
 	transition: background-color variables.$transition;
 
@@ -53,13 +60,14 @@
 }
 
 .itemContent {
-	padding: 0 func.rem(20);
+	padding: 0 24px 0;
 	max-height: 0;
 	overflow: hidden;
-	transition: max-height variables.$transition;
-	border-top: 1px solid rgba(0, 0, 0, 0.06);
+	transition:
+		max-height variables.$transition,
+		padding variables.$transition;
 }
 
-.itemContent_inner {
-	padding: func.rem(12) 0 func.rem(16);
+.itemContent_open {
+	padding: 12px 24px 24px;
 }

@@ -40,22 +40,12 @@ const Home: FC<HomeProps> = ({ className }) => {
   return (
     <main className={rootClassName}>
       <Wrapper>
-        <Heading tagName="h1" className={styles.title}>
-          Next.js template
-        </Heading>
-        <Image
-          src="/images/sticker-shark.png"
-          width={512}
-          height={492}
-          quality={85}
-          alt="Ligazavr"
-          className={styles.image}
-        />
         <TitleHandler
-          title="Наши преимущества"
+          title="Мы знаем, что мешает вашему бизнесу расти и приходим на помощь с решениями!"
           titleTagName="h2"
           titleSize="lg"
-          mark={<>Почему <b>Prostoseller</b></>}
+          description="Откройте для себя Prostoseller — платформу, которая помогает зарабатывать больше!"
+          mark={<>Какие задачи решает <b>Prostoseller</b></>}
         >
           <PlusMinus
             pairs={[

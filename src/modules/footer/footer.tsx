@@ -1,7 +1,8 @@
 import { FC } from 'react'
-import { Wrapper } from '@/ui'
 
 import styles from './footer.module.scss'
+import Logo from '@icons/logo-footer.svg'
+import SocialLinks from '@/components/socialLinks/socialLinks'
 
 const IconLocation = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
@@ -25,17 +26,16 @@ const IconMail = () => (
 
 const Footer: FC = () => (
   <footer className={styles.root}>
-    <Wrapper className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <div className={styles.grid}>
         <div className={styles.brand}>
-          <div className={styles.logo}>PROSTOSELLER</div>
+          <a href="/" className={styles.logo}>
+            <Logo />
+          </a>
           <p className={styles.subtitle}>
             Ваш главный аналитик для увеличения доходов на маркетплейсах
           </p>
-          <div className={styles.social}>
-            <a className={styles.socialBtn} href="https://t.me/" target="_blank" rel="noopener noreferrer" aria-label="Telegram">TG</a>
-            <a className={styles.socialBtn} href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
-          </div>
+          <SocialLinks />
         </div>
 
         <div className={styles.contacts}>
@@ -80,10 +80,11 @@ const Footer: FC = () => (
 
       <div className={styles.bottom}>
         <a href="#">Согласие на рассылку</a>
+        <a href="#">Политика конфиденциальности и обработки персональных данных</a>
         <a href="#">Лицензионное соглашение Prostoseller</a>
         <a href="#">Оферта для партнерской программы</a>
       </div>
-    </Wrapper>
+    </div>
   </footer>
 )
 

@@ -16,6 +16,14 @@
   transition-property: color, background-color, border-color;
   outline: none;
   user-select: none;
+  will-change: transform;
+  transition: all variables.$transition;
+
+  border-radius: 40px;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 
   &_sm {
     height: func.rem(48);

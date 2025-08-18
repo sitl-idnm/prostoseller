@@ -3,9 +3,7 @@
 @use "@styles/variables";
 
 .root {
-  max-width: func.rem(1568);
-  padding-right: func.rem(64);
-  padding-left: func.rem(64);
+  max-width: 1520px;
   margin: 0 auto;
 
   display: flex;

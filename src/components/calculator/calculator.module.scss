@@ -65,24 +65,71 @@
 	appearance: none;
 	height: func.rem(10);
 	border-radius: func.rem(999);
-	background: #eadcff;
+	background:
+		linear-gradient(90deg, #d8bfff, #7b49ff) 0 0 / var(--pos, 0%) 100% no-repeat,
+		#eadcff;
+	outline: none;
+	position: relative;
+}
+
+.range:focus {
 	outline: none;
 }
 
+/* WebKit */
 .range::-webkit-slider-thumb {
 	appearance: none;
 	width: func.rem(24);
 	height: func.rem(24);
 	border-radius: 50%;
+	background: linear-gradient(90deg, var(--color-purple), var(--color-purple-dark));
+	border: func.rem(3) solid #fff;
+	box-shadow: 0 0 0 func.rem(2) rgba(123, 73, 255, 0.25);
+	cursor: pointer;
+}
+
+/* Firefox */
+.range::-moz-range-thumb {
+	width: func.rem(24);
+	height: func.rem(24);
+	border-radius: 50%;
+	background: linear-gradient(90deg, var(--color-purple), var(--color-purple-dark));
+	border: func.rem(3) solid #fff;
+	box-shadow: 0 0 0 func.rem(2) rgba(123, 73, 255, 0.25);
+	cursor: pointer;
+}
+.range::-moz-range-track {
+	height: func.rem(10);
+	border-radius: func.rem(999);
+	background: #eadcff;
+}
+
+/* Edge/IE */
+.range::-ms-thumb {
+	width: func.rem(24);
+	height: func.rem(24);
+	border-radius: 50%;
+	background: linear-gradient(90deg, var(--color-purple), var(--color-purple-dark));
+	border: func.rem(3) solid #fff;
+	box-shadow: 0 0 0 func.rem(2) rgba(123, 73, 255, 0.25);
+}
+.range::-ms-track {
+	height: func.rem(10);
+	border-color: transparent;
+	color: transparent;
 	background: transparent;
-	border: none;
+}
+.range::-ms-fill-lower,
+.range::-ms-fill-upper {
+	background: #eadcff;
+	border-radius: func.rem(999);
 }
 
 .badge {
 	position: absolute;
 	top: func.rem(-18);
 	left: 0;
-	transform: translateX(calc(var(--pos, 0) * 1% - 50%));
+	transform: translateX(calc(var(--pos, 0%) - 50%));
 	background: #e8d8ff;
 	color: #7b49ff;
 	font-weight: 700;
@@ -99,7 +146,7 @@
 	width: func.rem(2);
 	height: func.rem(16);
 	background: #d9caff;
-	transform: translateX(calc(var(--pos, 0) * 1% - 50%));
+	transform: translateX(calc(var(--pos, 0%) - 50%));
 	pointer-events: none;
 }
 
@@ -122,6 +169,25 @@
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
+}
+
+.incomeValue_pulse {
+	animation: value-pulse 0.6s ease;
+}
+
+@keyframes value-pulse {
+	0% {
+		transform: scale(1);
+		filter: saturate(1);
+	}
+	40% {
+		transform: scale(1.06);
+		filter: saturate(1.2);
+	}
+	100% {
+		transform: scale(1);
+		filter: saturate(1);
+	}
 }
 
 .cta {

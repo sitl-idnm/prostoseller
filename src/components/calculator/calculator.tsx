@@ -22,8 +22,9 @@ const Calculator: FC<CalculatorProps> = ({
   const [count, setCount] = useState<number>(initial)
 
   const coef = plan === 'base' ? baseCoef : optimalCoef
-  const income = Math.round(count * coef)
-  const posPercent = ((count - min) / (max - min)) * 100
+  const clamped = Math.min(Math.max(count, min), max)
+  const income = Math.round(clamped * coef)
+  const posPercent = `${((clamped - min) / (max - min)) * 100}%`
 
   // GSAP SplitText animation for income value
   const valueRef = useRef<HTMLSpanElement | null>(null)
@@ -37,15 +38,20 @@ const Calculator: FC<CalculatorProps> = ({
       try {
         const gsapModule: any = await import('gsap')
         const gsap = gsapModule.default || gsapModule
-        const SplitTextModule: any = await import('gsap/SplitText')
-        const SplitText = SplitTextModule.SplitText || SplitTextModule.default || SplitTextModule
-        gsap.registerPlugin(SplitText)
-        const text = `${income.toLocaleString('ru-RU')} ${currency}`
-        el.textContent = text
-        const split = SplitText.create(el, { type: 'chars' })
-        gsap.set(split.chars, { y: 12, autoAlpha: 0 })
-        await gsap.to(split.chars, { duration: 0.5, y: 0, autoAlpha: 1, stagger: 0.02, ease: 'power2.out' })
-        if (split?.revert) split.revert()
+        // content flip: fade old up, fade new in with slight spring + pulse class
+        const newText = `${income.toLocaleString('ru-RU')} ${currency}`
+        await gsap.to(el, { y: -8, autoAlpha: 0, duration: 0.15, ease: 'power1.out' })
+        el.textContent = newText
+        try { el.classList.remove(styles.incomeValue_pulse) } catch { }
+        // force reflow to restart pulse
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        void (el as any).offsetHeight
+        try { el.classList.add(styles.incomeValue_pulse) } catch { }
+        await gsap.fromTo(
+          el,
+          { y: 8, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 0.25, ease: 'power2.out' }
+        )
       } catch {
         // fallback
         el.textContent = `${income.toLocaleString('ru-RU')} ${currency}`
@@ -77,8 +83,9 @@ const Calculator: FC<CalculatorProps> = ({
           min={min}
           max={max}
           step={step}
-          value={count}
+          value={clamped}
           onChange={(e) => setCount(Number(e.target.value))}
+          onInput={(e) => setCount(Number((e.target as HTMLInputElement).value))}
         />
       </div>
       <div className={styles.incomeRow}>

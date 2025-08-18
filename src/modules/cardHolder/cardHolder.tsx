@@ -17,6 +17,7 @@ const CardHolder: FC<CardHolderProps> = ({
   const remainder = cards.length % cols
   const getCellClass = (index: number) => {
     const base = classNames(styles.cell, styles.item)
+    // растягиваем последнюю карточку если есть остаток
     if (index === cards.length - 1 && remainder !== 0) {
       if (remainder === 1) return classNames(base, styles.cell_wide3)
       if (remainder === 2) return classNames(base, styles.cell_wide2)

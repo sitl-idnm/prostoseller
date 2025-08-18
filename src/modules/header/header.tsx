@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import styles from './header.module.scss'
 import { HeaderProps } from './header.types'
 import Logo from './logo'
-import { Navigation } from '@/components'
+import { Navigation, SocialLinks } from '@/components'
 
 const IconPhone = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
@@ -38,14 +38,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
             <span className={styles.icon}><IconPhone /></span>
             +7 (495) 363-73-86
           </a>
-          <div className={styles.messengers}>
-            <a className={classNames(styles.messenger, styles.messenger_tg)} href="https://t.me/" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
-              <IconTg />
-            </a>
-            <a className={classNames(styles.messenger, styles.messenger_wa)} href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-              <IconWa />
-            </a>
-          </div>
+          <SocialLinks />
           <a href="/login" className={styles.loginBtn}>Войти / зарегистрироваться</a>
         </div>
       </div>

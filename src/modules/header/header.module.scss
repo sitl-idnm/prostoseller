@@ -3,8 +3,11 @@
 
 .root {
   position: relative;
+  max-width: 1500px;
   width: 100%;
   background-color: var(--color-white-default);
+  margin: 20px auto 0;
+  border-radius: 16px;
 
   &::after {
     z-index: 1;
@@ -26,8 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: func.rem(32);
-  padding-bottom: func.rem(32);
+  padding: 20px 24px;
 }
 
 .meta {
@@ -81,8 +83,10 @@
 }
 
 .promo {
+  border-radius: 0 0 16px 16px;
+
   background: linear-gradient(90deg, #b86cff 0%, #a452d7 100%);
-  padding: func.rem(14) 0;
+  padding: 20px 24px;
 }
 
 .promoInner {

@@ -55,6 +55,12 @@
 	display: flex;
 	align-items: flex-start;
 	gap: func.rem(8);
+	transition: transform variables.$transition;
+
+	&:hover {
+		transform: scale(1.05);
+		color: var(--color-primary);
+	}
 }
 
 .featureIcon {

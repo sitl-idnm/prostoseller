@@ -44,6 +44,7 @@ const Faq: FC<FaqProps> = ({
 
   const [openIndex, setOpenIndex] = useState(0)
   const contentRefs = useRef<Array<HTMLDivElement | null>>([])
+  const innerRefs = useRef<Array<HTMLDivElement | null>>([])
 
   const toggle = (idx: number) => {
     setOpenIndex((prev) => (prev === idx ? -1 : idx))
@@ -70,10 +71,21 @@ const Faq: FC<FaqProps> = ({
                 ref={(el) => {
                   contentRefs.current[idx] = el
                 }}
-                className={styles.itemContent}
-                style={{ maxHeight: isOpen ? contentRefs.current[idx]?.scrollHeight : 0 }}
+                className={classNames(styles.itemContent, isOpen ? styles.itemContent_open : undefined)}
+                style={{
+                  maxHeight: isOpen
+                    ? ((innerRefs.current[idx]?.scrollHeight || 0) + 12 + 24)
+                    : 0
+                }}
               >
-                <div className={styles.itemContent_inner}>{entry.answer}</div>
+                <div
+                  ref={(el) => {
+                    innerRefs.current[idx] = el
+                  }}
+                  className={styles.itemContent_inner}
+                >
+                  {entry.answer}
+                </div>
               </div>
             </div>
           )
