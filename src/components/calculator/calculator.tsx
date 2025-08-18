@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useMemo, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 
 import styles from './calculator.module.scss'
