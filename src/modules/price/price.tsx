@@ -153,9 +153,12 @@ const Price: FC<PriceProps> = ({
         try {
           const { default: gsap } = await import('gsap')
           const SplitTextModule = await import('gsap/SplitText')
-          const SplitTextAny = (SplitTextModule as unknown as { default?: unknown; SplitText?: unknown }).SplitText || (SplitTextModule as { default: unknown }).default || SplitTextModule
+          const SplitTextAny: unknown =
+            (SplitTextModule as unknown as { default?: unknown; SplitText?: unknown }).SplitText ??
+            (SplitTextModule as { default?: unknown }).default ??
+            SplitTextModule
           // register plugin (runtime API, typings shimmed)
-          gsap.registerPlugin(SplitTextAny as Record<string, unknown>)
+          gsap.registerPlugin(SplitTextAny as object)
 
           // kill previous
           if (tlRef.current && typeof (tlRef.current as { kill: () => void }).kill === 'function') {
@@ -169,7 +172,7 @@ const Price: FC<PriceProps> = ({
           el.textContent = targetText
           // runtime API usage
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-          splitRef.current = (SplitTextAny as any).create(el, { type: 'chars' })
+          splitRef.current = (SplitTextAny as { create: (el: Element, opts: { type: string }) => { chars: Element[]; revert?: () => void } }).create(el, { type: 'chars' })
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           gsap.set((splitRef.current as unknown as { chars: Element[] }).chars, { y: 12, autoAlpha: 0 })
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
