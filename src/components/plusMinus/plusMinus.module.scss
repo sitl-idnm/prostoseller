@@ -1,5 +1,5 @@
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
@@ -8,10 +8,10 @@
 
 .grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 2fr;
 	gap: func.rem(20);
 
-	@include mixins.tablet-small {
+	@include tablet-small {
 		// На мобильных скрываем десктопную сетку
 		display: none;
 	}
@@ -19,26 +19,73 @@
 
 .column {
 	display: grid;
+
+	border-radius: 20px;
+	padding: 20px;
+
+	&_was {
+		background: #FFE8E9;
+	}
+
+	&_before {
+		background: #D9FFDF;
+	}
+
+	&_title {
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 150%;
+		color: #333333;
+		text-align: center;
+		margin-bottom: 40px;
+	}
 }
 
 .pair {
 	display: none;
 
-	@include mixins.tablet-small {
-		display: block;
+	@include tablet-small {
+		display: flex;
+		flex-direction: column;
 	}
 }
 
 .card {
-	padding: func.rem(16);
 	border-radius: func.rem(12);
-	background: #ffe8ea;
-	box-shadow: 0 0 0 func.rem(10) rgba(255, 0, 0, 0.05) inset;
-}
 
-.card_success {
-	background: #eaffef;
-	box-shadow: 0 0 0 func.rem(10) rgba(0, 200, 0, 0.05) inset;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 12px;
+
+	margin-bottom: 24px;
+
+	&_was {
+		background: #FFE8E9;
+	}
+
+	&_became {
+		background: #D9FFDF;
+	}
+
+	@include tablet-small {
+		flex-direction: column;
+		align-items: flex-start;
+
+		gap: 8px;
+	}
+
+	&_header {
+		svg {
+			width: 70px;
+			height: 70px;
+
+			@include tablet-small {
+				width: 30px;
+				height: 30px;
+			}
+		}
+	}
 }
 
 .cardHeader {
@@ -47,6 +94,10 @@
 	gap: func.rem(10);
 	font-weight: 600;
 	margin-bottom: func.rem(8);
+
+	@include tablet-small {
+		margin-bottom: 0;
+	}
 }
 
 .icon {
@@ -62,4 +113,8 @@
 
 .list {
 	display: block;
+
+	font-size: 18px;
+	line-height: 150%;
+	color: rgba(24, 24, 24, 0.8);
 }

@@ -13,6 +13,9 @@ import { Price } from '@/modules/price'
 import { CardHolder } from '@/modules/cardHolder'
 import { Calculator } from '@/components/calculator'
 
+import WasCloseIcon from '@icons/was-close.svg'
+import BeforeOpenIcon from '@icons/before-open.svg'
+
 const cards = [
   { key: 'accuracy', icon: <Image src="/images/icon-rocket.svg" alt="Точность" width={24} height={24} />, title: 'Точность данных', text: 'Реальные данные напрямую с API Wildberries и Ozon — никаких искажений и задержек.', animated: true },
   { key: 'simplicity', icon: <Image src="/images/icon-rocket.svg" alt="Простота" width={24} height={24} />, title: 'Простота и удобство', text: 'Интуитивный интерфейс, понятный даже новичкам.', animated: true },
@@ -48,6 +51,8 @@ const Home: FC<HomeProps> = ({ className }) => {
           mark={<>Какие задачи решает <b>Prostoseller</b></>}
         >
           <PlusMinus
+            wasIcon={<WasCloseIcon />}
+            becameIcon={<BeforeOpenIcon />}
             pairs={[
               {
                 was: <>Выручка не растёт, несмотря на усилия?</>,

@@ -3,12 +3,14 @@
 @use "@styles/variables";
 
 .root {
-  max-width: 1520px;
+  max-width: 1600px;
   margin: 0 auto;
 
   display: flex;
   flex-direction: column;
   gap: func.rem(100);
+
+  padding: 0 40px;
 
   @include mixins.tablet-small {
     padding-right: func.rem(20);
