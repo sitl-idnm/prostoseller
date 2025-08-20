@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 import styles from './content.module.scss'
 import { ContentProps } from './content.types'
-import { Heading, Wrapper } from '@/ui'
+import { Heading } from '@/ui'
 import Image from 'next/image'
 
 const Content: FC<ContentProps> = ({
@@ -31,30 +31,30 @@ const Content: FC<ContentProps> = ({
 
   return (
     <section className={rootClassName} style={{ background }}>
-      <Wrapper>
-        <div className={innerClassName}>
-          <div className={contentClassName}>
-            {title && (
-              <Heading tagName={titleTagName} size={titleSize} className={styles.title}>
-                {title}
-              </Heading>
-            )}
-            {subtitle && <div className={styles.subtitle}>{subtitle}</div>}
-            {description && <div className={styles.description}>{description}</div>}
-            {subDescription && (
-              <div className={styles.subDescription}>{subDescription}</div>
-            )}
+      <div className={innerClassName}>
+        <div className={contentClassName}>
+          {title && (
+            <Heading tagName={titleTagName} size={titleSize} className={styles.title}>
+              {title}
+            </Heading>
+          )}
+          {subtitle && <div className={styles.subtitle}>{subtitle}</div>}
+          {description && <div className={styles.description}>{description}</div>}
+          {subDescription && (
+            <div className={styles.subDescription}>{subDescription}</div>
+          )}
+          <div className={styles.buttonsWrap}>
             {buttons && <div className={styles.buttons}>{buttons}</div>}
             {buttonsNote && <div className={styles.buttonsNote}>{buttonsNote}</div>}
           </div>
-
-          {variant === 'split' && imageSrc && (
-            <div className={styles.imageWrap}>
-              <Image src={imageSrc} alt={imageAlt} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
-            </div>
-          )}
         </div>
-      </Wrapper>
+
+        {variant === 'split' && imageSrc && (
+          <div className={styles.imageWrap}>
+            <Image src={imageSrc} alt={imageAlt} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          </div>
+        )}
+      </div>
     </section>
   )
 }
