@@ -11,7 +11,7 @@
 	grid-template-columns: 1fr 2fr;
 	gap: func.rem(20);
 
-	@include tablet-small {
+	@include mobile-large {
 		// На мобильных скрываем десктопную сетку
 		display: none;
 	}
@@ -44,7 +44,7 @@
 .pair {
 	display: none;
 
-	@include tablet-small {
+	@include mobile-large {
 		display: flex;
 		flex-direction: column;
 	}
@@ -60,6 +60,18 @@
 
 	margin-bottom: 24px;
 
+	@include mobile-large {
+		flex-direction: column;
+		align-items: flex-start;
+
+		gap: 8px;
+
+		padding: 12px;
+		margin-bottom: 12px;
+
+		border-radius: 8px;
+	}
+
 	&_was {
 		background: #FFE8E9;
 	}
@@ -68,19 +80,12 @@
 		background: #D9FFDF;
 	}
 
-	@include tablet-small {
-		flex-direction: column;
-		align-items: flex-start;
-
-		gap: 8px;
-	}
-
 	&_header {
 		svg {
 			width: 70px;
 			height: 70px;
 
-			@include tablet-small {
+			@include mobile-large {
 				width: 30px;
 				height: 30px;
 			}
@@ -95,8 +100,10 @@
 	font-weight: 600;
 	margin-bottom: func.rem(8);
 
-	@include tablet-small {
+	@include mobile-large {
 		margin-bottom: 0;
+
+		gap: 8px;
 	}
 }
 
@@ -104,11 +111,21 @@
 	width: func.rem(28);
 	height: func.rem(28);
 	flex: 0 0 auto;
+
+	@include mobile-large {
+		width: 28px;
+		height: 28px;
+	}
+
+	svg {
+		width: 100%;
+		height: 100%;
+	}
 }
 
 .title {
 	font-weight: 600;
-	margin-bottom: func.rem(8);
+	font-size: 16px;
 }
 
 .list {
@@ -117,4 +134,8 @@
 	font-size: 18px;
 	line-height: 150%;
 	color: rgba(24, 24, 24, 0.8);
+
+	@include mobile-large {
+		font-size: 16px;
+	}
 }

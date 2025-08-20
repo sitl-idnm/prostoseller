@@ -63,10 +63,10 @@ const Home: FC<HomeProps> = ({ className }) => {
           imageAlt="Скриншот кабинета"
         />
         <TitleHandler
-          title="Мы знаем, что мешает вашему бизнесу расти и приходим на помощь с решениями!"
+          title={<>Мы знаем, что мешает вашему <span className={styles.purple}>бизнесу</span> расти и приходим на помощь с <span className={styles.purple}>решениями!</span></>}
           titleTagName="h2"
           titleSize="lg"
-          description="Откройте для себя Prostoseller — платформу, которая помогает зарабатывать больше!"
+          description={<>Откройте для себя <span className={styles.purple}>Prostoseller</span> — платформу, которая помогает зарабатывать больше!</>}
           mark={<>Какие задачи решает <b>Prostoseller</b></>}
         >
           <PlusMinus

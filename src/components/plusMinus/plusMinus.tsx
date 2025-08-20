@@ -46,18 +46,18 @@ const PlusMinus: FC<PlusMinusProps> = ({
       {/* Mobile: парами */}
       <div className={styles.pair}>
         {pairs.map((pair, idx) => (
-          <div key={`pair-${idx}`} style={{ marginBottom: 12 }}>
+          <div key={`pair-${idx}`}>
             <div className={`${styles.card} ${styles.card_was}`}>
               <div className={styles.cardHeader}>
                 {wasIcon && <span className={styles.icon}>{wasIcon}</span>}
-                <div>{wasTitle}</div>
+                <div className={styles.title}>{wasTitle}</div>
               </div>
               <div className={styles.list}>{pair.was}</div>
             </div>
             <div className={classNames(styles.card, styles.card_success, styles.card_became)} style={{ marginTop: 12 }}>
               <div className={styles.cardHeader}>
                 {becameIcon && <span className={styles.icon}>{becameIcon}</span>}
-                <div>{becameTitle}</div>
+                <div className={styles.title}>{becameTitle}</div>
               </div>
               <div className={styles.list}>{pair.became}</div>
             </div>
