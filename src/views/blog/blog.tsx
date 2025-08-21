@@ -4,12 +4,12 @@ import classNames from 'classnames'
 import styles from './blog.module.scss'
 import { BlogProps } from './blog.types'
 import { BlogItems } from '@/modules/blogItems'
-import { getCachedPosts } from '@/app/blog/posts'
+import { getPosts } from '@/app/blog/posts'
 import { Wrapper } from '@/ui/wrapper'
 
 const Blog: FC<BlogProps> = async ({ className }) => {
   const rootClassName = classNames(styles.root, className)
-  const posts = await getCachedPosts()
+  const posts = await getPosts()
 
   return (
     <main className={rootClassName}>

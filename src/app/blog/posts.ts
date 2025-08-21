@@ -56,3 +56,10 @@ export const getCachedPosts = unstable_cache(
 export async function revalidateBlogPosts() {
 	revalidateTag(POSTS_TAG)
 }
+
+export async function getPosts() {
+	if (process.env.NODE_ENV !== 'production') {
+		return discoverPosts()
+	}
+	return getCachedPosts()
+}
