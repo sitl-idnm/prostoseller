@@ -18,7 +18,10 @@ const Price: FC<PriceProps> = ({
   plans,
   defaultPeriod = 'month',
   period,
-  onPeriodChange
+  onPeriodChange,
+  showPeriodSwitch = true,
+  showConnectButtons = true,
+  onConnect
 }) => {
   const rootClassName = classNames(styles.root, className)
   const [innerPeriod, setInnerPeriod] = useState<BillingPeriod>(defaultPeriod)
@@ -249,15 +252,17 @@ const Price: FC<PriceProps> = ({
   return (
     <section className={rootClassName}>
       <div className={styles.header}>
-        <h2 className={styles.header_title}>{title}</h2>
-        <div className={styles.switch}>
-          <Button variant={activePeriod === 'sixMonths' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('sixMonths')}>
-            6 мес скидка 20% (в отчете данные за 6 месяцев)
-          </Button>
-          <Button variant={activePeriod === 'month' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('month')}>
-            1 мес (в отчете данные за 2 месяц)
-          </Button>
-        </div>
+        <h2>{title}</h2>
+        {showPeriodSwitch && (
+          <div className={styles.switch}>
+            <Button variant={activePeriod === 'sixMonths' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('sixMonths')}>
+              6 мес скидка 20%
+            </Button>
+            <Button variant={activePeriod === 'month' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('month')}>
+              1 мес
+            </Button>
+          </div>
+        )}
       </div>
       <div className={styles.grid}>
         {plansToRender.map((plan) => (
@@ -272,9 +277,17 @@ const Price: FC<PriceProps> = ({
             </div>
             <div className={styles.priceRow}>
               <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />
-              <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink>
-                Подключить →
-              </Button>
+              {showConnectButtons && (
+                onConnect ? (
+                  <Button onClick={() => onConnect(plan.id, activePeriod)}>
+                    Подключить →
+                  </Button>
+                ) : (
+                  <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink>
+                    Подключить →
+                  </Button>
+                )
+              )}
             </div>
           </div>
         ))}
