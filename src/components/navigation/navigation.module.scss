@@ -5,11 +5,27 @@
 .root {
 	display: flex;
 	gap: func.rem(24);
+
+	@media (max-width: 1431px) {
+		gap: 12px;
+	}
+
+	@media (max-width: 1167px) {
+		gap: 4px;
+	}
 }
 
 .item {
 	display: flex;
 	position: relative;
+
+	@include mixins.tablet {
+		font-size: 14px;
+	}
+
+	@media (max-width: 1167px) {
+		font-size: 12px;
+	}
 }
 
 .link,
@@ -21,6 +37,18 @@
 	border-radius: func.rem(10);
 	background: transparent;
 	border: none;
+
+	@include mixins.tablet {
+		font-size: 14px;
+	}
+
+	@media (max-width: 1167px) {
+		font-size: 12px;
+	}
+
+	@include mixins.tablet-small {
+		padding: 2px 4px;
+	}
 }
 
 .caret {
@@ -47,9 +75,27 @@
 	pointer-events: none;
 	transform: translateY(8px);
 	transition: variables.$transition;
+
+	@include mixins.tablet {
+		font-size: 14px;
+	}
+
+	@media (max-width: 1167px) {
+		font-size: 12px;
+	}
 }
 
 .menuItem {
+}
+
+.trigger {
+	@include mixins.tablet {
+		font-size: 14px;
+	}
+
+	@media (max-width: 1167px) {
+		font-size: 12px;
+	}
 }
 
 .menuLink {
@@ -62,6 +108,28 @@
 	@include mixins.desktop-only {
 		&:hover {
 			background: rgba(0, 0, 0, 0.05);
+		}
+	}
+}
+
+
+.burger {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	transition: transform variables.$transition;
+
+	&:hover {
+		transform: translateY(-5px);
+	}
+
+	&Icon {
+		width: 100%;
+		height: 100%;
+
+		svg {
+			width: 100%;
+			height: 100%;
 		}
 	}
 }
