@@ -1,3 +1,4 @@
+export { BlogItem } from './blogItem'
 export { Calculator } from './calculator'
 export { Card } from './card'
 export { Dialog } from './dialog'
