@@ -140,7 +140,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         </TitleHandler>
         <Price />
         <TitleHandler
-          title="Часто задаваемые вопросы"
+          title={<>Часто задаваемые <span className={styles.purple}>вопросы</span></>}
           titleTagName="h2"
           titleSize="lg"
           mark={<>FAQ <b>Prostoseller</b></>}>

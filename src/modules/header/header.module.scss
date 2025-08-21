@@ -47,8 +47,10 @@
   align-items: center;
   gap: func.rem(8);
   padding: func.rem(10) func.rem(12);
-  border-radius: func.rem(12);
-  background: rgba(164, 82, 215, 0.12);
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .messengers {
@@ -79,7 +81,11 @@
   gap: func.rem(8);
   padding: func.rem(10) func.rem(14);
   border-radius: func.rem(18);
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid #A452D7;
+  color: #A452D7;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .promo {
