@@ -9,17 +9,25 @@
 
 .inner {
 	display: flex;
-	flex-direction: column;
-	gap: func.rem(24);
+	align-items: flex-start;
+	gap: func.rem(16);
 
 	margin-bottom: func.rem(50);
+
+	@include mixins.mobile-large {
+		margin-bottom: func.rem(16);
+
+		gap: func.rem(12);
+	}
 }
 
 .header {
 	display: flex;
-	align-items: flex-start;
+	flex-direction: column;
 	justify-content: space-between;
-	gap: func.rem(16);
+	gap: 24px;
+
+	flex-grow: 2;
 }
 
 .title {
@@ -27,17 +35,32 @@
 	font-weight: 800;
 	line-height: 1.2;
 
-	max-width: 70%;
 
-	display: inline-flex;
-	align-items: center;
+	display: inline-block;
 	gap: func.rem(10);
+
+	@include mixins.tablet {
+		font-size: 24px;
+
+		max-width: 100%;
+	}
+
+	@include mixins.mobile-large {
+		font-size: 20px;
+
+		max-width: 100%;
+	}
 }
 
 .mark {
 	display: inline-flex;
 	align-items: center;
 	gap: func.rem(8);
+
+	flex-grow: 1;
+
+	width: 100%;
+	max-width: max-content;
 
 	padding: 13.5px 24px;
 	border-radius: 16px;
@@ -50,9 +73,27 @@
 
 	transition: all variables.$transition;
 
+	@include mixins.mobile-large {
+		display: none;
+	}
+
 	&:hover {
 		transform: translateY(-5px);
 		background-color: rgba(164, 82, 215, 0.12);
+	}
+}
+
+.description {
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 1.5;
+
+	@include mixins.tablet {
+		font-size: 18px;
+	}
+
+	@include mixins.mobile-large {
+		font-size: 14px;
 	}
 }
 

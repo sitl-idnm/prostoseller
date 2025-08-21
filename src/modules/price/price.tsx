@@ -8,6 +8,10 @@ import { BillingPeriod, FeatureState, PriceProps, TariffPlan } from './price.typ
 import { Button } from '@/ui'
 import Link from 'next/link'
 
+import Absent from '@icons/absent.svg'
+import Included from '@icons/included.svg'
+import Addon from '@icons/addon.svg'
+
 const Price: FC<PriceProps> = ({
   className,
   title = 'Тарифы',
@@ -35,7 +39,7 @@ const Price: FC<PriceProps> = ({
         title: 'Старт',
         shops: '1 магазин (Ozon или WB)',
         description: (
-          <>Бесплатный тариф с полным функционалом на 4 дня</>
+          <><strong>Бесплатный тариф</strong> с полным функционалом <strong>на 4 дня</strong></>
         ),
         features: [
           { label: 'Личные кабинеты OZON и WB', state: 'included' },
@@ -62,7 +66,7 @@ const Price: FC<PriceProps> = ({
         title: 'Базовый',
         shops: 'до 2х магазинов (1 Ozon и 1 WB)',
         description: (
-          <>Тариф подходит для селлеров с оборотом до 500 тыс. руб</>
+          <>Тариф подходит для селлеров с <strong>оборотом</strong> до <strong>500 тыс. руб</strong></>
         ),
         features: [
           { label: 'Личные кабинеты OZON и WB', state: 'included' },
@@ -90,7 +94,7 @@ const Price: FC<PriceProps> = ({
         title: 'Оптимальный',
         shops: 'до 4х магазинов (Ozon и WB)',
         description: (
-          <>Тариф подходит для селлеров, кому важна максимальная эффективность</>
+          <>Тариф подходит для селлеров, кому важна <strong>максимальная эффективность</strong></>
         ),
         features: [
           { label: 'Личные кабинеты OZON и WB', state: 'included' },
@@ -225,11 +229,11 @@ const Price: FC<PriceProps> = ({
   const renderFeature = (state: FeatureState, label: React.ReactNode, idx: number) => {
     const icon =
       state === 'included' ? (
-        <span className={styles.featureIcon}>✓</span>
+        <Included />
       ) : state === 'absent' ? (
-        <span className={styles.featureIcon}>□</span>
+        <Absent />
       ) : state === 'addon' ? (
-        <span className={styles.featureIcon}>＋</span>
+        <Addon />
       ) : null
 
     const className = classNames(styles.feature, {
@@ -263,11 +267,13 @@ const Price: FC<PriceProps> = ({
       <div className={styles.grid}>
         {plansToRender.map((plan) => (
           <div className={styles.card} key={plan.id}>
-            <div className={styles.planTitle}>{plan.title}</div>
-            <div className={styles.planSub}>{plan.shops}</div>
-            <div className={styles.planSub}>{plan.description}</div>
-            <div className={styles.features}>
-              {plan.features.map((f, i) => renderFeature(f.state, f.label, i))}
+            <div>
+              <div className={styles.planTitle}>{plan.title}</div>
+              <div className={styles.planSubPurple}>{plan.shops}</div>
+              <div className={styles.planSub}>{plan.description}</div>
+              <div className={styles.features}>
+                {plan.features.map((f, i) => renderFeature(f.state, f.label, i))}
+              </div>
             </div>
             <div className={styles.priceRow}>
               <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />

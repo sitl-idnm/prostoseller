@@ -27,9 +27,9 @@ const TitleHandler: FC<TitleHandlerProps> = ({
                 {title}
               </Heading>
             )}
-            {mark && <div className={styles.mark}>{mark}</div>}
+            {description && <div className={styles.description}>{description}</div>}
           </div>
-          {description && <div className={styles.description}>{description}</div>}
+          {mark && <div className={styles.mark}>{mark}</div>}
         </div>
         <div className={styles.content}>{children}</div>
       </div>

@@ -13,6 +13,11 @@ import { Price } from '@/modules/price'
 import { CardHolder } from '@/modules/cardHolder'
 import { Calculator } from '@/components/calculator'
 
+import WasCloseIcon from '@icons/was-close.svg'
+import BeforeOpenIcon from '@icons/before-open.svg'
+import WbIcon from '@icons/pribil_icon.svg'
+import OzonIcon from '@icons/pribil_ozon.svg'
+
 const cards = [
   { key: 'accuracy', icon: <Image src="/images/icon-rocket.svg" alt="Точность" width={24} height={24} />, title: 'Точность данных', text: 'Реальные данные напрямую с API Wildberries и Ozon — никаких искажений и задержек.', animated: true },
   { key: 'simplicity', icon: <Image src="/images/icon-rocket.svg" alt="Простота" width={24} height={24} />, title: 'Простота и удобство', text: 'Интуитивный интерфейс, понятный даже новичкам.', animated: true },
@@ -40,14 +45,33 @@ const Home: FC<HomeProps> = ({ className }) => {
   return (
     <main className={rootClassName}>
       <Wrapper>
+        {/* Раздельный */}
+        <Content
+          variant="split"
+          background="#f7f7fb"
+          title={<>Удваиваем Вашу <span className={`${styles.iconwb} ${styles.icon_profit}`}><WbIcon /></span> прибыль на&nbsp;<span className={styles.wb}>Wildberries</span> и&nbsp;<span className={styles.ozon}>Ozon</span><span className={styles.icon_profit}><OzonIcon /></span></>}
+          description={<><span className={styles.purple}>8 из 10</span> пользователей <span className={styles.purple}>увеличивают прибыль</span> в среднем на <span className={styles.purple}>18%</span> уже на втором месяце использования сервиса</>}
+          subDescription={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
+          buttons={
+            <>
+              <Button variant="gradient">Подключить бесплатно</Button>
+              <Button variant="gradientOutline">Demo-кабинет</Button>
+            </>
+          }
+          buttonsNote="4 дня бесплатно без привязки карты"
+          imageSrc="/images/laptop_prostoseller.png"
+          imageAlt="Скриншот кабинета"
+        />
         <TitleHandler
-          title="Мы знаем, что мешает вашему бизнесу расти и приходим на помощь с решениями!"
+          title={<>Мы знаем, что мешает вашему <span className={styles.purple}>бизнесу</span> расти и приходим на помощь с <span className={styles.purple}>решениями!</span></>}
           titleTagName="h2"
           titleSize="lg"
-          description="Откройте для себя Prostoseller — платформу, которая помогает зарабатывать больше!"
+          description={<>Откройте для себя <span className={styles.purple}>Prostoseller</span> — платформу, которая помогает зарабатывать больше!</>}
           mark={<>Какие задачи решает <b>Prostoseller</b></>}
         >
           <PlusMinus
+            wasIcon={<WasCloseIcon />}
+            becameIcon={<BeforeOpenIcon />}
             pairs={[
               {
                 was: <>Выручка не растёт, несмотря на усилия?</>,
@@ -88,24 +112,7 @@ const Home: FC<HomeProps> = ({ className }) => {
             ]}
           />
         </TitleHandler>
-        {/* Раздельный */}
-        <Content
-          variant="split"
-          background="#f7f7fb"
-          title="Удваиваем вашу прибыль"
-          subtitle="На Wildberries и Ozon"
-          description="8 из 10 пользователей увеличивают прибыль..."
-          subDescription="Отчет Prostoseller покажет самые прибыльные товары..."
-          buttons={
-            <>
-              <Button variant="gradient">Подключить бесплатно</Button>
-              <Button variant="gradientOutline">Демо-кабинет</Button>
-            </>
-          }
-          buttonsNote="4 дня бесплатно без привязки карты"
-          imageSrc="/images/banner.jpg"
-          imageAlt="Скриншот кабинета"
-        />
+
         {/* Литой */}
         <TitleHandler
           title="Наши преимущества"
@@ -133,7 +140,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         </TitleHandler>
         <Price />
         <TitleHandler
-          title="Часто задаваемые вопросы"
+          title={<>Часто задаваемые <span className={styles.purple}>вопросы</span></>}
           titleTagName="h2"
           titleSize="lg"
           mark={<>FAQ <b>Prostoseller</b></>}>
