@@ -108,6 +108,7 @@
 }
 
 .icon {
+	display: inline-flex;
 	width: func.rem(28);
 	height: func.rem(28);
 	flex: 0 0 auto;
