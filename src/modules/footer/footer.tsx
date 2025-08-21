@@ -58,7 +58,6 @@ const Footer: FC = () => (
         </div>
 
         <div className={styles.navCol}>
-          <div className={styles.title}>Навигация</div>
           <ul className={styles.links}>
             <li><Link href="/">Главная</Link></li>
             <li><Link href="/login">Войти/зарегистрироваться</Link></li>
@@ -69,8 +68,8 @@ const Footer: FC = () => (
         </div>
 
         <div className={styles.navCol}>
-          <div className={styles.title}>Как работает Prostoseller</div>
           <ul className={styles.links}>
+            <li><Link href="/how-it-works">Как работает Prostoseller</Link></li>
             <li><Link href="/partners">Партнерская программа</Link></li>
             <li><Link href="/inviteFriend">Пригласи друга</Link></li>
             <li><Link href="/price">Тарифы</Link></li>

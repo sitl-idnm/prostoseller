@@ -10,6 +10,7 @@ const Content: FC<ContentProps> = ({
   className,
   variant = 'split',
   background,
+  backgroundContent,
   imageSrc,
   imageAlt = '',
   title,
@@ -32,7 +33,7 @@ const Content: FC<ContentProps> = ({
   return (
     <section className={rootClassName} style={{ background }}>
       <div className={innerClassName}>
-        <div className={contentClassName}>
+        <div className={contentClassName} style={{ background: backgroundContent }}>
           {title && (
             <Heading tagName={titleTagName} size={titleSize} className={styles.title}>
               {title}

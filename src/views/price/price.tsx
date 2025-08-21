@@ -24,7 +24,7 @@ const Price: FC<PriceProps> = ({
 
   return (
     <main className={rootClassName}>
-      <Wrapper>
+      <Wrapper className={styles.wrapper}>
         <Content
           variant="solid"
           background="#D9E3FF"

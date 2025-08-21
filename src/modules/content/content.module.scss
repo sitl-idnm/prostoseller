@@ -4,6 +4,10 @@
 
 .root {
 	width: 100%;
+
+	border-radius: 24px;
+
+	overflow: hidden;
 }
 
 .inner {
@@ -20,15 +24,17 @@
 	}
 }
 
+
+
 .content {
 	display: grid;
 	background-color: #FFF;
 
+	border-radius: 24px;
+
 	height: 100%;
 
 	padding: func.rem(40);
-
-	border-radius: 24px;
 
 	gap: func.rem(16);
 	max-width: 100%;
@@ -77,10 +83,6 @@
 
 .subtitle {
 	max-width: 100%;
-}
-
-.description {
-	max-width: 100%;
 
 	font-size: func.rem(20);
 	font-weight: 700;
@@ -96,7 +98,7 @@
 	}
 }
 
-.subDescription {
+.description {
 	max-width: 100%;
 
 	color: rgba(24, 24, 24, 0.8);
@@ -106,6 +108,23 @@
 
 	@include mixins.tablet {
 		font-size: 14px;
+	}
+}
+
+.subDescription {
+	max-width: 100%;
+
+	font-size: func.rem(20);
+	font-weight: 700;
+	line-height: 1.5;
+	color: rgba(24, 24, 24, 0.8);
+
+	@include mixins.tablet {
+		font-size: 18px;
+	}
+
+	@include mixins.mobile-large {
+		font-size: 16px;
 	}
 }
 

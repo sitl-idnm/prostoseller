@@ -13,7 +13,7 @@ const Policy: FC<PolicyProps> = ({
 
   return (
     <main className={rootClassName}>
-      <Wrapper>
+      <Wrapper className={styles.wrapper}>
         <AutoProse>
           {`Политика в отношении обработки персональных данных
 

@@ -32,14 +32,12 @@ const cards = [
   },
 ]
 
-const Partners: FC<PartnersProps> = ({
-  className
-}) => {
+const Partners: FC<PartnersProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
 
   return (
     <main className={rootClassName}>
-      <Wrapper>
+      <Wrapper className={styles.wrapper}>
         <Content
           variant="solid"
           background="#D9E3FF"

@@ -19,9 +19,10 @@ const Company: FC<CompanyProps> = ({
           variant="split"
           background="#D9E3FF"
           title="О компании"
-          subtitle="Prostoseller — это сервис для анализа продаж на маркетплейсах"
-          description="Мы помогаем предпринимателям анализировать продажи, оптимизировать товарные позиции и увеличивать прибыль"
-          subDescription="Наши сервисы используются более чем 1000 предпринимателями в России"
+          titleTagName="h1"
+          titleSize="md"
+          subtitle="Prostoseller – это сервис, который показывает реальный доход и экономику продаж на Wildberries и Ozon "
+          
         />
         <TitleHandler
           title="НАША ЦЕЛЬ – сделать прибыль селлеров больше, а бизнес понятнее!"
