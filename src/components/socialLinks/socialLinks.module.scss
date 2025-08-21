@@ -6,12 +6,21 @@
 	display: flex;
 	gap: 12px;
 
+	@include mixins.mobile-large {
+		gap: 6px;
+	}
+
 	a {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		width: 40px;
 		transition: transform variables.$transition;
+
+		@include mixins.mobile-large {
+			width: 30px;
+			height: 30px;
+		}
 
 		&:hover {
 			transform: translateY(-5px);

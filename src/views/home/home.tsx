@@ -44,7 +44,7 @@ const Home: FC<HomeProps> = ({ className }) => {
 
   return (
     <main className={rootClassName}>
-      <Wrapper>
+      <Wrapper className={styles.wrapper}>
         {/* Раздельный */}
         <Content
           variant="split"

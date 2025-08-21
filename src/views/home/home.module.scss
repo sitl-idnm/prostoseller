@@ -7,6 +7,12 @@
   padding: func.rem(40) 0;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
 .title {
   color: var(--color-blue);
   text-align: center;
