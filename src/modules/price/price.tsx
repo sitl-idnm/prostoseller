@@ -14,7 +14,10 @@ const Price: FC<PriceProps> = ({
   plans,
   defaultPeriod = 'month',
   period,
-  onPeriodChange
+  onPeriodChange,
+  showPeriodSwitch = true,
+  showConnectButtons = true,
+  onConnect
 }) => {
   const rootClassName = classNames(styles.root, className)
   const [innerPeriod, setInnerPeriod] = useState<BillingPeriod>(defaultPeriod)
@@ -47,10 +50,10 @@ const Price: FC<PriceProps> = ({
           { label: 'Экспорт файлов', state: 'included' },
           { label: 'Автоматизированная рассылка отчётов на Email', state: 'included' },
           { label: 'Живая поддержка клиентов', state: 'included' },
-          { label: 'Управление планированием', state: 'absent' },
-          { label: 'Расчёт оборачиваемости товаров и планирование поставок', state: 'absent' },
-          { label: 'Расходы на рекламу (детализировано)', state: 'absent' },
-          { label: 'Калькулятор доходности и планирование цен', state: 'absent' }
+          { label: 'Управление планированием', state: 'included' },
+          { label: 'Расчёт оборачиваемости товаров и планирование поставок', state: 'included' },
+          { label: 'Расходы на рекламу (детализировано)', state: 'included' },
+          { label: 'Калькулятор доходности и планирование цен', state: 'included' }
         ],
         priceByPeriod: { month: 0, sixMonths: 0 }
       },
@@ -246,14 +249,16 @@ const Price: FC<PriceProps> = ({
     <section className={rootClassName}>
       <div className={styles.header}>
         <h2>{title}</h2>
-        <div className={styles.switch}>
-          <Button variant={activePeriod === 'sixMonths' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('sixMonths')}>
-            6 мес скидка 20%
-          </Button>
-          <Button variant={activePeriod === 'month' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('month')}>
-            1 мес
-          </Button>
-        </div>
+        {showPeriodSwitch && (
+          <div className={styles.switch}>
+            <Button variant={activePeriod === 'sixMonths' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('sixMonths')}>
+              6 мес скидка 20%
+            </Button>
+            <Button variant={activePeriod === 'month' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('month')}>
+              1 мес
+            </Button>
+          </div>
+        )}
       </div>
       <div className={styles.grid}>
         {plansToRender.map((plan) => (
@@ -266,9 +271,17 @@ const Price: FC<PriceProps> = ({
             </div>
             <div className={styles.priceRow}>
               <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />
-              <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink>
-                Подключить →
-              </Button>
+              {showConnectButtons && (
+                onConnect ? (
+                  <Button onClick={() => onConnect(plan.id, activePeriod)}>
+                    Подключить →
+                  </Button>
+                ) : (
+                  <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink>
+                    Подключить →
+                  </Button>
+                )
+              )}
             </div>
           </div>
         ))}

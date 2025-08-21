@@ -1,3 +1,5 @@
+"use client"
+
 import { FC } from 'react'
 import classNames from 'classnames'
 
@@ -12,7 +14,9 @@ const Navigation: FC<NavigationProps> = ({ className }) => {
       <li className={styles.item}><a href="/price" className={styles.link}>Тарифы</a></li>
 
       <li className={classNames(styles.item, styles.dropdown)}>
-        <button className={styles.trigger} type="button">
+        <button className={styles.trigger} type="button" onClick={() => {
+          window.location.href = '/partners'
+        }}>
           Партнёрам <span className={styles.caret} aria-hidden>▾</span>
         </button>
         <ul className={styles.menu}>
@@ -22,7 +26,9 @@ const Navigation: FC<NavigationProps> = ({ className }) => {
       </li>
 
       <li className={classNames(styles.item, styles.dropdown)}>
-        <button className={styles.trigger} type="button">
+        <button className={styles.trigger} type="button" onClick={() => {
+          window.location.href = '/about'
+        }}>
           О нас <span className={styles.caret} aria-hidden>▾</span>
         </button>
         <ul className={styles.menu}>
