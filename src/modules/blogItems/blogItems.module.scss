@@ -1,0 +1,18 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.grid {
+  width: 100%;
+}
+
+.moreWrap {
+  display: flex;
+  justify-content: center;
+}

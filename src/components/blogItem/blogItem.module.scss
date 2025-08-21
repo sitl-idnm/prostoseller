@@ -1,0 +1,56 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.imageWrap {
+  display: block;
+}
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+.date {
+  color: #8c8c8c;
+  font-size: 12px;
+}
+.title {
+  font-size: 18px;
+  margin: 0;
+}
+.description {
+  color: #444;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag {
+  background: #f3f3f3;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+.actions {
+  margin-top: auto;
+}
+.more {
+  color: #6c5ce7;
+}

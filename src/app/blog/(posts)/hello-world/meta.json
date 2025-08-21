@@ -1,0 +1,9 @@
+{
+	"title": "Hello World",
+	"description": "Первый пост в блоге",
+	"date": "2025-01-01",
+	"tags": [
+		"intro"
+	],
+	"imageSrc": "/images/banner.jpg"
+}
