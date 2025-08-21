@@ -10,7 +10,7 @@ import { AutoProseProps } from './autoProse.types'
 const isH2 = (line: string): boolean => /^\d+\.\s/.test(line.trim())
 const isH3 = (line: string): boolean => /^\d+\.\d+\s/.test(line.trim()) || /^\d+\.\d+\.\s/.test(line.trim())
 
-const LINK_REGEX = /(https?:\/\/[^\s<>'")]+|\/[A-Za-z0-9\-._~\/#?\[\]@!$&'()*+,;=%]+)/g
+const LINK_REGEX = /(https?:\/\/[^\s<>'")]+|\/[A-Za-z0-9\-._~/#?\]@!$&'()*+,;=%]+)/g
 const trimTrailingPunctuation = (token: string): { core: string; trailing: string } => {
 	const m = token.match(/[)\],.;:!?]+$/)
 	if (!m) return { core: token, trailing: '' }

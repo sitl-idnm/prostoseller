@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useMemo, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import classNames from 'classnames'
 

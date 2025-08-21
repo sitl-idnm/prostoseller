@@ -18,7 +18,6 @@ export async function discoverPosts(): Promise<DiscoveredPost[]> {
 			if (!dirent.isDirectory()) continue
 			const slug = dirent.name
 			const metaPath = path.join(POSTS_DIR, slug, 'meta.json')
-			const pagePath = path.join(POSTS_DIR, slug, 'page.tsx')
 			try {
 				const [metaRaw] = await Promise.all([
 					fs.readFile(metaPath, 'utf-8')
