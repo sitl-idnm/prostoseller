@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import Link from 'next/link'
 
 import styles from './footer.module.scss'
 import Logo from '@icons/logo-footer.svg'
@@ -29,9 +30,9 @@ const Footer: FC = () => (
     <div className={styles.wrapper}>
       <div className={styles.grid}>
         <div className={styles.brand}>
-          <a href="/" className={styles.logo}>
+          <Link href="/" className={styles.logo}>
             <Logo />
-          </a>
+          </Link>
           <p className={styles.subtitle}>
             Ваш главный аналитик для увеличения доходов на маркетплейсах
           </p>
@@ -59,30 +60,30 @@ const Footer: FC = () => (
         <div className={styles.navCol}>
           <div className={styles.title}>Навигация</div>
           <ul className={styles.links}>
-            <li><a href="/">Главная</a></li>
-            <li><a href="/login">Войти/зарегистрироваться</a></li>
-            <li><a href="/company">О компании</a></li>
-            <li><a href="/contacts">Контакты</a></li>
-            <li><a href="/blog">Блог</a></li>
+            <li><Link href="/">Главная</Link></li>
+            <li><Link href="/login">Войти/зарегистрироваться</Link></li>
+            <li><Link href="/company">О компании</Link></li>
+            <li><Link href="/contacts">Контакты</Link></li>
+            <li><Link href="/blog">Блог</Link></li>
           </ul>
         </div>
 
         <div className={styles.navCol}>
           <div className={styles.title}>Как работает Prostoseller</div>
           <ul className={styles.links}>
-            <li><a href="/partners">Партнерская программа</a></li>
-            <li><a href="/inviteFriend">Пригласи друга</a></li>
-            <li><a href="/price">Тарифы</a></li>
-            <li><a href="/thanks">DEMO - кабинет</a></li>
+            <li><Link href="/partners">Партнерская программа</Link></li>
+            <li><Link href="/inviteFriend">Пригласи друга</Link></li>
+            <li><Link href="/price">Тарифы</Link></li>
+            <li><Link href="/thanks">DEMO - кабинет</Link></li>
           </ul>
         </div>
       </div>
 
       <div className={styles.bottom}>
-        <a href="#">Согласие на рассылку</a>
-        <a href="#">Политика конфиденциальности и обработки персональных данных</a>
-        <a href="#">Лицензионное соглашение Prostoseller</a>
-        <a href="#">Оферта для партнерской программы</a>
+        <Link href="/approve">Согласие на рассылку</Link>
+        <Link href="/policy">Политика конфиденциальности и обработки персональных данных</Link>
+        <Link href="/licensy">Лицензионное соглашение Prostoseller</Link>
+        <Link href="/oferta">Оферта для партнерской программы</Link>
       </div>
     </div>
   </footer>
