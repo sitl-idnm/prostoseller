@@ -49,7 +49,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         <Content
           variant="split"
           background="#f7f7fb"
-          title={<>Удваиваем Вашу <span className={styles.icon_profit}><WbIcon /></span> прибыль&nbsp;на&nbsp;<span className={styles.wb}>Wildberries</span> и&nbsp;<span className={styles.ozon}>Ozon</span><span className={styles.icon_profit}><OzonIcon /></span></>}
+          title={<>Удваиваем Вашу <span className={`${styles.iconwb} ${styles.icon_profit}`}><WbIcon /></span> прибыль на&nbsp;<span className={styles.wb}>Wildberries</span> и&nbsp;<span className={styles.ozon}>Ozon</span><span className={styles.icon_profit}><OzonIcon /></span></>}
           description={<><span className={styles.purple}>8 из 10</span> пользователей <span className={styles.purple}>увеличивают прибыль</span> в среднем на <span className={styles.purple}>18%</span> уже на втором месяце использования сервиса</>}
           subDescription={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
           buttons={

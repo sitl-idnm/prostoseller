@@ -44,6 +44,17 @@
   svg {
     width: func.rem(92);
     height: func.rem(55);
+
+    @include mixins.tablet {
+      width: 70px;
+      height: 40px;
+    }
+  }
+}
+
+.iconwb {
+  @include mixins.tablet {
+    display: none;
   }
 }
 
