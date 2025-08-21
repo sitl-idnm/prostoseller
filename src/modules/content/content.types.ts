@@ -8,6 +8,8 @@ export interface ContentProps {
   variant?: ContentVariant
   /** Цвет фона всей секции (любой валидный CSS-цвет или значение) */
   background?: string
+  /** Цвет фона контента */
+  backgroundContent?: string
 
   /** Опциональное изображение справа для варианта 'split' */
   imageSrc?: string

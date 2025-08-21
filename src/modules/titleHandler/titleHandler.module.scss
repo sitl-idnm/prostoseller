@@ -34,6 +34,7 @@
 	font-size: 40px;
 	font-weight: 800;
 	line-height: 1.2;
+	max-width: 1000px;
 
 
 	display: inline-block;
@@ -49,6 +50,12 @@
 		font-size: 20px;
 
 		max-width: 100%;
+	}
+
+	transition: all variables.$transition;
+
+	&:hover {
+		transform: translateX(10px);
 	}
 }
 

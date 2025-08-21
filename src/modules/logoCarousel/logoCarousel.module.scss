@@ -1,5 +1,55 @@
 @use "@styles/func";
 @use "@styles/mixins";
 @use "@styles/variables";
-  
-.root {}
+
+.root {
+  position: relative;
+}
+
+.viewport {
+  overflow: hidden;
+  padding: 8px 0;
+}
+
+.marquee {
+  --gap: 16px;
+  --duration: 30s;
+  display: flex;
+  gap: var(--gap);
+  width: max-content;
+  will-change: transform;
+  animation: marquee var(--duration) linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (min-width: variables.$mobile-large) {
+  .marquee { --gap: 24px; }
+}
+
+.item {
+  width: 260px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  flex: 0 0 auto;
+
+	transition: transform 0.3s ease;
+
+	&:hover {
+		transform: translateY(-5px) scale(1.05);
+	}
+
+	svg {
+		width: 80%;
+		height: 80%;
+		object-fit: contain;
+	}
+}

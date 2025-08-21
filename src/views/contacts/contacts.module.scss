@@ -1,5 +1,69 @@
-@use "@styles/func";
-@use "@styles/mixins";
-@use "@styles/variables";
-  
-.root {}
+@use '@styles/func';
+@use '@styles/mixins';
+@use '@styles/variables';
+
+.root {
+  width: 100%;
+  padding: func.rem(40) 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.title {
+  color: var(--color-blue);
+  text-align: center;
+  margin: 0 auto func.rem(32);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  max-width: func.rem(512);
+  height: auto;
+  margin: 0 auto;
+
+  @include mixins.tablet-small {
+    max-width: func.rem(400);
+  }
+}
+
+.wb {
+  background: linear-gradient(75deg, #FA457E 0%, #7B49FF 100%);
+  -webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.ozon {
+  color: #005BFF;
+  margin-right: 10px;
+}
+
+.icon_profit {
+  display: inline-flex;
+  vertical-align: middle;
+
+  svg {
+    width: func.rem(92);
+    height: func.rem(55);
+
+    @include mixins.tablet {
+      width: 70px;
+      height: 40px;
+    }
+  }
+}
+
+.iconwb {
+  @include mixins.tablet {
+    display: none;
+  }
+}
+
+.purple {
+  color: #A452D7;
+}

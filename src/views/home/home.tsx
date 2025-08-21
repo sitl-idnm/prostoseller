@@ -48,10 +48,11 @@ const Home: FC<HomeProps> = ({ className }) => {
         {/* Раздельный */}
         <Content
           variant="split"
-          background="#f7f7fb"
+          background="transparent"
+          backgroundContent="#fff"
           title={<>Удваиваем Вашу <span className={`${styles.iconwb} ${styles.icon_profit}`}><WbIcon /></span> прибыль на&nbsp;<span className={styles.wb}>Wildberries</span> и&nbsp;<span className={styles.ozon}>Ozon</span><span className={styles.icon_profit}><OzonIcon /></span></>}
-          description={<><span className={styles.purple}>8 из 10</span> пользователей <span className={styles.purple}>увеличивают прибыль</span> в среднем на <span className={styles.purple}>18%</span> уже на втором месяце использования сервиса</>}
-          subDescription={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
+          subtitle={<><span className={styles.purple}>8 из 10</span> пользователей <span className={styles.purple}>увеличивают прибыль</span> в среднем на <span className={styles.purple}>18%</span> уже на втором месяце использования сервиса</>}
+          description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
           buttons={
             <>
               <Button variant="gradient">Подключить бесплатно</Button>
@@ -113,24 +114,34 @@ const Home: FC<HomeProps> = ({ className }) => {
           />
         </TitleHandler>
 
-        {/* Литой */}
         <TitleHandler
-          title="Наши преимущества"
+          title={<><span className={styles.purple}>3 простых шага</span>, чтобы начать зарабатывать <span className={styles.purple}>больше в 2 раза</span></>}
           titleTagName="h2"
           titleSize="lg"
-          mark={<>Почему <b>Prostoseller</b></>}>
+          mark={<>Как работает <b>Prostoseller</b></>}>
+          <CardHolder cards={cards} />
+        </TitleHandler>
+
+
+        {/* Литой */}
+        <TitleHandler
+          title={<>Пользуйтесь Prostoseller <span className={styles.purple}>бесплатно</span></>}
+          titleTagName="h2"
+          titleSize="lg"
+          mark={<>Как работает <b>Prostoseller</b></>}>
           <Content
             variant="solid"
             background="linear-gradient(90deg,#f1e9ff,#eaf5ff)"
-            title="Пользуйтесь Prostoseller бесплатно"
+            title={<>Приглашайте друзей в <span className={styles.purple}>Prostoseller</span> и пользуйтесь сервисом бесплатно</>}
             titleTagName="h1"
             titleSize="lg"
-            subtitle="Приглашайте друзей и пользуйтесь сервисом бесплатно"
-            description="За каждого друга — по одному бесплатному месяцу..."
+            subtitle="За каждого друга - по одному бесплатному месяцу тебе и ему"
+            description="Публикуйте свой пригласительный код в социальных сетях, делитесь кодом с друзьями и получайте свой бонус за каждое его использование"
+            subDescription="Пригласил 12 друзей - ДЕРЖИ ГОД БЕСПЛАТНОЙ АНАЛИТИКИ"
             buttons={<Button>Пользоваться бесплатно</Button>}
-            buttonsNote="Пригласил 12 друзей — держи год бесплатной аналитики"
           />
         </TitleHandler>
+
         <TitleHandler
           title="Наши преимущества"
           titleTagName="h2"
@@ -138,7 +149,29 @@ const Home: FC<HomeProps> = ({ className }) => {
           mark={<>Почему <b>Prostoseller</b></>}>
           <CardHolder cards={cards} />
         </TitleHandler>
+        <Content
+          variant="split"
+          background="#f7f7fb"
+          title={<>Смотрите, как работает <span className={styles.purple}>Pro
+            stoseller</span> изнутри<span className={styles.icon_profit}><OzonIcon /></span></>}
+
+          description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
+
+          buttons={
+            <>
+              <Button variant="gradient">Demo-кабинет</Button>
+            </>
+          }
+          imageSrc="/images/laptop_prostoseller.png"
+          imageAlt="Скриншот кабинета"
+        />
         <Price />
+        <TitleHandler
+          title={<><span className={styles.purple}>Отзывы </span>реальных пользователей</>}
+          titleTagName="h2"
+          titleSize="lg"
+          mark={<>Отзывы о <b>Prostoseller</b></>}>
+        </TitleHandler>
         <TitleHandler
           title={<>Часто задаваемые <span className={styles.purple}>вопросы</span></>}
           titleTagName="h2"
@@ -146,6 +179,20 @@ const Home: FC<HomeProps> = ({ className }) => {
           mark={<>FAQ <b>Prostoseller</b></>}>
           <Faq />
         </TitleHandler>
+
+
+        {/* Литой */}
+        <Content
+          variant="solid"
+          background="#A452D7"
+          backgroundContent="#A452D7"
+          title={<><span className={styles.white}>Начните управлять своим бизнесом уже сегодня!</span></>}
+          titleTagName="h2"
+          titleSize="md"
+          buttons={<Button variant="white">Подключить бесплатно</Button>}
+        />
+
+
         <Calculator />
       </Wrapper>
     </main >
