@@ -32,7 +32,7 @@ const Price: FC<PriceProps> = ({
           subtitle="Мы знаем как важно получать выгоду селлерам, поэтому сделали скидку при оплате тарифа на шесть месяцев!"
           buttons={
             <>
-              <Button variant={period === 'sixMonths' ? 'gradient' : 'gradientOutline'} onClick={handleSix}>6 мес скидка 20% (в отчете данные за 6 мес)</Button>
+              <Button variant={period === 'sixMonths' ? 'gradient' : 'gradientOutline'} onClick={handleSix}>6 мес{'\u00A0'}скидка 20% (в отчете данные за 6 мес)</Button>
               <Button variant={period === 'month' ? 'white' : 'purpleOutline'} onClick={handleMonth}>1 мес (в отчете данные за 2 мес)</Button>
             </>
           }
