@@ -1,5 +1,5 @@
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
@@ -29,12 +29,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: func.rem(12);
-	padding: 24px 24px 30px;
+	padding: 31px 24px;
 	cursor: pointer;
 	transition: background-color variables.$transition;
 
-	@include mixins.text;
+	@include text;
 
 	&:hover {
 		background-color: rgba(0, 0, 0, 0.02);
@@ -42,13 +41,24 @@
 }
 
 .itemTitle {
+	font-size: 20px;
+	line-height: 1.5;
 	font-weight: 600;
+
+	@include tablet-small {
+		font-size: 18px;
+	}
+
+	@include mobile-small {
+		font-size: 14px;
+		font-weight: 700;
+	}
 }
 
 .itemArrow {
 	flex: 0 0 auto;
-	width: func.rem(24);
-	height: func.rem(24);
+	width: 44px;
+	height: 44px;
 	transform: rotate(0deg);
 	transition: transform variables.$transition;
 }
@@ -66,6 +76,15 @@
 	transition:
 		max-height variables.$transition,
 		padding variables.$transition;
+
+	font-size: 18px;
+	line-height: 1.5;
+	font-weight: 400;
+
+	@include mobile-small {
+		font-size: 14px;
+	}
+
 }
 
 .itemContent_open {

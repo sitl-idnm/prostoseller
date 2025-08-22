@@ -6,6 +6,8 @@ import classNames from 'classnames'
 import styles from './faq.module.scss'
 import { FaqEntry, FaqProps } from './faq.types'
 
+import FaqArrow from '@icons/faq-arrow.svg'
+
 const Faq: FC<FaqProps> = ({
   className,
   items,
@@ -68,9 +70,7 @@ const Faq: FC<FaqProps> = ({
             >
               <div className={styles.itemHeader} onClick={() => toggle(idx)}>
                 <div className={styles.itemTitle}>{entry.question}</div>
-                <svg className={styles.itemArrow} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                <FaqArrow className={styles.itemArrow} />
               </div>
               <div
                 ref={(el) => {
