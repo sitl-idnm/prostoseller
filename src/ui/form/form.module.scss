@@ -1,0 +1,70 @@
+
+
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  gap: func.rem(12);
+}
+
+.field {
+  display: grid;
+  gap: func.rem(6);
+}
+
+.label {
+  font-size: func.rem(12);
+  color: rgba(24,24,24,0.7);
+}
+
+.submit {
+  margin-top: func.rem(8);
+}
+
+.textarea {
+  width: 100%;
+  min-height: func.rem(140);
+  padding: func.rem(20);
+  font-family: inherit;
+  color: var(--color-black-default);
+  background-color: var(--color-white-default);
+  border: none;
+  border-radius: func.rem(8);
+  outline: none;
+  resize: none;
+}
+
+.passwordWrap {
+  position: relative;
+}
+.passwordInput {
+  width: 100%;
+}
+.eyeBtn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: func.rem(8);
+}
+
+.root {}
