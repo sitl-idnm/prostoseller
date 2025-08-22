@@ -7,10 +7,11 @@ import classNames from 'classnames'
 import styles from './blogPost.module.scss'
 import { BlogPostProps } from './blogPost.types'
 import { Wrapper } from '@/ui/wrapper'
+import { BlogItems } from '@/modules/blogItems'
 
 interface TocItem { id: string; text: string }
 
-const BlogPost: FC<BlogPostProps> = ({ className, title, author, authorRole, authorAvatarSrc, date, readTimeMin, views, imageSrc, children }) => {
+const BlogPost: FC<BlogPostProps> = ({ className, title, author, authorRole, authorAvatarSrc, date, readTimeMin, views, imageSrc, related, currentId, children }) => {
 	const rootClassName = classNames(styles.root, className)
 	const contentRef = useRef<HTMLDivElement | null>(null)
 	const [toc, setToc] = useState<TocItem[]>([])
@@ -88,6 +89,20 @@ const BlogPost: FC<BlogPostProps> = ({ className, title, author, authorRole, aut
 					</article>
 				</div>
 			</Wrapper>
+
+			{related && related.length > 0 && (
+				<Wrapper>
+					<section className={styles.related}>
+						<div className={styles.relatedTitle}>Может быть интересно</div>
+						<BlogItems
+							items={(currentId ? related.filter(r => r.id !== currentId) : related)}
+							columns={3}
+							initialRows={1}
+							showMoreStep={3}
+						/>
+					</section>
+				</Wrapper>
+			)}
 		</div>
 	)
 }

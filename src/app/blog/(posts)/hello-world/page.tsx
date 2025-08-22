@@ -1,6 +1,29 @@
 import { BlogPost } from '@/modules/blogPost'
+import { getPosts } from '@/app/blog/posts'
+import type { Metadata } from 'next'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import meta from './meta.json'
 
-export default function PostPage() {
+export const metadata: Metadata = {
+	title: meta.title,
+	description: meta.description ?? ''
+}
+
+export default async function PostPage() {
+	const currentId = 'hello-world'
+	const posts = await getPosts()
+	const related = posts
+		.filter(p => p.id !== currentId)
+		.map(p => ({
+			id: p.id,
+			title: p.title,
+			href: `/blog/${p.id}`,
+			description: p.description,
+			imageSrc: p.imageSrc,
+			date: p.date,
+			tags: p.tags
+		}))
+
 	return (
 		<BlogPost
 			title="Сезонные товары на маркетплейсах"
@@ -10,6 +33,8 @@ export default function PostPage() {
 			readTimeMin={5}
 			views={1818}
 			imageSrc="/images/banner.jpg"
+			currentId={currentId}
+			related={related}
 		>
 			<h2>Сезонный товар — что это такое</h2>
 			<p>Реализация на маркетплейсах сезонной продукции позволяет ...</p>
