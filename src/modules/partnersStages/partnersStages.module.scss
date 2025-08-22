@@ -1,0 +1,409 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	position: relative;
+	width: 100%;
+	height: 300vh;
+
+	max-width: 1600px;
+
+	margin: 0 auto;
+
+
+	.title {
+		margin-bottom: 60px;
+
+		width: 100%;
+
+		display: flex;
+		justify-content: space-between;
+
+		h2 {
+			font-size: 40px;
+			font-weight: 700;
+			line-height: 1.4;
+
+			max-width: 1000px;
+
+			@include tablet {
+				font-size: 32px;
+
+				max-width: 600px;
+			}
+
+			@include mobile-large {
+				font-size: 20px;
+			}
+		}
+
+		.purple {
+			color: var(--color-purple);
+
+			svg {
+				width: 100px;
+				height: 60px;
+
+				position: absolute;
+
+				@include tablet {
+					width: 70px;
+					height: 40px;
+				}
+
+				@include mobile-large {
+					display: none;
+				}
+			}
+		}
+
+		.mark {
+			display: inline-flex;
+			align-items: center;
+			gap: func.rem(8);
+
+			flex-grow: 1;
+
+			width: 100%;
+			max-width: max-content;
+			height: max-content;
+
+			padding: 13.5px 24px;
+			border-radius: 32px;
+			border: 1px solid var(--color-primary);
+			color: var(--color-primary);
+
+			font-size: 16px;
+			font-weight: 400;
+			line-height: 1.5;
+
+			transition: all variables.$transition;
+
+			@include mobile-large {
+				display: none;
+			}
+
+			.bold {
+				font-weight: 700;
+			}
+
+			&:hover {
+				transform: translateY(-5px);
+				background-color: rgba(164, 82, 215, 0.12);
+			}
+		}
+	}
+
+	.container {
+		position: relative;
+		width: 100%;
+		height: 30px;
+
+		margin: 0 auto;
+
+		max-width: 1126px;
+
+		@include desktop {
+			max-width: 900px;
+		}
+
+		@include tablet {
+			max-width: 600px;
+			height: 20px;
+		}
+
+		@include mobile-large {
+			display: none;
+		}
+	}
+
+	.lines {
+		position: relative;
+		max-width: 1126px;
+		height: 100%;
+		top: 100%;
+		transform: translateY(20%);
+
+		@include desktop {
+			max-width: 900px;
+		}
+
+		@include tablet {
+			max-width: 600px;
+		}
+
+		@include mobile-large {
+			display: none;
+		}
+
+		.disactiveLine {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		.activeLine {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.stages {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+
+		@include tablet {
+			top: 10px;
+		}
+
+		.stage {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+
+			@include tablet {
+				width: 50px;
+				height: 50px;
+			}
+
+			@include mobile-large {
+				width: 30px;
+				height: 30px;
+			}
+
+			svg {
+				width: 100%;
+				height: 100%;
+			}
+
+			.stageContent {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+
+				width: 440px;
+
+				margin-left: 220px;
+				transform: translateX(-90%);
+
+				opacity: 0.5;
+
+				@include desktop {
+					width: 410px;
+					margin-left: 210px;
+				}
+
+				@include tablet {
+					max-width: 280px;
+					margin-left: 140px;
+					gap: 8px;
+				}
+
+				@include mobile-large {
+					width: 280px;
+					margin-left: 125px;
+					gap: 8px;
+				}
+
+				h2 {
+					font-size: 18px;
+					font-weight: 700;
+					line-height: 1.4;
+
+					text-align: center;
+
+					@include tablet {
+						font-size: 14px;
+					}
+				}
+
+				p {
+					font-size: 16px;
+					font-weight: 400;
+					line-height: 1.5;
+
+					text-align: center;
+
+					@include tablet {
+						font-size: 12px;
+					}
+				}
+			}
+
+			.firstText {
+				opacity: 1;
+			}
+		}
+
+		.first {
+			top: 0;
+			left: -5%;
+
+			filter: drop-shadow(0 0 21px #e046e8);
+		}
+
+		.second {
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+
+			.stageActive {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+
+				opacity: 0;
+
+				filter: drop-shadow(0 0 21px #e046e8);
+			}
+		}
+
+		.third {
+			top: 0;
+			right: -5%;
+
+			.stageActive {
+				position: absolute;
+				top: 0;
+				left: 0;
+
+				opacity: 0;
+
+				filter: drop-shadow(0 0 21px #e046e8);
+			}
+		}
+	}
+
+	.buttons {
+		position: relative;
+		bottom: -250px;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		max-width: 1126px;
+		margin: 0 auto;
+
+		display: flex;
+		justify-content: space-between;
+
+		@include tablet {
+			bottom: -200px;
+		}
+
+		@include mobile-large {
+			display: none;
+		}
+
+		button {
+			width: 48%;
+			font-size: 18px;
+		}
+	}
+
+	.mobile {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		&Lines {
+			position: relative;
+			width: 32px;
+			height: 15px;
+
+			left: 50%;
+
+			transform: rotate(90deg) translateY(100%);
+
+			.disactiveLine {
+				@include mobile-large {
+					position: absolute;
+
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+				}
+			}
+
+			.activeLine {
+				@include mobile-large {
+					position: absolute;
+
+					top: 0;
+					left: 0;
+					width: 0;
+					height: 100%;
+				}
+			}
+		}
+
+		.mobileStage {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 8px;
+
+			.stageActive {
+				@include mobile-large {
+					opacity: 0;
+
+					filter: drop-shadow(0 0 21px #e046e8);
+				}
+			}
+
+			.stageContent {
+				@include mobile-large {
+					max-width: 350px;
+				}
+
+				h2 {
+					@include mobile-large {
+						font-size: 14px;
+						text-align: center;
+					}
+				}
+
+				p {
+					@include mobile-large {
+						font-size: 12px;
+						text-align: center;
+					}
+				}
+			}
+
+			.stage {
+				@include mobile-large {
+					position: relative;
+
+					width: 30px;
+					height: 30px;
+				}
+			}
+
+			.first {
+				@include mobile-large {
+					filter: drop-shadow(0 0 21px #e046e8);
+				}
+			}
+
+			svg {
+				@include mobile-large {
+					width: 30px;
+					height: 30px;
+
+					position: absolute;
+				}
+			}
+		}
+	}
+}

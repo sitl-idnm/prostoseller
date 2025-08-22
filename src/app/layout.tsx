@@ -26,7 +26,7 @@ const font = localFont({
     },
     {
       path: './fonts/Montserrat-Bold.woff2',
-      weight: '800',
+      weight: '700',
       style: 'normal'
     }
   ]
