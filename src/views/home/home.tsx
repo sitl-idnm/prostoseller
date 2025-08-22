@@ -17,6 +17,7 @@ import WasCloseIcon from '@icons/was-close.svg'
 import BeforeOpenIcon from '@icons/before-open.svg'
 import WbIcon from '@icons/pribil_icon.svg'
 import OzonIcon from '@icons/pribil_ozon.svg'
+import { PartnersStages } from '@/modules/partnersStages'
 
 const cards = [
   { key: 'accuracy', icon: <Image src="/images/icon-rocket.svg" alt="Точность" width={24} height={24} />, title: 'Точность данных', text: 'Реальные данные напрямую с API Wildberries и Ozon — никаких искажений и задержек.', animated: true },
@@ -115,13 +116,7 @@ const Home: FC<HomeProps> = ({ className }) => {
           />
         </TitleHandler>
 
-        <TitleHandler
-          title={<><span className={styles.purple}>3 простых шага</span>, чтобы начать зарабатывать <span className={styles.purple}>больше в 2 раза</span></>}
-          titleTagName="h2"
-          titleSize="lg"
-          mark={<>Как работает <b>Prostoseller</b></>}>
-        </TitleHandler>
-
+        <PartnersStages />
 
         {/* Литой */}
         <TitleHandler

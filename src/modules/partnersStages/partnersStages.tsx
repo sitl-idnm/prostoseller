@@ -54,19 +54,23 @@ const PartnersStages: FC<PartnersStagesProps> = ({
 
   const MobileFirstLineRef = useRef<HTMLImageElement>(null)
   const MobileSecondLineRef = useRef<HTMLImageElement>(null)
+  const MobileSecondStageRef = useRef<HTMLDivElement>(null)
+  const MobileSecondStageTextRef = useRef<HTMLDivElement>(null)
+  const MobileThirdStageRef = useRef<HTMLDivElement>(null)
+  const MobileThirdStageTextRef = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: 'top 10%',
+        start: lineRef.current?.offsetParent ? 'top 10%' : 'top 5%',
         end: '+=200%',
         pin: true,
-        scrub: 2
+        scrub: 2,
       }
     })
 
-    if (lineRef.current) {
+    if (lineRef.current?.offsetParent) {
       tl.fromTo(lineRef.current, {
         width: '0%',
       }, {
@@ -103,7 +107,7 @@ const PartnersStages: FC<PartnersStagesProps> = ({
         ease: 'power2.inOut',
       })
 
-      tl.to([secondStageRef.current, secondStageTextRef.current], {
+      tl.to([MobileSecondStageRef.current, MobileSecondStageTextRef.current], {
         opacity: 1,
         duration: 1,
         ease: 'power2.inOut',
@@ -117,7 +121,7 @@ const PartnersStages: FC<PartnersStagesProps> = ({
         ease: 'power2.inOut',
       })
 
-      tl.to([thirdStageRef.current, thirdStageTextRef.current], {
+      tl.to([MobileThirdStageRef.current, MobileThirdStageTextRef.current], {
         opacity: 1,
         duration: 1,
         ease: 'power2.inOut',
@@ -204,14 +208,14 @@ const PartnersStages: FC<PartnersStagesProps> = ({
           <div className={styles.stage}>
             <SecondStage />
             <div
-              ref={secondStageRef}
+              ref={MobileSecondStageRef}
               className={styles.stageActive}
             >
               <SecondStageActive />
             </div>
           </div>
           <div
-            ref={secondStageTextRef}
+            ref={MobileSecondStageTextRef}
             className={styles.stageContent}
           >
             <h2>Сервис автоматически соберёт и рассчитает все показатели</h2>
@@ -226,14 +230,14 @@ const PartnersStages: FC<PartnersStagesProps> = ({
           <div className={styles.stage}>
             <ThirdStage />
             <div
-              ref={thirdStageRef}
+              ref={MobileThirdStageRef}
               className={styles.stageActive}
             >
               <ThirdStageActive />
             </div>
           </div>
           <div
-            ref={thirdStageTextRef}
+            ref={MobileThirdStageTextRef}
             className={styles.stageContent}
           >
             <h2>Управлять бизнесом теперь станет значительно проще</h2>

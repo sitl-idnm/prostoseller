@@ -35,6 +35,9 @@ const Header: FC<HeaderProps> = ({ className }) => {
       setIsMobile(window.innerWidth < 964)
     }
 
+    // set initial state on mount
+    handleResize()
+
     window.addEventListener('resize', handleResize)
 
     return () => {
@@ -48,31 +51,31 @@ const Header: FC<HeaderProps> = ({ className }) => {
         <div className={styles.wrapper}>
           {
             isMobile === false ?
-            <>
-              <Logo />
-              <Navigation isMobile={isMobile} />
-              <div className={styles.meta}>
-                <a href="tel:+74953637386" className={styles.phone}>
-                  <span className={styles.icon}><IconPhone /></span>
-                  +7 (495) 363-73-86
-                </a>
-                <SocialLinks />
-                <a href="/login" className={styles.loginBtn}>
-                  <span className={styles.icon}><IconAdmin /></span>Войти / зарегистрироваться</a>
-              </div>
-            </>
-
-            : isMobile === true &&
-            <div className={styles.mobile}>
-              <Logo />
-              <div className={styles.mobileInner}>
-                <SocialLinks />
-                <a href="tel:+74953637386" className={styles.phone}>
-                  <span className={styles.icon}><PhoneIcon /></span>
-                </a>
+              <>
+                <Logo />
                 <Navigation isMobile={isMobile} />
+                <div className={styles.meta}>
+                  <a href="tel:+74953637386" className={styles.phone}>
+                    <span className={styles.icon}><IconPhone /></span>
+                    +7 (495) 363-73-86
+                  </a>
+                  <SocialLinks />
+                  <a href="/login" className={styles.loginBtn}>
+                    <span className={styles.icon}><IconAdmin /></span>Войти / зарегистрироваться</a>
+                </div>
+              </>
+
+              : isMobile === true &&
+              <div className={styles.mobile}>
+                <Logo />
+                <div className={styles.mobileInner}>
+                  <SocialLinks />
+                  <a href="tel:+74953637386" className={styles.phone}>
+                    <span className={styles.icon}><PhoneIcon /></span>
+                  </a>
+                  <Navigation isMobile={isMobile} />
+                </div>
               </div>
-            </div>
           }
 
         </div>
