@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 500;
+  background: linear-gradient(75deg, rgb(250, 69, 126, 0.0) 0%, rgb(123, 73, 255, 0.0) 100%);
   font-size: func.rem(18);
   line-height: func.rem(20);
   cursor: pointer;
@@ -64,6 +65,14 @@
   background-clip: padding-box, border-box;
 }
 
+/* Gradient text to match border gradient for outline variant */
+.root_gradientOutline .text {
+  background: linear-gradient(75deg, var(--color-purple-light) 0%, var(--color-purple-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .root_purple {
   color: var(--color-white-default);
   background: var(--color-purple);
@@ -72,7 +81,7 @@
 
 .root_purpleOutline {
   color: var(--color-purple);
-  background: transparent;
+  background: linear-gradient(75deg, rgb(250, 69, 126, 0.0) 0%, rgb(123, 73, 255, 0.0) 100%);
   border: 1px solid var(--color-purple);
 }
 
@@ -80,6 +89,12 @@
   color: var(--color-purple);
   background: var(--color-white-default);
   border: none;
+}
+
+.root_whiteOutline {
+  color: var(--color-white-default);
+  background: linear-gradient(75deg, rgb(250, 69, 126, 0.0) 0%, rgb(123, 73, 255, 0.0) 100%);
+  border: 1px solid var(--color-white-default);
 }
 
 .content {

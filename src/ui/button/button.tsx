@@ -26,7 +26,7 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   const mappedVariant = useMemo(() => {
     if (variant) return variant
     if (colorScheme === 'white') return 'white'
-    return 'purple'
+    return 'whiteOutline'
   }, [variant, colorScheme])
 
   const elClassName = classNames(

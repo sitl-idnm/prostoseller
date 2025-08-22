@@ -6,6 +6,7 @@ export type ButtonVariant =
   | 'purple' // 3. Фиолетовый фон, белый текст
   | 'purpleOutline' // 4. Прозрачный фон, фиолетовый бордер и текст
   | 'white' // 5. Белый фон, фиолетовый текст, без бордера
+  | 'whiteOutline' // 6. Белый фон, фиолетовый бордер и текст
 
 export type ButtonSizeType = 'md' | 'sm'
 
