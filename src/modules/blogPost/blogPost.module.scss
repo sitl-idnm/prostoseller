@@ -1,9 +1,33 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
 .root {
   display: block;
 }
+
 .back {
-  margin: 16px 0;
+  margin: 40px 0 0;
 }
+
+.mainTitle {
+  color: #454444;
+
+  margin: 24px 0;
+
+  font-size: 50px;
+	line-height: 1.4;
+	font-weight: 700;
+
+	@include tablet-small {
+		font-size: 32px;
+	}
+
+	@include mobile-small {
+		font-size: 24px;
+	}
+}
+
 .meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -48,6 +72,8 @@
 }
 .cover {
   margin: 16px 0;
+  border-radius: 16px;
+  overflow: hidden;
 }
 .grid {
   display: grid;
@@ -70,4 +96,13 @@
 }
 .tocTitle { font-weight: 600; margin-bottom: 8px; }
 .tocList { display: grid; gap: 6px; }
-.content { min-width: 0; }
+.content { min-width: 0;
+
+  h2, h3, h4, h5, h6 {
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 12px;
+  }
+}

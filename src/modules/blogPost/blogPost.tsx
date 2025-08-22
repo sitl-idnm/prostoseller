@@ -32,7 +32,7 @@ const BlogPost: FC<BlogPostProps> = ({ className, title, author, authorRole, aut
 				<div className={styles.back}>
 					<Link href="/blog">← Назад к блогу</Link>
 				</div>
-				<h1>{title}</h1>
+				<h1 className={styles.mainTitle}>{title}</h1>
 				<div className={styles.meta}>
 					<div className={styles.metaLeft}>
 						{authorAvatarSrc ? (
