@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 
 import styles from './faq.module.scss'
@@ -42,9 +42,14 @@ const Faq: FC<FaqProps> = ({
   ]
   const itemsToRender = items && items.length ? items : defaultItems
 
-  const [openIndex, setOpenIndex] = useState(0)
+  const [openIndex, setOpenIndex] = useState(-1)
   const contentRefs = useRef<Array<HTMLDivElement | null>>([])
   const innerRefs = useRef<Array<HTMLDivElement | null>>([])
+
+  // Ensure correct measurements after mount so initial item opens with full height
+  useEffect(() => {
+    setOpenIndex(0)
+  }, [])
 
   const toggle = (idx: number) => {
     setOpenIndex((prev) => (prev === idx ? -1 : idx))
