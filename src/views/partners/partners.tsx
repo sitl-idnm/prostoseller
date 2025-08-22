@@ -10,6 +10,7 @@ import { TitleHandler } from '@/modules/titleHandler'
 import { CardHolder } from '@/modules/cardHolder'
 import Image from 'next/image'
 import { LogoCarousel } from '@/modules/logoCarousel'
+import { PartnersStages } from '@/modules/partnersStages'
 
 const cards = [
   {
@@ -41,7 +42,7 @@ const Partners: FC<PartnersProps> = ({
     <main className={rootClassName}>
       <Wrapper>
         <Content
-          variant="solid"
+          variant="split"
           background="#D9E3FF"
           title="Станьте партнером Prostoseller и зарабатывайте 25% с каждой оплаты приведенных клиентов в течение 6 месяцев"
           subtitle="Приводи один раз, зарабатывай долго!"
@@ -51,6 +52,7 @@ const Partners: FC<PartnersProps> = ({
             </>
           }
         />
+        <PartnersStages />
         <TitleHandler
           title="Стать партнером просто!"
           titleTagName="h2"
