@@ -13,8 +13,8 @@ import { Price } from '@/modules/price'
 import { CardHolder } from '@/modules/cardHolder'
 import { Calculator } from '@/components/calculator'
 
-import WasCloseIcon from '@icons/was-close.svg'
-import BeforeOpenIcon from '@icons/before-open.svg'
+import wasclose from '@public/images/close.png'
+import beopen from '@public/images/tick.png'
 import WbIcon from '@icons/pribil_icon.svg'
 import OzonIcon from '@icons/pribil_ozon.svg'
 import { PartnersStages } from '@/modules/partnersStages'
@@ -73,8 +73,8 @@ const Home: FC<HomeProps> = ({ className }) => {
           mark={<>Какие задачи решает <b>Prostoseller</b></>}
         >
           <PlusMinus
-            wasIcon={<WasCloseIcon />}
-            becameIcon={<BeforeOpenIcon />}
+            wasIcon={<Image src={wasclose} alt="was" width={36} height={36} />}
+            becameIcon={<Image src={beopen} alt="became" width={36} height={36} />}
             pairs={[
               {
                 was: <>Выручка не растёт, несмотря на усилия?</>,
