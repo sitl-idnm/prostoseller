@@ -29,13 +29,14 @@ const Content: FC<ContentProps> = ({
   const contentClassName = classNames(styles.content, {
     [styles.content_solidLimit]: variant === 'solid'
   })
+  const titleClassName = classNames(styles.title, titleSize && styles[`title_${titleSize}`])
 
   return (
     <section className={rootClassName} style={{ background }}>
       <div className={innerClassName}>
         <div className={contentClassName} style={{ background: backgroundContent }}>
           {title && (
-            <Heading tagName={titleTagName} size={titleSize} className={styles.title}>
+            <Heading tagName={titleTagName} className={titleClassName}>
               {title}
             </Heading>
           )}
