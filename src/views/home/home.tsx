@@ -119,7 +119,6 @@ const Home: FC<HomeProps> = ({ className }) => {
           titleTagName="h2"
           titleSize="lg"
           mark={<>Как работает <b>Prostoseller</b></>}>
-          <CardHolder cards={cards} />
         </TitleHandler>
 
 

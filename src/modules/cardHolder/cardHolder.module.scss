@@ -1,5 +1,5 @@
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
@@ -13,7 +13,7 @@
 	grid-auto-flow: dense;
 	align-items: stretch;
 
-	@include mixins.tablet-small {
+	@include tablet-small {
 		display: block;
 		white-space: nowrap;
 		overflow-x: auto;
@@ -24,10 +24,14 @@
 			display: none;
 		}
 	}
+
+	@include mobile-large {
+		gap: 8px;
+	}
 }
 
 .cell {
-	min-width: 0;
+	min-width: 170px;
 	display: flex;
 }
 
@@ -41,10 +45,10 @@
 
 /* mobile items inline */
 .item {
-	@include mixins.tablet-small {
+	@include mobile-large {
 		display: inline-block;
-		width: calc(100% / 4 - #{func.rem(12)});
-		margin-right: func.rem(12);
+		width: calc(100% / 4 - 8px);
 		vertical-align: top;
+		margin-right: 8px;
 	}
 }
