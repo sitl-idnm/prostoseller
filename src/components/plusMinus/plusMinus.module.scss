@@ -109,13 +109,13 @@
 
 .icon {
 	display: inline-flex;
-	width: func.rem(28);
-	height: func.rem(28);
+	width: 60px;
+	height: 56px;
 	flex: 0 0 auto;
 
 	@include mobile-large {
-		width: 28px;
-		height: 28px;
+		width: 24px;
+		height: 24px;
 	}
 
 	svg {
