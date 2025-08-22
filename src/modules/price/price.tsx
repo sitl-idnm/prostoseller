@@ -264,33 +264,70 @@ const Price: FC<PriceProps> = ({
           </div>
         )}
       </div>
+      <div className={styles.mobileNav}>
+        <button className={styles.navBtn} type="button" aria-label="Предыдущий" onClick={() => {
+          if (typeof window === 'undefined') return
+          const track = document.querySelector(`.${styles.carouselTrack}`) as HTMLDivElement | null
+          if (!track) return
+          const children = Array.from(track.children) as HTMLElement[]
+          const current = Number(track.dataset.index || '0')
+          const next = Math.max(0, current - 1)
+          const target = children[next]
+          if (target) {
+            const offset = target.offsetLeft
+            track.style.transform = `translateX(${-offset}px)`
+            track.dataset.index = String(next)
+          }
+        }}>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </button>
+        <button className={styles.navBtn} type="button" aria-label="Следующий" onClick={() => {
+          if (typeof window === 'undefined') return
+          const track = document.querySelector(`.${styles.carouselTrack}`) as HTMLDivElement | null
+          if (!track) return
+          const children = Array.from(track.children) as HTMLElement[]
+          const maxIndex = Math.max(0, (children.length - 1))
+          const current = Number(track.dataset.index || '0')
+          const next = Math.min(maxIndex, current + 1)
+          const target = children[next]
+          if (target) {
+            const offset = target.offsetLeft
+            track.style.transform = `translateX(${-offset}px)`
+            track.dataset.index = String(next)
+          }
+        }}>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </button>
+      </div>
       <div className={styles.grid}>
-        {plansToRender.map((plan) => (
-          <div className={styles.card} key={plan.id}>
-            <div>
-              <div className={styles.planTitle}>{plan.title}</div>
-              <div className={styles.planSubPurple}>{plan.shops}</div>
-              <div className={styles.planSub}>{plan.description}</div>
-              <div className={styles.features}>
-                {plan.features.map((f, i) => renderFeature(f.state, f.label, i))}
+        <div className={styles.carouselTrack} data-index="0">
+          {plansToRender.map((plan) => (
+            <div className={styles.card} key={plan.id}>
+              <div>
+                <div className={styles.planTitle}>{plan.title}</div>
+                <div className={styles.planSubPurple}>{plan.shops}</div>
+                <div className={styles.planSub}>{plan.description}</div>
+                <div className={styles.features}>
+                  {plan.features.map((f, i) => renderFeature(f.state, f.label, i))}
+                </div>
+              </div>
+              <div className={styles.priceRow}>
+                <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />
+                {showConnectButtons && (
+                  onConnect ? (
+                    <Button onClick={() => onConnect(plan.id, activePeriod)}>
+                      Подключить →
+                    </Button>
+                  ) : (
+                    <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink>
+                      Подключить →
+                    </Button>
+                  )
+                )}
               </div>
             </div>
-            <div className={styles.priceRow}>
-              <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />
-              {showConnectButtons && (
-                onConnect ? (
-                  <Button onClick={() => onConnect(plan.id, activePeriod)}>
-                    Подключить →
-                  </Button>
-                ) : (
-                  <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink>
-                    Подключить →
-                  </Button>
-                )
-              )}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )
