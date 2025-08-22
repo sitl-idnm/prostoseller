@@ -6,6 +6,7 @@ import { PartnersProps } from './partners.types'
 import { Content } from '@/modules/content'
 import { Wrapper } from '@/ui/wrapper'
 import { Button } from '@/ui'
+import { LINKS } from '@/shared/const'
 import { TitleHandler } from '@/modules/titleHandler'
 import { CardHolder } from '@/modules/cardHolder'
 import Image from 'next/image'
@@ -46,7 +47,7 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           subtitle="Приводи один раз, зарабатывай долго!"
           buttons={
             <>
-              <Button variant="gradient">Подключить бесплатно</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient">Подключить бесплатно</Button>
             </>
           }
         />

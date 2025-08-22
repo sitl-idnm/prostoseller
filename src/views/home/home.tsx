@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import Image from 'next/image'
 import { Button, Wrapper } from '@/ui'
+import { LINKS } from '@/shared/const'
 import classNames from 'classnames'
 
 import styles from './home.module.scss'
@@ -57,8 +58,8 @@ const Home: FC<HomeProps> = ({ className }) => {
           description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
           buttons={
             <>
-              <Button variant="gradient">Подключить бесплатно</Button>
-              <Button variant="gradientOutline">Demo-кабинет</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient">Подключить бесплатно</Button>
+              <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradientOutline">Demo-кабинет</Button>
             </>
           }
           buttonsNote="4 дня бесплатно без привязки карты"
@@ -133,7 +134,7 @@ const Home: FC<HomeProps> = ({ className }) => {
             subtitle="За каждого друга - по одному бесплатному месяцу тебе и ему"
             description="Публикуйте свой пригласительный код в социальных сетях, делитесь кодом с друзьями и получайте свой бонус за каждое его использование"
             subDescription="Пригласил 12 друзей - ДЕРЖИ ГОД БЕСПЛАТНОЙ АНАЛИТИКИ"
-            buttons={<Button>Пользоваться бесплатно</Button>}
+            buttons={<Button as="a" isRouteLink href={LINKS.invite ?? LINKS.connectFree}>Пользоваться бесплатно</Button>}
           />
         </TitleHandler>
 
@@ -154,7 +155,7 @@ const Home: FC<HomeProps> = ({ className }) => {
 
           buttons={
             <>
-              <Button variant="gradient">Demo-кабинет</Button>
+              <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradient">Demo-кабинет</Button>
             </>
           }
           imageSrc="/images/laptop_prostoseller.png"
@@ -184,7 +185,7 @@ const Home: FC<HomeProps> = ({ className }) => {
           title={<><span className={styles.white}>Начните управлять своим бизнесом уже сегодня!</span></>}
           titleTagName="h2"
           titleSize="md"
-          buttons={<Button variant="white">Подключить бесплатно</Button>}
+          buttons={<Button as="a" isRouteLink href={LINKS.connectFree} variant="white">Подключить бесплатно</Button>}
         />
 
 

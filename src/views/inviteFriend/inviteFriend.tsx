@@ -6,6 +6,7 @@ import { InviteFriendProps } from './inviteFriend.types'
 import { Wrapper } from '@/ui/wrapper'
 import { Content } from '@/modules/content'
 import { Button } from '@/ui'
+import { LINKS } from '@/shared/const'
 import { TitleHandler } from '@/modules/titleHandler'
 import { LogoCarousel } from '@/modules/logoCarousel'
 
@@ -24,7 +25,7 @@ const InviteFriend: FC<InviteFriendProps> = ({
           subtitle="За каждого друга - по одному бесплатному месяцу тебе и ему"
           description="Публикуйте свой пригласительный код в социальных сетях, делитесь кодом с друзьями и получайте свой бонус за каждое его использование"
           subDescription="Пригласил 12 друзей - ДЕРЖИ ГОД БЕСПЛАТНОЙ АНАЛИТИКИ"
-          buttons={<Button>Пользоваться бесплатно</Button>}
+          buttons={<Button as="a" isRouteLink href={LINKS.invite}>Пользоваться бесплатно</Button>}
         />
         <TitleHandler
           title="Наши партнеры"

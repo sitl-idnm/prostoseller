@@ -10,6 +10,7 @@ export const LINKS = {
 	connectFree: '/login?mode=register',
 	demoCabinet: '/thanks',
 	becomePartner: '/partners',
+	invite: '/inviteFriend',
 
 	// Other
 	price: '/price',
