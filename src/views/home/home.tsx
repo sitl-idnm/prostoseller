@@ -11,7 +11,6 @@ import { PlusMinus } from '@/components/plusMinus'
 import { Faq } from '@/modules/faq'
 import { Price } from '@/modules/price'
 import { CardHolder } from '@/modules/cardHolder'
-import { Calculator } from '@/components/calculator'
 
 import WasCloseIcon from '@icons/was-close.svg'
 import BeforeOpenIcon from '@icons/before-open.svg'
@@ -204,9 +203,6 @@ const Home: FC<HomeProps> = ({ className }) => {
           imageAlt="Скриншот кабинета"
 
         />
-
-
-        <Calculator />
       </Wrapper>
     </main >
   )
