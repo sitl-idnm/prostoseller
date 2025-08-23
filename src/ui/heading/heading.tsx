@@ -8,7 +8,8 @@ const Heading: FC<HeadingProps> = ({
   children,
   size = 'md',
   tagName = 'h2',
-  className
+  className,
+  txtColor
 }) => {
   const TagName = tagName
   const rootClassName = classNames(
@@ -16,7 +17,7 @@ const Heading: FC<HeadingProps> = ({
     styles[`root_${size}`],
     className
   )
-  return <TagName className={rootClassName}>{children}</TagName>
+  return <TagName className={rootClassName} style={{ color: txtColor }}>{children}</TagName>
 }
 
 export default Heading

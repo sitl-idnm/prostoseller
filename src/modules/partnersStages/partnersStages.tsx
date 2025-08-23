@@ -17,6 +17,7 @@ import DisactiveLine from '@public/images/disactiveLine.png'
 import ActiveLine from '@public/images/activeLine.png'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Button from '@/ui/button/button'
+import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -185,7 +186,7 @@ const PartnersStages: FC<PartnersStagesProps> = ({
         </div>
       </div>
       <div className={styles.buttons}>
-        <Button variant="gradient">Подключить бесплатно</Button>
+        <Button variant="gradient" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
         <Button variant="gradientOutline">Demo-кабинет</Button>
       </div>
 

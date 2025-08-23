@@ -26,6 +26,8 @@ type ButtonOwnProps<E extends ElementType = ElementType> = {
   iconPosition?: 'left' | 'right'
   /** Отступ между текстом и иконкой в px */
   iconGap?: number
+  /** Ширина кнопки */
+  buttonWidth?: string
 }
 
 export type ButtonProps<E extends ElementType> = ButtonOwnProps<E> &

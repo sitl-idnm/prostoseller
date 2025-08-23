@@ -12,6 +12,7 @@ import { CardHolder } from '@/modules/cardHolder'
 import Image from 'next/image'
 import { LogoCarousel } from '@/modules/logoCarousel'
 import { PartnersStages } from '@/modules/partnersStages'
+import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
 const cards = [
   {
@@ -43,11 +44,12 @@ const Partners: FC<PartnersProps> = ({ className }) => {
         <Content
           variant="split"
           backgroundRoot="#D9E3FF"
-          title="Станьте партнером Prostoseller и зарабатывайте 25% с каждой оплаты приведенных клиентов в течение 6 месяцев"
+          title={<>Станьте партнером <span className={styles.purple}>Prostoseller</span> и зарабатывайте <span className={styles.purple}>25%</span> с каждой оплаты приведенных клиентов в течение <span className={styles.purple}>6 месяцев</span></>}
+          titleSize='sm'
           subtitle="Приводи один раз, зарабатывай долго!"
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient">Подключить бесплатно</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
             </>
           }
         />

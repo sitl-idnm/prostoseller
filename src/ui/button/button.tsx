@@ -19,6 +19,7 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   iconPosition = 'right',
   iconGap = 8,
   as,
+  buttonWidth,
   className,
   ...props
 }: ButtonProps<E>) {
@@ -50,11 +51,7 @@ export default function Button<E extends ElementType = typeof defaultElement>({
         try {
           const gsap = (await import('gsap')).default
           // If the icon contains stroked paths, we can simulate draw by dashoffset
-          const el = iconRef.current as unknown as HTMLElement
-          if (!el) return
-          gsap.set(el, { opacity: 0 })
           const onEnter = () => {
-            gsap.to(el, { opacity: 1, duration: 0.3 })
             if (textRef.current) {
               const shift = iconGap
               const dir = iconPosition === 'right' ? -shift : shift
@@ -62,7 +59,6 @@ export default function Button<E extends ElementType = typeof defaultElement>({
             }
           }
           const onLeave = () => {
-            gsap.to(el, { opacity: 0, duration: 0.3 })
             if (textRef.current) {
               gsap.to(textRef.current, { x: 0, duration: 0.3 })
             }
@@ -84,21 +80,21 @@ export default function Button<E extends ElementType = typeof defaultElement>({
 
   const content = (
     <span className={styles.content} style={{ gap: `${iconGap}px`, flexDirection: iconPosition === 'right' ? 'row' : 'row-reverse' }}>
+      <span className={styles.text} ref={textRef}>{children}</span>
       {icon && (
         <span className={styles.icon} ref={iconRef} aria-hidden="true">
           {icon}
         </span>
       )}
-      <span className={styles.text} ref={textRef}>{children}</span>
     </span>
   )
 
   return isLink ? (
-    <Link {...(props as Record<string, unknown>)} href={(props as Record<string, string>).href} className={elClassName}>
+    <Link style={{ width: buttonWidth }} {...(props as Record<string, unknown>)} href={(props as Record<string, string>).href} className={elClassName}>
       {content}
     </Link>
   ) : (
-    <TagName {...props} className={elClassName}>
+    <TagName style={{ width: buttonWidth }} {...props} className={elClassName}>
       {content}
     </TagName>
   )

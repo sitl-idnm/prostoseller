@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import styles from './plusMinus.module.scss'
 import { PlusMinusProps } from './plusMinus.types'
 import Button from '@/ui/button/button'
+import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
 const PlusMinus: FC<PlusMinusProps> = ({
   className,
@@ -44,7 +45,7 @@ const PlusMinus: FC<PlusMinusProps> = ({
         </div>
       </div>
       <div className={styles.button}>
-        <Button variant="gradient">Подключить бесплатно</Button>
+        <Button variant="gradient" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
         <div>
           <p>4 дня бесплатно без привязки карты</p>
         </div>

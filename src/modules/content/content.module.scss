@@ -183,7 +183,7 @@
 
 .buttons {
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	align-items: center;
 	gap: func.rem(12);
 
@@ -191,13 +191,28 @@
 
 	@include tablet {
 		flex-direction: column;
+
+		flex-wrap: wrap;
+	}
+
+	a {
+		@include tablet {
+			font-size: 18px !important;
+
+			width: 100% !important;
+			height: 56px;
+		}
+
+		@include tablet-small {
+			font-size: 16px !important;
+		}
 	}
 
 	button {
 		@include tablet {
 			font-size: 18px !important;
 
-			width: 100%;
+			width: 100% !important;
 			height: 56px;
 		}
 
