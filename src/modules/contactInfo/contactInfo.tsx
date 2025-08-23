@@ -3,7 +3,6 @@ import classNames from 'classnames'
 
 import styles from './contactInfo.module.scss'
 import { ContactInfoProps } from './contactInfo.types'
-import Image from 'next/image'
 
 const ContactInfo: FC<ContactInfoProps> = ({
   className
