@@ -26,16 +26,21 @@ const Price: FC<PriceProps> = ({
     <main className={rootClassName}>
       <Wrapper className={styles.wrapper}>
         <Content
-          variant="solid"
-          backgroundRoot="#D9E3FF"
+          variant="split"
+          backgroundRoot="url('/images/pricebackground.png') no-repeat center center / cover"
+          backgroundContent="transparent"
           title="Тарифы"
           subtitle="Мы знаем как важно получать выгоду селлерам, поэтому сделали скидку при оплате тарифа на шесть месяцев!"
+          textColor={true}
+          contentSize="minmax(0, 65%) minmax(0, 35%)"
           buttons={
             <>
-              <Button variant={period === 'sixMonths' ? 'gradient' : 'gradientOutline'} onClick={handleSix}>6 мес{'\u00A0'}скидка 20% (в отчете данные за 6 мес)</Button>
-              <Button variant={period === 'month' ? 'white' : 'purpleOutline'} onClick={handleMonth}>1 мес (в отчете данные за 2 мес)</Button>
+              <Button variant={period === 'sixMonths' ? 'white' : 'whiteOutline'} onClick={handleSix}>6 мес{'\u00A0'}скидка 20% (в отчете данные за 6 мес)</Button>
+              <Button variant={period === 'month' ? 'white' : 'whiteOutline'} onClick={handleMonth}>1 мес (в отчете данные за 2 мес)</Button>
             </>
           }
+          imageSrc="/images/monitor.png"
+          imageAlt="Скриншот кабинета"
         />
         <PriceModule
           period={period}

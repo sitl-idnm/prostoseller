@@ -34,4 +34,8 @@ export interface ContentProps {
   buttons?: ReactNode
   /** Подпись под кнопками */
   buttonsNote?: ReactNode
+  /** Цвет текста */
+  textColor?: boolean
+  /** Размер контента */
+  contentSize?: string
 }

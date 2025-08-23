@@ -21,6 +21,8 @@ const Content: FC<ContentProps> = ({
   subDescription,
   buttons,
   buttonsNote,
+  textColor,
+  contentSize,
   ...props
 }) => {
   const rootClassName = classNames(styles.root, className)
@@ -32,16 +34,21 @@ const Content: FC<ContentProps> = ({
   })
   const titleClassName = classNames(styles.title, titleSize && styles[`title_${titleSize}`])
 
+  let txtColor = '#333'
+  if (textColor) {
+    txtColor = '#fff'
+  }
+
   return (
     <section className={rootClassName} style={{ background: backgroundRoot, backgroundSize: 'cover', ...props }}>
-      <div className={innerClassName}>
+      <div className={innerClassName} style={{ gridTemplateColumns: contentSize }}>
         <div className={contentClassName} style={{ background: backgroundContent }}>
           {title && (
-            <Heading tagName={titleTagName} className={titleClassName}>
+            <Heading tagName={titleTagName} className={titleClassName} txtColor={txtColor}>
               {title}
             </Heading>
           )}
-          {subtitle && <div className={styles.subtitle}>{subtitle}</div>}
+          {subtitle && <div className={styles.subtitle} style={{ color: txtColor }}>{subtitle}</div>}
           {description && <div className={styles.description}>{description}</div>}
           {subDescription && (
             <div className={styles.subDescription}>{subDescription}</div>

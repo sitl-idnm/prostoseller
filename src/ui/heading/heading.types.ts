@@ -5,4 +5,5 @@ export interface HeadingProps {
   size?: 'sm' | 'md' | 'lg'
   tagName?: 'h1' | 'h2' | 'h3' | 'h4'
   className?: string
+  txtColor?: string
 }
