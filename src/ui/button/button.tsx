@@ -19,6 +19,7 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   iconPosition = 'right',
   iconGap = 8,
   as,
+  buttonWidth,
   className,
   ...props
 }: ButtonProps<E>) {
@@ -94,11 +95,11 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   )
 
   return isLink ? (
-    <Link {...(props as Record<string, unknown>)} href={(props as Record<string, string>).href} className={elClassName}>
+    <Link style={{ width: buttonWidth }} {...(props as Record<string, unknown>)} href={(props as Record<string, string>).href} className={elClassName}>
       {content}
     </Link>
   ) : (
-    <TagName {...props} className={elClassName}>
+    <TagName style={{ width: buttonWidth }} {...props} className={elClassName}>
       {content}
     </TagName>
   )

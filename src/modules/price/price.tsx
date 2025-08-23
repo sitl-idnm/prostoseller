@@ -256,10 +256,10 @@ const Price: FC<PriceProps> = ({
         {showPeriodSwitch && (
           <div className={styles.switch}>
             <Button variant={activePeriod === 'sixMonths' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('sixMonths')}>
-              6 мес скидка 20%
+              6 мес скидка 20% (в отчете данные за 6 мес)
             </Button>
             <Button variant={activePeriod === 'month' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('month')}>
-              1 мес
+              1 мес (в отчете данные за 2 мес)
             </Button>
           </div>
         )}

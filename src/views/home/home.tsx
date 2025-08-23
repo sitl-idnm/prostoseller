@@ -67,8 +67,8 @@ const Home: FC<HomeProps> = ({ className }) => {
           description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient">Подключить бесплатно</Button>
-              <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradientOutline">Demo-кабинет</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="70%">Подключить бесплатно</Button>
+              <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradientOutline" buttonWidth="30%">Demo-кабинет</Button>
             </>
           }
           buttonsNote="4 дня бесплатно без привязки карты"
@@ -190,13 +190,16 @@ const Home: FC<HomeProps> = ({ className }) => {
 
         {/* Литой */}
         <Content
-          variant="solid"
-          backgroundRoot="url('/images/start_laptop.png') no-repeat center center cover"
-          backgroundContent="#A452D7"
+          variant="split"
+          backgroundRoot="linear-gradient(75deg,#FA457E 0%,#7B49FF 20%)"
+          backgroundContent="transparent"
           title={<><span className={styles.white}>Начните управлять своим бизнесом уже сегодня!</span></>}
           titleTagName="h2"
           titleSize="sm"
           buttons={<Button as="a" isRouteLink href={LINKS.connectFree} variant="white" style={{ width: '100%' }}>Подключить бесплатно</Button>}
+          imageSrc="/images/start_laptop.png"
+          imageAlt="Скриншот кабинета"
+
         />
 
 
