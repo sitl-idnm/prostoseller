@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import Image from 'next/image'
 import { Button, Wrapper } from '@/ui'
 import { LINKS } from '@/shared/const'
 import classNames from 'classnames'
@@ -20,17 +19,26 @@ import WbIcon from '@icons/pribil_icon.svg'
 import OzonIcon from '@icons/pribil_ozon.svg'
 import { PartnersStages } from '@/modules/partnersStages'
 
+import RykiIcon from '@icons/ryki.svg'
+import TochnostIcon from '@icons/tochnost.svg'
+import LupaIcon from '@icons/lupa.svg'
+import ClockIcon from '@icons/clock.svg'
+import ProstotaIcon from '@icons/prostota.svg'
+import CalcIcon from '@icons/calc.svg'
+import WarehouseIcon from '@icons/warehouse.svg'
+import WbOzon from '@icons/ozonwbicon.svg'
+
 const cards = [
-  { key: 'accuracy', icon: <Image src="/images/icon-rocket.svg" alt="Точность" width={24} height={24} />, title: 'Точность данных', text: 'Реальные данные напрямую с API Wildberries и Ozon — никаких искажений и задержек.', animated: true },
-  { key: 'simplicity', icon: <Image src="/images/icon-rocket.svg" alt="Простота" width={24} height={24} />, title: 'Простота и удобство', text: 'Интуитивный интерфейс, понятный даже новичкам.', animated: true },
-  { key: 'profit', icon: <Image src="/images/icon-rocket.svg" alt="Прибыль" width={24} height={24} />, title: 'Рост и управление прибылью', text: 'Видите, какие товары приносят деньги, а какие — убытки', animated: true },
-  { key: 'time', icon: <Image src="/images/icon-rocket.svg" alt="Экономия времени" width={24} height={24} />, title: 'Экономия времени', text: 'Больше не нужно считать вручную. Ваша аналитика всегда актуальна и автоматизирована', animated: true },
-  { key: 'stocks', icon: <Image src="/images/icon-rocket.svg" alt="Планирование остатков" width={24} height={24} />, title: 'Планирование остатков', text: 'Заранее знаете, когда пополнять склад, чтобы никогда не терять продажи и прибыль', animated: true },
-  { key: 'calc', icon: <Image src="/images/icon-rocket.svg" alt="Калькулятор" width={24} height={24} />, title: 'Встроенный калькулятор цен', text: 'Больше не нужно считать вручную. Ваша аналитика всегда актуальна и автоматизирована', animated: true },
-  { key: 'two-mp', icon: <Image src="/images/icon-rocket.svg" alt="Два маркетплейса" width={24} height={24} />, title: 'Один сервис для двух маркетплейсов', text: 'Вы с комфортом управляете бизнесом через единую платформу аналитики и зарабатываете больше', animated: true },
+  { key: 'accuracy', icon: <TochnostIcon />, title: 'Точность данных', text: 'Реальные данные напрямую с API Wildberries и Ozon — никаких искажений и задержек.', animated: true },
+  { key: 'simplicity', icon: <ProstotaIcon/>, title: 'Простота и удобство', text: 'Интуитивный интерфейс, понятный даже новичкам.', animated: true },
+  { key: 'profit', icon: <LupaIcon />, title: 'Рост и управление прибылью', text: 'Видите, какие товары приносят деньги, а какие — убытки', animated: true },
+  { key: 'time', icon: <ClockIcon />, title: 'Экономия времени', text: 'Больше не нужно считать вручную. Ваша аналитика всегда актуальна и автоматизирована', animated: true },
+  { key: 'stocks', icon: <WarehouseIcon />, title: 'Планирование остатков', text: 'Заранее знаете, когда пополнять склад, чтобы никогда не терять продажи и прибыль', animated: true },
+  { key: 'calc', icon: <CalcIcon />, title: 'Встроенный калькулятор цен', text: 'Больше не нужно считать вручную. Ваша аналитика всегда актуальна и автоматизирована', animated: true },
+  { key: 'two-mp', icon: <WbOzon />, title: 'Один сервис для двух маркетплейсов', text: 'Вы с комфортом управляете бизнесом через единую платформу аналитики и зарабатываете больше', animated: true },
   {
     key: 'cta',
-    icon: <Image src="/images/icon-rocket.svg" alt="CTA" width={24} height={24} />,
+    icon: <RykiIcon />,
     title: 'Начните управлять своим бизнесом уже сегодня!',
     action: (
       <Button as="a" isRouteLink href="/login" variant="gradient" size="md">
