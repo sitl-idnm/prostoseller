@@ -12,9 +12,22 @@
 	gap: func.rem(12);
 	margin-bottom: func.rem(20);
 
-	&_title {
-		font-size: func.rem(40);
-		line-height: 1.5;
+	h2 {
+		font-size: 40px;
+		font-weight: 700;
+		line-height: 1.2;
+
+		@include tablet {
+			font-size: 24px;
+
+			max-width: 100%;
+		}
+
+		@include mobile-large {
+			font-size: 20px;
+
+			max-width: 100%;
+		}
 	}
 
 	@include tablet-small {

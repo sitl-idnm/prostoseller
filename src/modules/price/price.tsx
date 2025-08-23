@@ -11,6 +11,7 @@ import Link from 'next/link'
 import Absent from '@icons/absent.svg'
 import Included from '@icons/included.svg'
 import Addon from '@icons/addon.svg'
+import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
 const Price: FC<PriceProps> = ({
   className,
@@ -255,10 +256,10 @@ const Price: FC<PriceProps> = ({
         <h2>{title}</h2>
         {showPeriodSwitch && (
           <div className={styles.switch}>
-            <Button variant={activePeriod === 'sixMonths' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('sixMonths')}>
-              6 мес скидка 20% (в отчете данные за 6 мес)
+            <Button variant={activePeriod === 'sixMonths' ? 'purple' : 'purpleOutline'} onClick={() => setPeriod('sixMonths')}>
+              6 мес&nbsp;<b>скидка 20%</b>&nbsp;(в отчете данные за 6 мес)
             </Button>
-            <Button variant={activePeriod === 'month' ? 'gradient' : 'purpleOutline'} onClick={() => setPeriod('month')}>
+            <Button variant={activePeriod === 'month' ? 'purple' : 'purpleOutline'} onClick={() => setPeriod('month')}>
               1 мес (в отчете данные за 2 мес)
             </Button>
           </div>
@@ -315,12 +316,12 @@ const Price: FC<PriceProps> = ({
                 <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />
                 {showConnectButtons && (
                   onConnect ? (
-                    <Button onClick={() => onConnect(plan.id, activePeriod)}>
-                      Подключить →
+                    <Button onClick={() => onConnect(plan.id, activePeriod)} icon={<ArrowWhiteIcon />}>
+                      Подключить
                     </Button>
                   ) : (
-                    <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink>
-                      Подключить →
+                    <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink  icon={<ArrowWhiteIcon />}>
+                      Подключить
                     </Button>
                   )
                 )}

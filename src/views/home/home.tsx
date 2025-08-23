@@ -28,6 +28,8 @@ import CalcIcon from '@icons/calc.svg'
 import WarehouseIcon from '@icons/warehouse.svg'
 import WbOzon from '@icons/ozonwbicon.svg'
 import LupapupaIcon from '@icons/lupapupa.svg'
+import ArrowWhiteIcon from '@icons/arrowWhite.svg'
+import ArrowIcon from '@icons/arrow.svg'
 
 const cards = [
   { key: 'accuracy', icon: <TochnostIcon />, title: 'Точность данных', text: 'Реальные данные напрямую с API Wildberries и Ozon — никаких искажений и задержек.', animated: true },
@@ -42,8 +44,8 @@ const cards = [
     icon: <RykiIcon />,
     title: 'Начните управлять своим бизнесом уже сегодня!',
     action: (
-      <Button as="a" isRouteLink href="/login" variant="gradient" size="md">
-        Подключить бесплатно →
+      <Button as="a" isRouteLink href="/login" variant="gradient" size="md" icon={<ArrowWhiteIcon />}>
+        Подключить бесплатно
       </Button>
     ),
     animated: true,
@@ -67,7 +69,7 @@ const Home: FC<HomeProps> = ({ className }) => {
           description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="70%">Подключить бесплатно</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="70%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
               <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradientOutline" buttonWidth="30%">Demo-кабинет</Button>
             </>
           }
@@ -144,7 +146,7 @@ const Home: FC<HomeProps> = ({ className }) => {
             subtitle="За каждого друга - по одному бесплатному месяцу тебе и ему"
             description="Публикуйте свой пригласительный код в социальных сетях, делитесь кодом с друзьями и получайте свой бонус за каждое его использование"
             subDescription="Пригласил 12 друзей - ДЕРЖИ ГОД БЕСПЛАТНОЙ АНАЛИТИКИ"
-            buttons={<Button as="a" isRouteLink href={LINKS.invite ?? LINKS.connectFree} style={{ width: '100%' }} variant="gradient">Пользоваться бесплатно</Button>}
+            buttons={<Button as="a" isRouteLink href={LINKS.invite ?? LINKS.connectFree} style={{ width: '100%' }} variant="gradient" icon={<ArrowWhiteIcon />}>Пользоваться бесплатно</Button>}
             imageSrc="/images/box_free.png"
             imageAlt="Скриншот кабинета"
           />
@@ -166,7 +168,7 @@ const Home: FC<HomeProps> = ({ className }) => {
 
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradient">Demo-кабинет</Button>
+              <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradient" icon={<ArrowWhiteIcon />} buttonWidth="100%">Demo-кабинет</Button>
             </>
           }
           imageSrc="/images/laptop-see.png"
@@ -196,7 +198,7 @@ const Home: FC<HomeProps> = ({ className }) => {
           title={<><span className={styles.white}>Начните управлять своим бизнесом уже сегодня!</span></>}
           titleTagName="h2"
           titleSize="sm"
-          buttons={<Button as="a" isRouteLink href={LINKS.connectFree} variant="white" style={{ width: '100%' }}>Подключить бесплатно</Button>}
+          buttons={<Button as="a" isRouteLink href={LINKS.connectFree} variant="white" style={{ width: '100%' }} icon={<ArrowIcon />}>Подключить бесплатно</Button>}
           imageSrc="/images/start_laptop.png"
           imageAlt="Скриншот кабинета"
 

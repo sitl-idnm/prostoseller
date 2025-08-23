@@ -103,7 +103,15 @@
 
 .icon {
   display: inline-flex;
-  opacity: 0;
+  opacity: 1;
+
+  width: 36px;
+  height: 24px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .text {
