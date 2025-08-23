@@ -63,7 +63,7 @@ const ContactInfo: FC<ContactInfoProps> = ({
 
         <div className={styles.map}>
           <div className={styles.mapInner}>
-            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae83f99707b245e2274d65e205cb8280dd388adc0f12ddecba3974b1032113ba0&amp;source=constructor" width="100%" height="100%"></iframe>
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae83f99707b245e2274d65e205cb8280dd388adc0f12ddecba3974b1032113ba0&amp;source=constructor" width="100%" height="100%" frameBorder="0"></iframe>
           </div>
         </div>
       </div>
