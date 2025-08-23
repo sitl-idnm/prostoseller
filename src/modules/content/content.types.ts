@@ -7,7 +7,7 @@ export interface ContentProps {
   /** Вариант блока: 'split' — две колонки, 'solid' — цельный контейнер */
   variant?: ContentVariant
   /** Цвет фона всей секции (любой валидный CSS-цвет или значение) */
-  background?: string
+  backgroundRoot?: string
   /** Цвет фона контента */
   backgroundContent?: string
 
