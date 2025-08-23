@@ -3,6 +3,7 @@ import classNames from 'classnames'
 
 import styles from './plusMinus.module.scss'
 import { PlusMinusProps } from './plusMinus.types'
+import Button from '@/ui/button/button'
 
 const PlusMinus: FC<PlusMinusProps> = ({
   className,
@@ -40,6 +41,12 @@ const PlusMinus: FC<PlusMinusProps> = ({
               <div className={styles.list}>{pair.became}</div>
             </div>
           ))}
+        </div>
+      </div>
+      <div className={styles.button}>
+        <Button variant="gradient">Подключить бесплатно</Button>
+        <div>
+          <p>4 дня бесплатно без привязки карты</p>
         </div>
       </div>
 

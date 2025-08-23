@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import Image from 'next/image'
 import { Button, Wrapper } from '@/ui'
 import { LINKS } from '@/shared/const'
 import classNames from 'classnames'
@@ -20,17 +19,27 @@ import WbIcon from '@icons/pribil_icon.svg'
 import OzonIcon from '@icons/pribil_ozon.svg'
 import { PartnersStages } from '@/modules/partnersStages'
 
+import RykiIcon from '@icons/ryki.svg'
+import TochnostIcon from '@icons/tochnost.svg'
+import LupaIcon from '@icons/lupa.svg'
+import ClockIcon from '@icons/clock.svg'
+import ProstotaIcon from '@icons/prostota.svg'
+import CalcIcon from '@icons/calc.svg'
+import WarehouseIcon from '@icons/warehouse.svg'
+import WbOzon from '@icons/ozonwbicon.svg'
+import LupapupaIcon from '@icons/lupapupa.svg'
+
 const cards = [
-  { key: 'accuracy', icon: <Image src="/images/icon-rocket.svg" alt="Точность" width={24} height={24} />, title: 'Точность данных', text: 'Реальные данные напрямую с API Wildberries и Ozon — никаких искажений и задержек.', animated: true },
-  { key: 'simplicity', icon: <Image src="/images/icon-rocket.svg" alt="Простота" width={24} height={24} />, title: 'Простота и удобство', text: 'Интуитивный интерфейс, понятный даже новичкам.', animated: true },
-  { key: 'profit', icon: <Image src="/images/icon-rocket.svg" alt="Прибыль" width={24} height={24} />, title: 'Рост и управление прибылью', text: 'Видите, какие товары приносят деньги, а какие — убытки', animated: true },
-  { key: 'time', icon: <Image src="/images/icon-rocket.svg" alt="Экономия времени" width={24} height={24} />, title: 'Экономия времени', text: 'Больше не нужно считать вручную. Ваша аналитика всегда актуальна и автоматизирована', animated: true },
-  { key: 'stocks', icon: <Image src="/images/icon-rocket.svg" alt="Планирование остатков" width={24} height={24} />, title: 'Планирование остатков', text: 'Заранее знаете, когда пополнять склад, чтобы никогда не терять продажи и прибыль', animated: true },
-  { key: 'calc', icon: <Image src="/images/icon-rocket.svg" alt="Калькулятор" width={24} height={24} />, title: 'Встроенный калькулятор цен', text: 'Больше не нужно считать вручную. Ваша аналитика всегда актуальна и автоматизирована', animated: true },
-  { key: 'two-mp', icon: <Image src="/images/icon-rocket.svg" alt="Два маркетплейса" width={24} height={24} />, title: 'Один сервис для двух маркетплейсов', text: 'Вы с комфортом управляете бизнесом через единую платформу аналитики и зарабатываете больше', animated: true },
+  { key: 'accuracy', icon: <TochnostIcon />, title: 'Точность данных', text: 'Реальные данные напрямую с API Wildberries и Ozon — никаких искажений и задержек.', animated: true },
+  { key: 'simplicity', icon: <ProstotaIcon/>, title: 'Простота и удобство', text: 'Интуитивный интерфейс, понятный даже новичкам.', animated: true },
+  { key: 'profit', icon: <LupaIcon />, title: 'Рост и управление прибылью', text: 'Видите, какие товары приносят деньги, а какие — убытки', animated: true },
+  { key: 'time', icon: <ClockIcon />, title: 'Экономия времени', text: 'Больше не нужно считать вручную. Ваша аналитика всегда актуальна и автоматизирована', animated: true },
+  { key: 'stocks', icon: <WarehouseIcon />, title: 'Планирование остатков', text: 'Заранее знаете, когда пополнять склад, чтобы никогда не терять продажи и прибыль', animated: true },
+  { key: 'calc', icon: <CalcIcon />, title: 'Встроенный калькулятор цен', text: 'Больше не нужно считать вручную. Ваша аналитика всегда актуальна и автоматизирована', animated: true },
+  { key: 'two-mp', icon: <WbOzon />, title: 'Один сервис для двух маркетплейсов', text: 'Вы с комфортом управляете бизнесом через единую платформу аналитики и зарабатываете больше', animated: true },
   {
     key: 'cta',
-    icon: <Image src="/images/icon-rocket.svg" alt="CTA" width={24} height={24} />,
+    icon: <RykiIcon />,
     title: 'Начните управлять своим бизнесом уже сегодня!',
     action: (
       <Button as="a" isRouteLink href="/login" variant="gradient" size="md">
@@ -50,7 +59,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         {/* Раздельный */}
         <Content
           variant="split"
-          background="transparent"
+          backgroundRoot="transparent"
           backgroundContent="#fff"
           title={<>Удваиваем Вашу <span className={`${styles.iconwb} ${styles.icon_profit}`}><WbIcon /></span> прибыль на&nbsp;<span className={styles.wb}>Wildberries</span> и&nbsp;<span className={styles.ozon}>Ozon</span><span className={styles.icon_profit}><OzonIcon /></span></>}
           titleSize="lg"
@@ -126,15 +135,18 @@ const Home: FC<HomeProps> = ({ className }) => {
           titleSize="lg"
           mark={<>Как работает <b>Prostoseller</b></>}>
           <Content
-            variant="solid"
-            background="linear-gradient(90deg,#f1e9ff,#eaf5ff)"
+            variant="split"
+            backgroundRoot="url('/images/prostoseller_free.png') no-repeat center center / cover"
+            backgroundContent='transparent'
             title={<>Приглашайте друзей в <span className={styles.purple}>Prostoseller</span> и пользуйтесь сервисом бесплатно</>}
             titleTagName="h1"
             titleSize="sm"
             subtitle="За каждого друга - по одному бесплатному месяцу тебе и ему"
             description="Публикуйте свой пригласительный код в социальных сетях, делитесь кодом с друзьями и получайте свой бонус за каждое его использование"
             subDescription="Пригласил 12 друзей - ДЕРЖИ ГОД БЕСПЛАТНОЙ АНАЛИТИКИ"
-            buttons={<Button as="a" isRouteLink href={LINKS.invite ?? LINKS.connectFree}>Пользоваться бесплатно</Button>}
+            buttons={<Button as="a" isRouteLink href={LINKS.invite ?? LINKS.connectFree} style={{ width: '100%' }} variant="gradient">Пользоваться бесплатно</Button>}
+            imageSrc="/images/box_free.png"
+            imageAlt="Скриншот кабинета"
           />
         </TitleHandler>
 
@@ -147,9 +159,8 @@ const Home: FC<HomeProps> = ({ className }) => {
         </TitleHandler>
         <Content
           variant="split"
-          background="#f7f7fb"
-          title={<>Смотрите, как работает <span className={styles.purple}>Pro
-            stoseller</span> изнутри<span className={styles.icon_profit}><OzonIcon /></span></>}
+          backgroundRoot="#f7f7fb"
+          title={<>Смотрите, как работает <span className={styles.purple}>Prostoseller</span> изнутри <span className={styles.icon_profit}><LupapupaIcon /></span></>}
 
           description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
 
@@ -158,7 +169,7 @@ const Home: FC<HomeProps> = ({ className }) => {
               <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradient">Demo-кабинет</Button>
             </>
           }
-          imageSrc="/images/laptop_prostoseller.png"
+          imageSrc="/images/laptop-see.png"
           imageAlt="Скриншот кабинета"
         />
         <Price />
@@ -180,12 +191,12 @@ const Home: FC<HomeProps> = ({ className }) => {
         {/* Литой */}
         <Content
           variant="solid"
-          background="#A452D7"
+          backgroundRoot="url('/images/start_laptop.png') no-repeat center center cover"
           backgroundContent="#A452D7"
           title={<><span className={styles.white}>Начните управлять своим бизнесом уже сегодня!</span></>}
           titleTagName="h2"
-          titleSize="md"
-          buttons={<Button as="a" isRouteLink href={LINKS.connectFree} variant="white">Подключить бесплатно</Button>}
+          titleSize="sm"
+          buttons={<Button as="a" isRouteLink href={LINKS.connectFree} variant="white" style={{ width: '100%' }}>Подключить бесплатно</Button>}
         />
 
 

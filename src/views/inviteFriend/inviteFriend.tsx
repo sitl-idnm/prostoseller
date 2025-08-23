@@ -20,7 +20,7 @@ const InviteFriend: FC<InviteFriendProps> = ({
       <Wrapper>
         <Content
           variant="solid"
-          background="#D9E3FF"
+          backgroundRoot="#D9E3FF"
           title="Приглашайте друзей в Prostoseller и пользуйтесь сервисом бесплатно"
           subtitle="За каждого друга - по одному бесплатному месяцу тебе и ему"
           description="Публикуйте свой пригласительный код в социальных сетях, делитесь кодом с друзьями и получайте свой бонус за каждое его использование"

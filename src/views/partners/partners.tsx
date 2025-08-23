@@ -42,7 +42,7 @@ const Partners: FC<PartnersProps> = ({ className }) => {
       <Wrapper className={styles.wrapper}>
         <Content
           variant="split"
-          background="#D9E3FF"
+          backgroundRoot="#D9E3FF"
           title="Станьте партнером Prostoseller и зарабатывайте 25% с каждой оплаты приведенных клиентов в течение 6 месяцев"
           subtitle="Приводи один раз, зарабатывай долго!"
           buttons={

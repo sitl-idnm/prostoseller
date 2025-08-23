@@ -27,7 +27,7 @@ const Price: FC<PriceProps> = ({
       <Wrapper className={styles.wrapper}>
         <Content
           variant="solid"
-          background="#D9E3FF"
+          backgroundRoot="#D9E3FF"
           title="Тарифы"
           subtitle="Мы знаем как важно получать выгоду селлерам, поэтому сделали скидку при оплате тарифа на шесть месяцев!"
           buttons={

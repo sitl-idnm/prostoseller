@@ -9,7 +9,7 @@ import Image from 'next/image'
 const Content: FC<ContentProps> = ({
   className,
   variant = 'split',
-  background,
+  backgroundRoot,
   backgroundContent,
   imageSrc,
   imageAlt = '',
@@ -20,7 +20,8 @@ const Content: FC<ContentProps> = ({
   description,
   subDescription,
   buttons,
-  buttonsNote
+  buttonsNote,
+  ...props
 }) => {
   const rootClassName = classNames(styles.root, className)
   const innerClassName = classNames(styles.inner, {
@@ -32,7 +33,7 @@ const Content: FC<ContentProps> = ({
   const titleClassName = classNames(styles.title, titleSize && styles[`title_${titleSize}`])
 
   return (
-    <section className={rootClassName} style={{ background }}>
+    <section className={rootClassName} style={{ background: backgroundRoot, backgroundSize: 'cover', ...props }}>
       <div className={innerClassName}>
         <div className={contentClassName} style={{ background: backgroundContent }}>
           {title && (
