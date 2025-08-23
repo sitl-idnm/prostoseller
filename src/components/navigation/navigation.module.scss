@@ -5,6 +5,8 @@
 .root {
 	display: flex;
 	gap: func.rem(24);
+	position: relative;
+	z-index: 3;
 
 	@media (max-width: 1431px) {
 		gap: 12px;

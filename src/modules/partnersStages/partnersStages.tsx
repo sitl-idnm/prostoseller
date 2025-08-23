@@ -64,7 +64,7 @@ const PartnersStages: FC<PartnersStagesProps> = ({
       scrollTrigger: {
         trigger: containerRef.current,
         start: lineRef.current?.offsetParent ? 'top 10%' : 'top 5%',
-        end: '+=200%',
+        end: 'bottom center',
         pin: true,
         scrub: 2,
       }

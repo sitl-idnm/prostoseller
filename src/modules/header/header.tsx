@@ -9,8 +9,16 @@ import Logo from './logo'
 import { Navigation, SocialLinks } from '@/components'
 
 import IconAdmin from '@icons/admin.svg'
-import { Wrapper } from '@/ui'
 import PhoneIcon from '@icons/phoneicon.svg'
+import SaleIcon from '@icons/sale-broken.svg'
+
+import soundImageSrc from '@public/images/saleSound.png'
+import giftImageSrc from '@public/images/saleGift.png'
+
+import { Wrapper } from '@/ui'
+import Link from 'next/link'
+import Image from 'next/image'
+
 
 const IconPhone = () => (
   <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,9 +89,15 @@ const Header: FC<HeaderProps> = ({ className }) => {
         </div>
 
         <div className={styles.promo}>
+          <div className={`${styles.promoImage} ${styles.promoImageSound}`}>
+            <Image src={soundImageSrc} alt="sale" />
+          </div>
           <div className={styles.promoInner}>
             <div className={styles.promoText}>Получите скидку 20% при оплате на 6 месяцев</div>
-            <a href="#" className={styles.promoCta}>Получить скидку</a>
+            <Link href="#" className={styles.promoCta}>Получить скидку <span className={styles.iconSale}><SaleIcon /></span></Link>
+          </div>
+          <div className={`${styles.promoImage} ${styles.promoImageGift}`}>
+            <Image src={giftImageSrc} alt="sale" />
           </div>
         </div>
       </Wrapper >
