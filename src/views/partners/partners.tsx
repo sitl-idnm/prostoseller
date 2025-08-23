@@ -44,14 +44,17 @@ const Partners: FC<PartnersProps> = ({ className }) => {
         <Content
           variant="split"
           backgroundRoot="#D9E3FF"
+          backgroundContent='transparent'
           title={<>Станьте партнером <span className={styles.purple}>Prostoseller</span> и зарабатывайте <span className={styles.purple}>25%</span> с каждой оплаты приведенных клиентов в течение <span className={styles.purple}>6 месяцев</span></>}
           titleSize='sm'
           subtitle="Приводи один раз, зарабатывай долго!"
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="100%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
             </>
           }
+          imageSrc="/images/partners_gift.png"
+          imageAlt="Станьте партнером Prostoseller и зарабатывайте 25% с каждой оплаты приведенных клиентов в течение 6 месяцев"
         />
         <PartnersStages />
         <TitleHandler
