@@ -17,7 +17,7 @@ const InviteFriend: FC<InviteFriendProps> = ({
 
   return (
     <main className={rootClassName}>
-      <Wrapper>
+      <Wrapper className={styles.wrapper}>
         <Content
           variant="solid"
           backgroundRoot="#D9E3FF"

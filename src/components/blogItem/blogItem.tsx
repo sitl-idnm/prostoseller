@@ -18,6 +18,9 @@ const BlogItem: FC<BlogItemProps> = ({
 
   return (
     <article className={rootClassName}>
+      <div className={styles.content}>
+        {date && <div className={styles.date}>{date}</div>}
+      </div>
       {imageSrc && (
         <Link href={href} className={styles.imageWrap}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -25,7 +28,6 @@ const BlogItem: FC<BlogItemProps> = ({
         </Link>
       )}
       <div className={styles.content}>
-        {date && <div className={styles.date}>{date}</div>}
         <h3 className={styles.title}>
           <Link href={href}>{title}</Link>
         </h3>

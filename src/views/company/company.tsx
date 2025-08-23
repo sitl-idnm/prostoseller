@@ -14,7 +14,7 @@ const Company: FC<CompanyProps> = ({
 
   return (
     <main className={rootClassName}>
-      <Wrapper>
+      <Wrapper className={styles.wrapper}>
         <Content
           variant="split"
           backgroundRoot="#D9E3FF"
@@ -31,7 +31,6 @@ const Company: FC<CompanyProps> = ({
           mark={<>Наша миссия</>}
           description="Мы, опытные продавцы на OZON и Wildberries со стажем более 5 лет, поняли, как тяжело разобраться в множестве цифр, чтобы оценить реальную эффективность и доходность продаж на российских маркетплейсах. Глядя на то, как другие продавцы ведут бизнес «в минус», приняли решение изменить эту ситуацию и создали Prostoseller. Теперь каждый селлер точно понимает, сколько зарабатывает в разрезе каждого товара и принимает самые верные решения по ассортименту и оптимизации расходов!"
         />
-
       </Wrapper>
     </main>
   )

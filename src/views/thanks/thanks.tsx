@@ -8,9 +8,10 @@ const Thanks: FC<ThanksProps> = ({
   className
 }) => {
   const rootClassName = classNames(styles.root, className)
-  
+
   return (
-    <main className={rootClassName}></main>
+    <main className={rootClassName}>
+    </main>
   )
 }
 

@@ -13,7 +13,7 @@ const Blog: FC<BlogProps> = async ({ className }) => {
 
   return (
     <main className={rootClassName}>
-      <Wrapper>
+      <Wrapper className={styles.wrapper}>
         <BlogItems
           items={posts.map(p => ({
             id: p.id,

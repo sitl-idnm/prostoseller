@@ -19,15 +19,61 @@
   margin: 0 auto func.rem(32);
 }
 
+.content {
+  background-color: #D9E3FF;
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 24px;
+
+  @include mixins.tablet-small {
+    padding: 24px;
+  }
+
+  @include mixins.mobile-large {
+    padding: 12px;
+  }
+}
+
+.contentFlex {
+  display: flex;
+  gap: 60px;
+}
+
+.titleForm {
+  width: 100%;
+
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #454444;
+
+  @include mixins.tablet-small {
+    font-size: 24px;
+    line-height: 1.4;
+  }
+}
+
+.form {
+  max-width: 50%;
+  margin-top: 30px;
+
+  @include mixins.tablet-small {
+    max-width: 100%;
+    margin-top: 0;
+  }
+}
+
 .image {
   display: block;
-  width: 100%;
-  max-width: func.rem(512);
+  width: 665px;
   height: auto;
   margin: 0 auto;
 
   @include mixins.tablet-small {
-    max-width: func.rem(400);
+    display: none;
   }
 }
 
