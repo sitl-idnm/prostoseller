@@ -17,12 +17,12 @@ const Company: FC<CompanyProps> = ({
       <Wrapper>
         <Content
           variant="split"
-          background="#D9E3FF"
+          backgroundRoot="#D9E3FF"
           title="О компании"
           titleTagName="h1"
           titleSize="md"
           subtitle="Prostoseller – это сервис, который показывает реальный доход и экономику продаж на Wildberries и Ozon "
-          
+
         />
         <TitleHandler
           title="НАША ЦЕЛЬ – сделать прибыль селлеров больше, а бизнес понятнее!"
