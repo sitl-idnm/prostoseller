@@ -16,7 +16,7 @@
 		gap: 4px;
 	}
 
-	@include mixins.tablet-small {
+	@include mixins.mobile-large {
 		position: fixed;
 		top: 0;
 		left: 0;
