@@ -4,6 +4,20 @@
 
 .root {
 	width: 100%;
+
+	@include mobile-large {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+}
+
+.button {
+	display: none;
+
+	@include mobile-large {
+		display: block;
+	}
 }
 
 .grid {
@@ -13,7 +27,7 @@
 	grid-auto-flow: dense;
 	align-items: stretch;
 
-	@include tablet-small {
+	@include mobile-large {
 		display: block;
 		white-space: nowrap;
 		overflow-x: auto;
