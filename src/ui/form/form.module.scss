@@ -34,7 +34,8 @@
   font-family: inherit;
   color: var(--color-black-default);
   background-color: var(--color-white-default);
-  border: none;
+  border: 1px solid #CDCDCD;
+  border-radius: 4px;
   outline: none;
   resize: none;
 }
