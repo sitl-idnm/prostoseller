@@ -6,6 +6,8 @@ import classNames from 'classnames'
 import styles from './cardHolder.module.scss'
 import { CardHolderProps } from './cardHolder.types'
 import Card from '@/components/card/card'
+import { Button } from '@/ui'
+import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
 const CardHolder: FC<CardHolderProps> = ({
   className,
@@ -33,6 +35,11 @@ const CardHolder: FC<CardHolderProps> = ({
             <Card animated={c.animated} icon={c.icon} title={c.title} text={c.text} action={c.action} image={c.image} />
           </div>
         ))}
+      </div>
+      <div className={styles.button}>
+        <Button as="a" isRouteLink href="/login" variant="gradient" buttonWidth="100%" size="md" icon={<ArrowWhiteIcon />}>
+          Подключить бесплатно
+        </Button>
       </div>
     </div>
   )

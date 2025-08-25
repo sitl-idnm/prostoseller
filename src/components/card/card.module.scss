@@ -14,7 +14,7 @@
 	transition: transform variables.$transition;
 	min-width: 170px;
 	width: 100%;
-	height: auto;
+	height: 100%;
 	display: flex;
 	text-wrap: auto;
 
@@ -24,6 +24,8 @@
 
 	@include mobile-large {
 		padding: 12px;
+
+		height: 240px;
 	}
 }
 
@@ -50,6 +52,10 @@
 		height: 100%;
 
 		margin-right: -24px;
+
+		@include mobile-large {
+			display: none;
+		}
 
 		img {
 			width: 100%;
@@ -113,7 +119,7 @@
 	}
 
 	@include mobile-large {
-		font-size: 16px;
+		font-size: 14px;
 		line-height: 1.5;
 		margin-bottom: 8px;
 	}
@@ -134,13 +140,17 @@
 	}
 
 	@include mobile-large {
-		font-size: 14px;
+		font-size: 12px;
 	}
 }
 
 .controls {
 	margin-top: auto;
 	padding-top: func.rem(8);
+
+	@include mobile-large {
+		display: none;
+	}
 }
 
 /* Animated corner */

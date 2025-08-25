@@ -30,9 +30,9 @@ const Card: FC<CardProps> = ({
           {text && <div className={styles.text}>{text}</div>}
           {action && <div className={styles.controls}>{action}</div>}
         </div>
-        <div className={styles.image}>
-          {image && <Image src={image} alt="card" width={400} height={400} quality={100} />}
-        </div>
+        { image && <div className={styles.image}>
+          <Image src={image} alt="card" width={400} height={400} quality={100} />
+        </div> }
       </div>
     </div>
   )

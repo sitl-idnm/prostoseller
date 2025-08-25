@@ -38,11 +38,12 @@
 
 .switch {
 	display: flex;
-	gap: func.rem(12);
+	gap: 12px;
 
-	@include mobile-small {
+	@include mobile-large {
 		flex-direction: column;
 		align-items: stretch;
+		width: 100%;
 	}
 }
 
@@ -92,7 +93,7 @@
 	@media (max-width: 767px) {
 		display: flex;
 		gap: func.rem(8);
-		justify-content: center;
+		justify-content: flex-end;
 		margin-bottom: func.rem(12);
 	}
 }
