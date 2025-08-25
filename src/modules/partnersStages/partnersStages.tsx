@@ -11,13 +11,11 @@ import gsap from 'gsap'
 import FirstStage from '@icons/firstCircle.svg'
 import SecondStage from '@icons/secondDisactive.svg'
 import ThirdStage from '@icons/thirdDisactive.svg'
-import WbOzon from '@icons/ozonwbicon.svg'
+
 import Image from 'next/image'
 import DisactiveLine from '@public/images/disactiveLine.png'
 import ActiveLine from '@public/images/activeLine.png'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Button from '@/ui/button/button'
-import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -42,7 +40,12 @@ const ThirdStageActive = () => {
 }
 
 const PartnersStages: FC<PartnersStagesProps> = ({
-  className
+  className,
+  title,
+  titleStage,
+  textStage,
+  mark,
+  buttons
 }) => {
   const rootClassName = classNames(styles.root, className)
 
@@ -134,9 +137,9 @@ const PartnersStages: FC<PartnersStagesProps> = ({
     <div className={rootClassName} ref={containerRef}>
       <div className={styles.title}>
         <h2>
-          <span className={styles.purple}>3 простых шага</span>, чтобы начать зарабатывать <span className={styles.purple}>больше в 2 раза <WbOzon /></span>
+          {title}
         </h2>
-        <div className={styles.mark}>Как работает <span className={styles.bold}>Prostoseller</span></div>
+        <div className={styles.mark}>{mark}</div>
       </div>
       <div className={styles.container}>
         <div className={styles.lines}>
@@ -147,8 +150,10 @@ const PartnersStages: FC<PartnersStagesProps> = ({
           <div className={`${styles.stage} ${styles.first}`}>
             <FirstStage />
             <div className={`${styles.stageContent} ${styles.firstText}`}>
-              <h2>Подключите магазин</h2>
-              <p>Интеграция в один клик — уже через минуту данные в системе!</p>
+              <h2>{titleStage[0]}</h2>
+              {textStage &&
+                <p>{textStage[0]}</p>
+              }
             </div>
           </div>
           <div className={`${styles.stage} ${styles.second}`}>
@@ -163,8 +168,10 @@ const PartnersStages: FC<PartnersStagesProps> = ({
               ref={secondStageTextRef}
               className={styles.stageContent}
             >
-              <h2>Сервис автоматически соберёт и рассчитает все показатели</h2>
-              <p>Вы отдыхаете — сервис считает, анализирует и показывает ключевые цифры</p>
+              <h2>{titleStage[1]}</h2>
+              {textStage &&
+                <p>{textStage[1]}</p>
+              }
             </div>
           </div>
           <div className={`${styles.stage} ${styles.third}`}>
@@ -179,16 +186,19 @@ const PartnersStages: FC<PartnersStagesProps> = ({
               ref={thirdStageTextRef}
               className={styles.stageContent}
             >
-              <h2>Управлять бизнесом теперь станет значительно проще</h2>
-              <p>Понимайте, что работает, а что — нет. Принимайте решения на основе точных данных, а не на интуиции.</p>
+              <h2>{titleStage[2]}</h2>
+              {textStage &&
+                <p>{textStage[2]}</p>
+              }
             </div>
           </div>
         </div>
       </div>
-      <div className={styles.buttons}>
-        <Button variant="gradient" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
-        <Button variant="gradientOutline">Demo-кабинет</Button>
-      </div>
+      {buttons &&
+        <div className={styles.buttons}>
+          {buttons}
+        </div>
+      }
 
       {/* Мобильная версия */}
       <div className={styles.mobile}>
