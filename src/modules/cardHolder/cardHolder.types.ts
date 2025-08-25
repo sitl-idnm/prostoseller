@@ -7,6 +7,7 @@ export interface CardData {
   text?: ReactNode
   action?: ReactNode
   animated?: boolean
+  image?: string
 }
 
 export interface CardHolderProps {
