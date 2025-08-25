@@ -17,6 +17,7 @@ import CardRubIcon from '@icons/card_rub.svg'
 import MonFileIcon from '@icons/mon_file.svg'
 import LupaStatIcon from '@icons/lupa_stat.svg'
 import { Notice } from '@/modules/notice'
+import { CalcIncome } from '@/modules/calcIncome'
 
 const cards = [
   {
@@ -64,6 +65,10 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           text={
             <><span className={styles.purple}>Приглашайте</span> друзей, клиентов, коллег, читателей блогов, аудиторию фулфилмент центров и образовательных программ в сервис <span className={styles.purple}>Prostoseller!</span></>
           }
+        />
+        <CalcIncome
+          title={<>Рассчитайте Ваш <span className={styles.purple}>доход</span> c <span className={styles.purple}>Prostoseller</span></>}
+          text={<>Получайте доход после оплаты клиентом любого из тарифов</>}
         />
         <PartnersStages
           title={<><span className={styles.purple}>Стать партнером</span> просто!</>}

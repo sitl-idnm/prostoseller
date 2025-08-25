@@ -11,6 +11,10 @@
   display: flex;
   flex-direction: column;
   gap: 100px;
+
+  @include mixins.tablet-small {
+    gap: 50px;
+  }
 }
 
 .title {
