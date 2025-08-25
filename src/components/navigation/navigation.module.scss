@@ -167,6 +167,10 @@
 	@include mixins.tablet-small {
 		padding: 2px 4px;
 	}
+
+	&:active {
+		color: #A452D7;
+	}
 }
 
 .caret {

@@ -52,17 +52,15 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
     !isMobile ? (
       <>
         <ul className={rootClassName}>
-          <li className={styles.item}><a href="/price" className={styles.link}>Тарифы</a></li>
+          <li className={styles.item}><Link href="/price" className={styles.link}>Тарифы</Link></li>
 
           <li className={classNames(styles.item, styles.dropdown)}>
-            <button className={styles.trigger} type="button" onClick={() => {
-              window.location.href = '/partners'
-            }}>
+            <Link href="/partners" className={styles.trigger}>
               Партнёрам <span className={styles.caret} aria-hidden>▾</span>
-            </button>
+            </Link>
             <ul className={styles.menu}>
-              <li className={styles.menuItem}><a className={styles.menuLink} href="/inviteFriend">Пригласи друга</a></li>
-              <li className={styles.menuItem}><a className={styles.menuLink} href="/partners">Партнерская программа</a></li>
+              <li className={styles.menuItem}><Link href="/inviteFriend" className={styles.menuLink}>Пригласи друга</Link></li>
+              <li className={styles.menuItem}><Link href="/partners" className={styles.menuLink}>Партнерская программа</Link></li>
             </ul>
           </li>
 
@@ -73,9 +71,9 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
               О нас <span className={styles.caret} aria-hidden>▾</span>
             </button>
             <ul className={styles.menu}>
-              <li className={styles.menuItem}><a className={styles.menuLink} href="/company">О компании</a></li>
-              <li className={styles.menuItem}><a className={styles.menuLink} href="/contacts">Контакты</a></li>
-              <li className={styles.menuItem}><a className={styles.menuLink} href="/blog">Блог</a></li>
+              <li className={styles.menuItem}><Link href="/company" className={styles.menuLink}>О компании</Link></li>
+              <li className={styles.menuItem}><Link href="/contacts" className={styles.menuLink}>Контакты</Link></li>
+              <li className={styles.menuItem}><Link href="/blog" className={styles.menuLink}>Блог</Link></li>
             </ul>
           </li>
         </ul>
