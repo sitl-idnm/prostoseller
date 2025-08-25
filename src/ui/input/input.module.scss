@@ -13,6 +13,7 @@
   outline: none;
   transition: variables.$transition;
   transition-property: border-color, background-color;
+  border-radius: 4px;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

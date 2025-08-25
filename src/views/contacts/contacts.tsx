@@ -32,7 +32,7 @@ const Contacts: FC<ContactsProps> = ({
                   { id: 'subject', type: 'input', label: 'Тема', placeholder: 'Например: консультация', gridColumn: '1 / -1' },
                   { id: 'message', type: 'textarea', label: 'Текст обращения (необязательно)', placeholder: 'Введите текст', gridColumn: '1 / -1' }
                 ]}
-                submitLabel={<span>Отправить →</span>}
+                submitLabel={<span>Отправить</span>}
                 onSubmit={(v) => console.log('contacts form', v)}
                 className={styles.form}
               />

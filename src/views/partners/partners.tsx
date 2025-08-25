@@ -9,27 +9,32 @@ import { Button } from '@/ui'
 import { LINKS } from '@/shared/const'
 import { TitleHandler } from '@/modules/titleHandler'
 import { CardHolder } from '@/modules/cardHolder'
-import Image from 'next/image'
 import { LogoCarousel } from '@/modules/logoCarousel'
 import { PartnersStages } from '@/modules/partnersStages'
 import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
+import CardRubIcon from '@icons/card_rub.svg'
+import MonFileIcon from '@icons/mon_file.svg'
+import LupaStatIcon from '@icons/lupa_stat.svg'
+import { Notice } from '@/modules/notice'
+import { CalcIncome } from '@/modules/calcIncome'
+
 const cards = [
   {
     key: 'freeMonth',
-    icon: <Image src="/images/icon-rocket.svg" alt="Бесплатный месяц" width={24} height={24} />,
+    icon: <CardRubIcon />,
     title: 'Каждому вашему клиенту - бесплатный месяц Prostoseller после первой оплаты',
     animated: true,
   },
   {
     key: 'training',
-    icon: <Image src="/images/icon-rocket.svg" alt="Обучение" width={24} height={24} />,
+    icon: <MonFileIcon />,
     title: 'Бесплатное обучение работе с Prostoseller',
     animated: true,
   },
   {
     key: 'diagnostics',
-    icon: <Image src="/images/icon-rocket.svg" alt="Диагностика" width={24} height={24} />,
+    icon: <LupaStatIcon />,
     title: 'Диагностика магазина по 40 пунктам с обратной связью от действующих предпринимателей на маркетплейсах',
     animated: true,
   },
@@ -56,7 +61,25 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           imageSrc="/images/partners_gift.png"
           imageAlt="Станьте партнером Prostoseller и зарабатывайте 25% с каждой оплаты приведенных клиентов в течение 6 месяцев"
         />
-        <PartnersStages />
+        <Notice
+          text={
+            <><span className={styles.purple}>Приглашайте</span> друзей, клиентов, коллег, читателей блогов, аудиторию фулфилмент центров и образовательных программ в сервис <span className={styles.purple}>Prostoseller!</span></>
+          }
+        />
+        <CalcIncome
+          title={<>Рассчитайте Ваш <span className={styles.purple}>доход</span> c <span className={styles.purple}>Prostoseller</span></>}
+          text={<>Получайте доход после оплаты клиентом любого из тарифов</>}
+        />
+        <PartnersStages
+          title={<><span className={styles.purple}>Стать партнером</span> просто!</>}
+          titleStage={[<>Регистрируйтесь как партнер в Prostoseller</>, <>Копируйте реферальную ссылку из Вашего личного кабинета партнера</>, <>Привлекайте пользователей и получайте регулярный доход 25% с каждой оплаты</>]}
+          mark={<>Как стать партнером?</>}
+          buttons={
+            <>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="100%" icon={<ArrowWhiteIcon />}>Cтать партнером</Button>
+            </>
+          }
+        />
         <TitleHandler
           title="Стать партнером просто!"
           titleTagName="h2"
@@ -64,7 +87,7 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           mark={<>Как стать партнером?</>}>
         </TitleHandler>
         <TitleHandler
-          title="Супер бонусы для Ваших клиентов"
+          title={<><span className={styles.purple}>Супер бонусы</span> для Ваших клиентов</>}
           titleTagName="h2"
           titleSize="lg"
           mark={<>Бонусы</>}>

@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import styles from './form.module.scss'
 import { FormProps } from './form.types'
 import { Input, Button } from '@/ui'
+import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
 const Form: FC<FormProps> = ({
   className,
@@ -75,7 +76,7 @@ const Form: FC<FormProps> = ({
           </div>
         ))}
         <div className={styles.submit} style={{ gridColumn: '1 / -1' }}>
-          <Button type="submit" variant="gradient">
+          <Button buttonWidth="100%" type="submit" variant="gradient" icon={<ArrowWhiteIcon />}>
             {submitLabel}
           </Button>
         </div>

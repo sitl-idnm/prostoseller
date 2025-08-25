@@ -64,12 +64,12 @@ const Calculator: FC<CalculatorProps> = ({
   return (
     <div className={rootClassName}>
       <div className={styles.tabs}>
-        <button className={classNames(styles.tab, plan === 'base' && styles.tab_active)} onClick={() => setPlan('base')}>
+        <Button className={classNames(styles.tab, plan === 'base' && styles.tab_active)} onClick={() => setPlan('base')} variant={plan === 'base' ? 'purple' : 'purpleOutline'} buttonWidth='100%'>
           Базовый
-        </button>
-        <button className={classNames(styles.tab, plan === 'optimal' && styles.tab_active)} onClick={() => setPlan('optimal')}>
+        </Button>
+        <Button className={classNames(styles.tab, plan === 'optimal' && styles.tab_active)} onClick={() => setPlan('optimal')} variant={plan === 'optimal' ? 'purple' : 'purpleOutline'} buttonWidth='100%'>
           Оптимальный
-        </button>
+        </Button>
       </div>
       <div className={styles.title}>Тариф {plan === 'base' ? 'базовый' : 'оптимальный'}</div>
       <div className={styles.hint}>Укажите количество проведенных оплат клиентов:</div>
@@ -99,7 +99,7 @@ const Calculator: FC<CalculatorProps> = ({
         </span>
       </div>
       <div className={styles.cta}>
-        <Button as="a" href="/partners" isRouteLink variant="gradient" icon={<ArrowWhiteIcon />}>Стать партнером</Button>
+        <Button as="a" href="/partners" isRouteLink variant="gradient" icon={<ArrowWhiteIcon />} buttonWidth='100%'>Стать партнером</Button>
       </div>
     </div>
   )
