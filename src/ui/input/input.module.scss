@@ -9,7 +9,7 @@
   font-family: inherit;
   color: var(--color-black-default);
   background-color: var(--color-white-default);
-  border: none;
+  border: 1px solid #CDCDCD;
   outline: none;
   transition: variables.$transition;
   transition-property: border-color, background-color;

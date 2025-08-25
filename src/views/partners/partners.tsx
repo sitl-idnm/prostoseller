@@ -81,12 +81,6 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           }
         />
         <TitleHandler
-          title="Стать партнером просто!"
-          titleTagName="h2"
-          titleSize="lg"
-          mark={<>Как стать партнером?</>}>
-        </TitleHandler>
-        <TitleHandler
           title={<><span className={styles.purple}>Супер бонусы</span> для Ваших клиентов</>}
           titleTagName="h2"
           titleSize="lg"
