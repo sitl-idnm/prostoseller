@@ -6,8 +6,8 @@ import Logo from '@icons/logo-footer.svg'
 import SocialLinks from '@/components/socialLinks/socialLinks'
 
 import IconLocation from '@icons/location.svg'
-import IconPhone from '@icons/footer_phone.svg'
-import IconMail from '@icons/mail_dog.svg'
+import MailIcon from '@icons/mail_dog.svg'
+import PhoneIcon from '@icons/footer_phone.svg'
 import Wrapper from '@/ui/wrapper/wrapper'
 
 const Footer: FC = () => (
@@ -26,11 +26,11 @@ const Footer: FC = () => (
                   <span>г. Москва ул.Рябиновая д.26 стр.8 БЦ Wast Plaza</span>
                 </li>
                 <li className={styles.contactItem}>
-                  <span className={styles.icon}><IconPhone /></span>
+                  <span className={styles.icon}><PhoneIcon /></span>
                   <a href="tel:+74953637386">+7(495)363-73-86</a>
                 </li>
                 <li className={styles.contactItem}>
-                  <span className={styles.icon}><IconMail /></span>
+                  <span className={styles.icon}><MailIcon /></span>
                   <a href="mailto:info@prostoseller.com">info@prostoseller.com</a>
                 </li>
               </ul>
@@ -49,11 +49,11 @@ const Footer: FC = () => (
                 <span>г. Москва ул.Рябиновая д.26 стр.8 БЦ Wast Plaza</span>
               </li>
               <li className={styles.contactItem}>
-                <span className={styles.icon}><IconPhone /></span>
+                <span className={styles.icon}><PhoneIcon /></span>
                 <a href="tel:+74953637386">+7(495)363-73-86</a>
               </li>
               <li className={styles.contactItem}>
-                <span className={styles.icon}><IconMail /></span>
+                <span className={styles.icon}><MailIcon /></span>
                 <a href="mailto:info@prostoseller.com">info@prostoseller.com</a>
               </li>
             </ul>
