@@ -8,4 +8,5 @@ export interface CardProps {
   text?: ReactNode
   /** Кнопка (например, <Button/>) */
   action?: ReactNode
+  image?: string
 }

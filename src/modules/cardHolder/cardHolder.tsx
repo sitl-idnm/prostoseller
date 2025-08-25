@@ -30,7 +30,7 @@ const CardHolder: FC<CardHolderProps> = ({
       <div className={styles.grid}>
         {cards.map((c, idx) => (
           <div key={c.key ?? idx} className={getCellClass(idx)}>
-            <Card animated={c.animated} icon={c.icon} title={c.title} text={c.text} action={c.action} />
+            <Card animated={c.animated} icon={c.icon} title={c.title} text={c.text} action={c.action} image={c.image} />
           </div>
         ))}
       </div>

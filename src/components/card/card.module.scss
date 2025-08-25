@@ -31,10 +31,39 @@
 	position: relative;
 	z-index: 1;
 	display: flex;
+	gap: 12px;
 
-	flex-direction: column;
 	width: 100%;
 	height: 100%;
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+	}
+
+	.image {
+		width: 100%;
+		height: 100%;
+
+		margin-right: -24px;
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
+
+		@include tablet {
+			margin-right: -16px;
+		}
+
+		@include mobile-large {
+			margin-right: -12px;
+		}
+	}
 }
 
 .root:hover {
@@ -123,10 +152,10 @@
 	height: 49px;
 	background: linear-gradient(135deg, var(--color-purple-light), var(--color-purple-dark));
 	clip-path: polygon(100% 0, 0 0, 100% 100%);
-	z-index: 0;
 	transition: transform variables.$transition;
 	transform-origin: top right;
 	transform: scale(1);
+	z-index: 2;
 }
 
 .root_animated {
