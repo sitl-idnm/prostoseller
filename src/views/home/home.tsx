@@ -128,7 +128,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         </TitleHandler>
 
         <PartnersStages
-          title={<><span className={styles.purple}>3 простых шага</span>, чтобы начать зарабатывать <span className={styles.purple}>больше в 2 раза <WbOzon /></span></>}
+          title={<><span className={styles.purple}>3 простых шага</span>, чтобы начать зарабатывать <span className={styles.purple}>больше в 2 раза</span> <span className={styles.icon_profit}><WbOzon /></span></>}
           titleStage={[<>3 простых шага</>, <>Сервис автоматически соберёт и рассчитает все показатели</>, <>Управлять бизнесом теперь станет значительно проще</>]}
           textStage={[<>Интеграция в один клик — уже через минуту данные в системе!</>, <>Вы отдыхаете — сервис считает, анализирует и показывает ключевые цифры</>, <>Понимайте, что работает, а что — нет. Принимайте решения на основе точных данных, а не на интуиции.</>]}
           mark={<>Как работает <b>Prostoseller</b></>}
