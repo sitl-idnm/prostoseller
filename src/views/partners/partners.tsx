@@ -88,7 +88,7 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           <CardHolder cards={cards} />
         </TitleHandler>
         <TitleHandler
-          title="Наши партнеры"
+          title={<>Наши <span className={styles.purple}>партнеры</span></>}
           titleTagName="h2"
           titleSize="lg">
           <LogoCarousel />

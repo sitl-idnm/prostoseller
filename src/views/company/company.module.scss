@@ -10,7 +10,21 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 80px;
+
+  @include mixins.tablet {
+    gap: 100px;
+  }
+
+  @include mixins.tablet-small {
+    gap: 60px;
+  }
+}
+
+.content {
+  div {
+    font-size: 1.1rem;
+  }
 }
 
 .title {

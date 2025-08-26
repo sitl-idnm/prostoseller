@@ -21,7 +21,9 @@ const Contacts: FC<ContactsProps> = ({
         <TitleHandler
           title="Контакты"
           titleTagName="h1"
-          description="Вы всегда сможете связаться с нами по любым интересующим Вас вопросам">
+          description="Вы всегда сможете связаться с нами по любым интересующим Вас вопросам"
+          className={styles.titleHandler}
+        >
           <div className={styles.content}><h2 className={styles.titleForm}>Остались вопросы?</h2>
             <div className={styles.contentFlex}>
               <Form
