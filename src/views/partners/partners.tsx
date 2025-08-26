@@ -60,6 +60,7 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           }
           imageSrc="/images/partners_gift.png"
           imageAlt="Станьте партнером Prostoseller и зарабатывайте 25% с каждой оплаты приведенных клиентов в течение 6 месяцев"
+          contentSize='minmax(0, 60%) minmax(0, 40%)'
         />
         <Notice
           text={

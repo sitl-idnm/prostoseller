@@ -149,7 +149,7 @@
 .link,
 .trigger {
 	@include mixins.reset-btn;
-	font-size: func.rem(16);
+	font-size: 18px;
 	line-height: 1;
 	padding: func.rem(10) func.rem(12);
 	border-radius: func.rem(10);
