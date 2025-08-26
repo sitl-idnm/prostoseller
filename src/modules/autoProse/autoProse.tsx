@@ -82,7 +82,7 @@ const AutoProse: FC<AutoProseProps> = ({ className, text, children }) => {
 				// step back one since for-loop will i++
 				i--
 				let headerCells: string[] | null = null
-				let dataRows: string[][] = []
+				const dataRows: string[][] = []
 				if (block.length >= 2 && isMdSeparator(block[1])) {
 					headerCells = block[0].replace(/^\||\|$/g, '').split('|').map(c => c.trim())
 					for (let r = 2; r < block.length; r++) {
