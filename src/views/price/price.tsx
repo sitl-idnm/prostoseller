@@ -33,19 +33,13 @@ const Price: FC<PriceProps> = ({
           subtitle="Мы знаем как важно получать выгоду селлерам, поэтому сделали скидку при оплате тарифа на шесть месяцев!"
           textColor={true}
           contentSize="minmax(0, 65%) minmax(0, 35%)"
-          buttons={
-            <>
-              <Button variant={period === 'sixMonths' ? 'white' : 'whiteOutline'} onClick={handleSix}>6 мес{'\u00A0'}скидка 20% (в отчете данные за 6 мес)</Button>
-              <Button variant={period === 'month' ? 'white' : 'whiteOutline'} onClick={handleMonth}>1 мес (в отчете данные за 2 мес)</Button>
-            </>
-          }
           imageSrc="/images/monitor.png"
           imageAlt="Скриншот кабинета"
+          className={styles.content}
         />
         <PriceModule
           period={period}
           onPeriodChange={setPeriod}
-          showPeriodSwitch={false}
           onConnect={handleConnect}
         />
       </Wrapper>

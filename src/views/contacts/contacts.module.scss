@@ -10,7 +10,27 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 40px;
+
+  @include mixins.tablet {
+    gap: 24px;
+  }
+
+  @include mixins.tablet-small {
+    gap: 60px;
+  }
+}
+
+.titleHandler {
+  gap: 16px;
+
+  h1 {
+    color: #333333;
+  }
+
+  div {
+    color: #454444;
+  }
 }
 
 .title {
@@ -21,24 +41,29 @@
 
 .content {
   background-color: #D9E3FF;
-  padding: 40px;
+  padding: 40px 40px 11px;
 
   display: flex;
   flex-direction: column;
   border-radius: 24px;
 
-  @include mixins.tablet-small {
+  @include mixins.tablet {
     padding: 24px;
   }
 
-  @include mixins.mobile-large {
-    padding: 12px;
+  @include mixins.tablet-small {
+    padding: 16px 12px;
+    border-radius: 12px;
   }
 }
 
 .contentFlex {
   display: flex;
   gap: 60px;
+
+  @include mixins.desktop {
+    gap: 10px;
+  }
 }
 
 .titleForm {

@@ -11,7 +11,7 @@ import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 const Calculator: FC<CalculatorProps> = ({
   className,
   baseCoef = 497.5,
-  optimalCoef = 597,
+  optimalCoef = 997,
   min = 0,
   max = 100,
   step = 1,

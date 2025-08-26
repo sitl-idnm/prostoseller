@@ -6,14 +6,41 @@
 
 .h2 {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .h3 {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .p {
   font-size: 16px;
+}
+
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.table th,
+.table td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 10px;
+  vertical-align: top;
+}
+
+.table thead th {
+  background: #f8f8fb;
+  font-weight: 600;
+}
+
+.table tbody tr:nth-child(odd) td {
+  background: #fcfcff;
 }

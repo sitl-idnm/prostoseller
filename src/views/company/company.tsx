@@ -29,12 +29,13 @@ const Company: FC<CompanyProps> = ({
           buttons={<Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="100%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>}
           imageSrc="/images/photo_team.png"
           imageAlt="Команда Prostoseller"
+          className={styles.content}
         />
         <TitleHandler
           title={<><span className={styles.purple}>НАША ЦЕЛЬ</span> – сделать прибыль селлеров больше, а бизнес понятнее!</>}
           titleTagName="h2"
           titleSize="lg"
-          mark={<>Наша миссия</>}
+          mark={<>Наша <b>миссия</b></>}
           description={<><span style={{fontWeight: 400}}>Мы, опытные продавцы на OZON и Wildberries со стажем более 5 лет, поняли, как тяжело разобраться в множестве цифр, чтобы оценить реальную эффективность и доходность продаж на российских маркетплейсах. Глядя на то, как другие продавцы ведут бизнес «в минус», приняли решение изменить эту ситуацию и создали Prostoseller. Теперь каждый селлер точно понимает, сколько зарабатывает в разрезе каждого товара и принимает самые верные решения по ассортименту и оптимизации расходов!</span></>}
         />
       </Wrapper>

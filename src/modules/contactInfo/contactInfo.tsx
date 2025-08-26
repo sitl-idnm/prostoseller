@@ -48,11 +48,11 @@ const ContactInfo: FC<ContactInfoProps> = ({
                   <dd className={styles.desc}>АО «Тинькофф Банк»</dd>
                 </div>
                 <div className={styles.item}>
-                  <dt className={styles.term}><a className={styles.link} href="#" aria-disabled>Бик банка</a></dt>
+                  <dt className={styles.term}>Бик банка</dt>
                   <dd className={styles.desc}>044525974</dd>
                 </div>
                 <div className={styles.item}>
-                  <dt className={styles.term}><a className={styles.link} href="#" aria-disabled>Расчетный счет</a></dt>
+                  <dt className={styles.term}>Расчетный счет</dt>
                   <dd className={styles.desc}>40802810200001573274</dd>
                 </div>
               </dl>
