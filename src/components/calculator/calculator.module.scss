@@ -48,8 +48,7 @@
 .title {
 	text-align: center;
 	font-weight: 700;
-	font-size: func.rem(20);
-	margin-bottom: func.rem(10);
+	font-size: 24px;
 
 	@include tablet-small {
 		font-size: 18px;
@@ -58,9 +57,9 @@
 
 .hint {
 	text-align: center;
-	font-size: func.rem(12);
+	font-size: 16px;
 	color: rgba(0, 0, 0, 0.7);
-	margin-bottom: func.rem(8);
+	margin-bottom: 16px;
 }
 
 .rangeWrap {
@@ -143,7 +142,7 @@
 	background: #e8d8ff;
 	color: #7b49ff;
 	font-weight: 700;
-	font-size: func.rem(12);
+	font-size: 20px;
 	padding: 0 func.rem(8);
 	border-radius: func.rem(6);
 	pointer-events: none;
@@ -189,7 +188,17 @@
 }
 
 .incomeLabel {
+	font-size: 24px;
 	font-weight: 700;
+	color: rgba(24, 24, 24, 0.8);
+
+	@include tablet {
+		font-size: 18px;
+	}
+
+	@include tablet-small {
+		font-size: 14px;
+	}
 }
 .incomeValue {
 	font-weight: 800;

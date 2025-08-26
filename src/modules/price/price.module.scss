@@ -12,6 +12,11 @@
 	gap: func.rem(12);
 	margin-bottom: func.rem(20);
 
+	@include tablet-small {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
 	h2 {
 		font-size: 40px;
 		font-weight: 700;
@@ -28,11 +33,6 @@
 
 			max-width: 100%;
 		}
-	}
-
-	@include tablet-small {
-		flex-direction: column;
-		align-items: flex-start;
 	}
 }
 
@@ -119,40 +119,56 @@
 
 .planTitle {
 	font-weight: 700;
-	font-size: func.rem(24);
+	font-size: 24px;
 	line-height: 1.5;
 
-	margin-bottom: func.rem(6);
+	margin-bottom: 6px;
+
+	@include tablet {
+		font-size: 20px;
+	}
 }
 
 .planSub {
 	color: #454444;
-	font-size: func.rem(18);
+	font-size: 18px;
 	line-height: 1.5;
 
-	margin-bottom: func.rem(12);
+	margin-bottom: 12px;
+
+	@include tablet {
+		font-size: 14px;
+	}
 }
 
 .planSubPurple {
 	color: #A452D7;
 	font-weight: 700;
 
-	font-size: func.rem(18);
+	font-size: 18px;
 	line-height: 1.5;
+
+	@include tablet {
+		font-size: 14px;
+	}
 }
 
 .features {
 	display: grid;
-	gap: func.rem(8);
-	margin: func.rem(12) 0;
+	gap: 8px;
+	margin: 12px 0;
 	line-height: 1.5;
 }
 
 .feature {
 	display: flex;
 	align-items: center;
-	gap: func.rem(8);
+	gap: 8px;
 	transition: transform variables.$transition;
+
+	@include tablet {
+		font-size: 12px;
+	}
 
 	&:hover {
 		transform: scale(1.05);
@@ -167,8 +183,8 @@
 }
 
 .featureIcon {
-	width: func.rem(20);
-	height: func.rem(20);
+	width: 20px;
+	height: 20px;
 	flex: 0 0 auto;
 }
 
@@ -184,7 +200,7 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 16px;
-	margin-top: func.rem(12);
+	margin-top: 12px;
 
 	a {
 		width: 100%;
@@ -194,7 +210,7 @@
 
 .priceValue {
 	font-weight: 700;
-	font-size: func.rem(40);
+	font-size: 40px;
 	line-height: 1.5;
 	display: inline-block;
 

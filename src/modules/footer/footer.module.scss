@@ -170,7 +170,7 @@
 
 @include tablet-small {
   .grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1.125rem;
   }
 
@@ -185,12 +185,16 @@
   }
 
   .bottom {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 @include mobile-large {
   .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bottom {
     grid-template-columns: 1fr;
   }
 }

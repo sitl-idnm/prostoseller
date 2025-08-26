@@ -69,8 +69,6 @@ const PartnersStages: FC<PartnersStagesProps> = ({
         trigger: containerRef.current,
         start: lineRef.current?.offsetParent ? 'top 10%' : 'top 5%',
         end: 'bottom bottom',
-        pin: true,
-        scrub: 2,
       }
     })
 
@@ -134,7 +132,7 @@ const PartnersStages: FC<PartnersStagesProps> = ({
   }, [])
 
   return (
-    <div className={rootClassName} ref={containerRef}>
+    <section className={rootClassName} ref={containerRef}>
       <div className={styles.title}>
         <h2>
           {title}
@@ -256,7 +254,7 @@ const PartnersStages: FC<PartnersStagesProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

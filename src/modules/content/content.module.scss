@@ -12,14 +12,14 @@
 
 .inner {
 	display: grid;
-	gap: func.rem(24);
+	gap: 24px;
 
 	&.inner_split {
 		grid-template-columns: minmax(0, 55%) minmax(0, 45%);
 		align-items: center;
 
 		@include mobile-large {
-			grid-template-columns: 1fr;
+			grid-template-columns: 1fr !important;
 		}
 	}
 }
@@ -34,18 +34,17 @@
 
 	height: 100%;
 
-	padding: func.rem(40);
+	padding: 40px;
 
-	gap: func.rem(16);
+	gap: 16px;
 	max-width: 100%;
 
 	@include tablet {
 		padding: 24px;
+		gap: 10px;
 	}
 
 	@include mobile-large {
-		gap: 12px;
-
 		padding: 16px 12px;
 
 		background-color: transparent;
@@ -86,15 +85,15 @@
 	line-height: 1.4;
 	font-weight: 700;
 
-	@include tablet {
+	@include desktop {
 		font-size: 32px;
 	}
 
-	@include tablet-small {
+	@include tablet {
 		font-size: 24px;
 	}
 
-	@include mobile-small {
+	@include tablet-small {
 		font-size: 18px;
 	}
 }
@@ -104,7 +103,7 @@
 	line-height: 1.4;
 	font-weight: 700;
 
-	@include tablet-small {
+	@include tablet {
 		font-size: 32px;
 	}
 
@@ -118,7 +117,7 @@
 	line-height: 1.4;
 	font-weight: 700;
 
-	@include tablet-small {
+	@include tablet {
 		font-size: 32px;
 	}
 
@@ -136,11 +135,11 @@
 	color: rgba(24, 24, 24, 0.8);
 
 	@include tablet {
-		font-size: 18px;
+		font-size: 16px;
 	}
 
 	@include mobile-large {
-		font-size: 16px;
+		font-size: 14px;
 	}
 }
 
@@ -148,7 +147,7 @@
 	max-width: 100%;
 
 	color: rgba(24, 24, 24, 0.8);
-	font-size: func.rem(14);
+	font-size: 18px;
 	font-weight: 400;
 	line-height: 1.5;
 
@@ -166,11 +165,11 @@
 	color: rgba(24, 24, 24, 0.8);
 
 	@include tablet {
-		font-size: 18px;
+		font-size: 16px;
 	}
 
 	@include mobile-large {
-		font-size: 16px;
+		font-size: 14px;
 	}
 }
 
@@ -237,7 +236,7 @@
 	position: relative;
 	overflow: hidden;
 	border-radius: 24px;
-	min-height: func.rem(300); /* подберите нужную высоту */
+	// min-height: func.rem(300); /* подберите нужную высоту */
 
 	@include tablet {
 		height: 100%;

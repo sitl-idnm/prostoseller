@@ -4,7 +4,6 @@
 
 .root {
 	width: 100%;
-	margin-bottom: 50px;
 }
 
 .inner {
@@ -12,12 +11,16 @@
 	align-items: flex-start;
 	gap: func.rem(16);
 
-	margin-bottom: func.rem(50);
+	margin-bottom: 50px;
+
+	@include mixins.tablet {
+		margin-bottom: 30px;
+	}
 
 	@include mixins.mobile-large {
-		margin-bottom: func.rem(16);
+		margin-bottom: 16px;
 
-		gap: func.rem(12);
+		gap: 12px;
 	}
 }
 

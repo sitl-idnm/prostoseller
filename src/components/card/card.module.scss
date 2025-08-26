@@ -84,7 +84,7 @@
 	font-size: 0;
 	margin-bottom: func.rem(12);
 
-	width: 55px;
+	width: 90px;
 	height: 55px;
 
 	@include mobile-large {
@@ -93,7 +93,7 @@
 	}
 
 	svg {
-		width: 100%;
+		width: auto;
 		height: 100%;
 	}
 }
