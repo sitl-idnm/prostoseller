@@ -215,6 +215,19 @@
 	}
 }
 
+.priceLine {
+	display: flex;
+	align-items: center;
+	gap: func.rem(12);
+}
+
+.oldPrice {
+	color: rgba(24, 24, 24, 0.8);
+	font-weight: 600;
+	text-decoration: line-through;
+	font-size: 14px;
+}
+
 .priceValue {
 	font-weight: 700;
 	font-size: 40px;

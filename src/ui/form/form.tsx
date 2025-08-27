@@ -78,7 +78,7 @@ const Form: FC<FormProps> = ({
       try {
         const extra = validate(values) || {}
         Object.assign(errors, extra)
-      } catch { }
+      } catch (err) { /* ignore validation errors */ }
     }
 
     if (Object.keys(errors).length > 0) {
@@ -107,13 +107,13 @@ const Form: FC<FormProps> = ({
           try {
             const data = await res.json()
             if (data?.error) msg = String(data.error)
-          } catch { }
+          } catch (err) { /* ignore invalid JSON */ }
           setStatus({ type: 'error', message: msg })
           return
         }
         setStatus({ type: 'success', message: 'Сообщение отправлено' })
         // reset form after success
-        try { formRef.current.reset() } catch { }
+        try { formRef.current.reset() } catch (err) { /* ignore reset error */ }
       } catch (err) {
         setStatus({ type: 'error', message: 'Ошибка сети. Попробуйте позже.' })
       }

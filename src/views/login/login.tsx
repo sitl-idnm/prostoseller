@@ -7,6 +7,8 @@ import { LoginProps } from './login.types'
 import { Wrapper } from '@/ui/wrapper'
 import { Form, Button } from '@/ui'
 import { useSearchParams, useRouter } from 'next/navigation'
+import Image from 'next/image'
+import type { FormFieldConfig } from '@/ui/form/form.types'
 
 const Login: FC<LoginProps> = ({
   className
@@ -23,7 +25,11 @@ const Login: FC<LoginProps> = ({
     router.push(`/login?${q.toString()}`)
   }
 
-  const formConfig = useMemo(() => {
+  type TabsMode = 'auth_partner' | 'none'
+  type Aux = { text: string; cta: string; to: 'auth' | 'register' }
+  interface FormConfig { title: string; tabs: TabsMode; fields: FormFieldConfig[]; submit: string; aux?: Aux }
+
+  const formConfig: FormConfig = useMemo(() => {
     if (active === 'auth') {
       return {
         title: 'Войти или зарегистрироваться',
@@ -69,7 +75,7 @@ const Login: FC<LoginProps> = ({
       ],
       submit: 'Создать аккаунт партнера'
     }
-  }, [active, sp])
+  }, [active])
 
   return (
     <main className={rootClassName}>
@@ -83,7 +89,7 @@ const Login: FC<LoginProps> = ({
           <div className={styles.grid}>
             <div className={styles.formCol}>
               <h2>{formConfig.title}</h2>
-              {(formConfig as any).tabs === 'auth_partner' && (
+              {formConfig.tabs === 'auth_partner' && (
                 <div className={styles.tabs}>
                   <Button type="button" variant={active === 'auth' ? 'purple' : 'purpleOutline'} onClick={() => switchMode('auth')}>
                     Авторизация
@@ -95,7 +101,7 @@ const Login: FC<LoginProps> = ({
               )}
               <Form
                 grid={{ columns: active === 'auth' ? '1fr' : '1fr 1fr', gap: 12 }}
-                fields={formConfig.fields as any}
+                fields={formConfig.fields}
                 validate={(values) => {
                   const e: Record<string, string> = {}
                   if (values.password && values.password2 && values.password !== values.password2) {
@@ -109,19 +115,19 @@ const Login: FC<LoginProps> = ({
                 submitLabel={<span>{formConfig.submit}</span>}
                 checkboxesAfterSubmit={active !== 'auth'}
               />
-              {(formConfig as any).aux && (
+              {formConfig.aux && (
                 <div className={styles.ctaNote} style={{ gridColumn: '1 / -1' }}>
-                  {(formConfig as any).aux.text}
+                  {formConfig.aux.text}
                   <div style={{ marginTop: 8 }}>
-                    <Button type="button" variant="gradientOutline" onClick={() => switchMode((formConfig as any).aux.to)} buttonWidth="100%">
-                      {(formConfig as any).aux.cta}
+                    <Button type="button" variant="gradientOutline" onClick={() => switchMode(formConfig.aux!.to)} buttonWidth="100%">
+                      {formConfig.aux!.cta}
                     </Button>
                   </div>
                 </div>
               )}
             </div>
             <div className={styles.imageCol}>
-              <img src="/images/contacts.png" alt="" style={{ width: '100%', height: 'auto' }} />
+              <Image src="/images/contacts.png" alt="" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
             </div>
           </div>
         </div>

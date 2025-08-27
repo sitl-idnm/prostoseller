@@ -47,7 +47,7 @@ const Price: FC<PriceProps> = ({
           { label: 'Графики и дашборды', state: 'included' },
           { label: 'Статусы товаров', state: 'included' },
           { label: 'Импорт себестоимости', state: 'included' },
-          { label: 'Аналитика продаж, ABC‑анализ', state: 'included' },
+          { label: 'Аналитика продаж, ABC-анализ', state: 'included' },
           { label: 'Начисления', state: 'included' },
           { label: 'Внесение дополнительных расходов', state: 'included' },
           { label: 'Внесение и учёт самовыкупов', state: 'included' },
@@ -74,7 +74,7 @@ const Price: FC<PriceProps> = ({
           { label: 'Графики и дашборды', state: 'included' },
           { label: 'Статусы товаров', state: 'included' },
           { label: 'Импорт себестоимости', state: 'included' },
-          { label: 'Аналитика продаж, ABC‑анализ', state: 'included' },
+          { label: 'Аналитика продаж, ABC-анализ', state: 'included' },
           { label: 'Начисления', state: 'included' },
           { label: 'Внесение дополнительных расходов', state: 'included' },
           { label: 'Внесение и учёт самовыкупов', state: 'included' },
@@ -102,7 +102,7 @@ const Price: FC<PriceProps> = ({
           { label: 'Графики и дашборды', state: 'included' },
           { label: 'Статусы товаров', state: 'included' },
           { label: 'Импорт себестоимости', state: 'included' },
-          { label: 'Аналитика продаж, ABC‑анализ', state: 'included' },
+          { label: 'Аналитика продаж, ABC-анализ', state: 'included' },
           { label: 'Начисления', state: 'included' },
           { label: 'Внесение дополнительных расходов', state: 'included' },
           { label: 'Внесение и учёт самовыкупов', state: 'included' },
@@ -321,7 +321,12 @@ const Price: FC<PriceProps> = ({
                 </div>
               </div>
               <div className={styles.priceRow}>
-                <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />
+                <div className={styles.priceLine}>
+                  {activePeriod === 'sixMonths' && plan.priceByPeriod.month > plan.priceByPeriod.sixMonths && (
+                    <div className={styles.oldPrice}>{`${plan.priceByPeriod.month.toLocaleString('ru-RU')} руб`}</div>
+                  )}
+                  <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />
+                </div>
                 {showConnectButtons && (
                   onConnect ? (
                     <Button onClick={() => onConnect(plan.id, activePeriod)} icon={<ArrowWhiteIcon />}>

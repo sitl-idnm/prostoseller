@@ -152,8 +152,14 @@
 
 .links {
   display: grid;
-  font-size: func.rem(18);
-  gap: func.rem(18);
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 400;
+  gap: 16px;
+
+  @include mobile-large {
+    font-size: 14px;
+  }
 }
 
 .bottom {
