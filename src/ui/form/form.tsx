@@ -13,10 +13,12 @@ const Form: FC<FormProps> = ({
   grid,
   fields,
   onSubmit,
+  validate,
   submitLabel = 'Отправить',
   enableEmailSubmit,
   emailTo,
-  emailSubject
+  emailSubject,
+  checkboxesAfterSubmit
 }) => {
   const rootClassName = classNames(styles.root, className)
   const formRef = useRef<HTMLFormElement | null>(null)
@@ -71,6 +73,14 @@ const Form: FC<FormProps> = ({
       if (digits.length > 0 && digits.length < 11) errors[phoneField.id] = 'Проверьте номер телефона'
     }
 
+    // custom validate hook
+    if (validate) {
+      try {
+        const extra = validate(values) || {}
+        Object.assign(errors, extra)
+      } catch { }
+    }
+
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors)
       setStatus({ type: 'error', message: 'Проверьте обязательные поля' })
@@ -114,7 +124,7 @@ const Form: FC<FormProps> = ({
   return (
     <form ref={formRef} className={rootClassName} onSubmit={handleSubmit}>
       <div className={styles.grid} style={gridStyle}>
-        {fields.map((f) => {
+        {(checkboxesAfterSubmit ? fields.filter(f => f.type !== 'checkbox') : fields).map((f) => {
           const hasError = !!fieldErrors[f.id]
           return (
             <div key={f.id} className={styles.field} style={{ gridColumn: f.gridColumn }}>
@@ -140,6 +150,22 @@ const Form: FC<FormProps> = ({
             {submitLabel}
           </Button>
         </div>
+        {checkboxesAfterSubmit && (
+          <div style={{ gridColumn: '1 / -1' }}>
+            {fields.filter(f => f.type === 'checkbox').map((f) => {
+              const hasError = !!fieldErrors[f.id]
+              return (
+                <div key={f.id} className={styles.field}>
+                  <label className={styles.checkbox}>
+                    <input type="checkbox" id={f.id} name={f.id} required={f.required} aria-invalid={hasError} />
+                    <span>{f.placeholder}</span>
+                  </label>
+                  {hasError && <div className={styles.errorText}>{fieldErrors[f.id]}</div>}
+                </div>
+              )
+            })}
+          </div>
+        )}
         {status.type !== 'idle' && (
           <div className={classNames(styles.alert, status.type === 'error' ? styles.alert_error : styles.alert_success)} style={{ gridColumn: '1 / -1' }}>
             {status.message}

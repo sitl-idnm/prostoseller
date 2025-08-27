@@ -1,6 +1,60 @@
+
 @use '@styles/func';
 @use '@styles/mixins';
 @use '@styles/variables';
+
+.root {}
+
+.tabs {
+  display: flex;
+  gap: func.rem(8);
+  margin-bottom: func.rem(16);
+}
+
+.content {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+}
+
+.tab {
+  padding: func.rem(8) func.rem(14);
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: #fff;
+  cursor: pointer;
+}
+
+.tab_active {
+  background: linear-gradient(90deg,#f45be0,#6c4af2);
+  color: #fff;
+  border-color: transparent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: func.rem(24);
+}
+
+.formCol {}
+.imageCol {}
+
+.ctaNote {
+  margin-top: func.rem(12);
+  font-size: func.rem(14);
+  color: rgba(0,0,0,0.6);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: func.rem(6);
+  margin-bottom: func.rem(12);
+  font-size: func.rem(14);
+  color: rgba(0,0,0,0.6);
+  cursor: pointer;
+}
 
 .root {
   width: 100%;
@@ -10,7 +64,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 10px;
 }
 
 .title {
