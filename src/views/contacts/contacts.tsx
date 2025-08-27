@@ -29,13 +29,15 @@ const Contacts: FC<ContactsProps> = ({
               <Form
                 grid={{ columns: '1fr 1fr', gap: 12 }}
                 fields={[
-                  { id: 'name', type: 'input', label: 'Введите имя', placeholder: 'Ваше имя' },
-                  { id: 'email', type: 'email', label: 'Электронная почта', placeholder: '__@__' },
-                  { id: 'subject', type: 'input', label: 'Тема', placeholder: 'Например: консультация', gridColumn: '1 / -1' },
+                  { id: 'name', type: 'input', label: 'Введите имя', placeholder: 'Ваше имя', required: true },
+                  { id: 'email', type: 'email', label: 'Электронная почта', placeholder: '__@__', required: true },
+                  { id: 'subject', type: 'input', label: 'Тема', placeholder: 'Например: консультация', gridColumn: '1 / -1', required: true },
                   { id: 'message', type: 'textarea', label: 'Текст обращения (необязательно)', placeholder: 'Введите текст', gridColumn: '1 / -1' }
                 ]}
                 submitLabel={<span>Отправить</span>}
                 onSubmit={(v) => console.log('contacts form', v)}
+                enableEmailSubmit
+                emailSubject="Сообщение с контактной формы"
                 className={styles.form}
               />
               <Image src="/images/contacts.png" alt="Контакты" width={500} height={500} className={styles.image} />

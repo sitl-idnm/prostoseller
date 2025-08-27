@@ -15,6 +15,11 @@
   transition-property: border-color, background-color;
   border-radius: 4px;
 
+  &[aria-invalid='true'] {
+    border-color: #e57373;
+    background-color: #fff7f7;
+  }
+
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;

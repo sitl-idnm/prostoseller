@@ -119,16 +119,66 @@ const IconExample = () => (
 }
 ```
 
-## Deploy on Vercel
+## 📮 Отправка писем из форм
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+В проект добавлена интеграция отправки писем через SMTP (nodemailer).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Как это работает
 
-## Core product API
+- Клиентский компонент формы: `src/ui/form/form.tsx`
+  - Пропсы:
+    - `enableEmailSubmit?: boolean` — включить отправку писем для данной формы
+    - `emailTo?: string` — адрес получателя (можно не указывать, если задан на сервере)
+    - `emailSubject?: string` — тема письма
+  - Поведение:
+    - Всегда выполняет локальный колбэк `onSubmit(values)` если передан
+    - При `enableEmailSubmit` отправляет POST на `/api/sendForm` c JSON: `{ values, to, subject }`
 
- - [genshin.dev API](https://github.com/genshindev/api)
+- Серверный роут: `src/app/api/sendForm/route.ts`
+  - Принимает тело запроса `{ values, to?, subject? }`
+  - Формирует HTML из пар `ключ: значение`
+  - Отправляет через SMTP. Использует общий helper: `src/shared/api/mail.ts`
 
-## DESIGN
+- Хелпер отправки: `src/shared/api/mail.ts`
+  - `sendEmailViaSmtp({ to, subject, html, from? })`
+  - `valuesToHtml(values: Record<string,string>)`
 
- - [Material Core](https://mui.com/material-ui/)
+### Переменные окружения (сервер)
+
+SMTP (предпочтительно в РФ):
+
+```
+SMTP_HOST=smtp.yandex.ru
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=your_mail@yandex.ru
+SMTP_PASS=app_password_or_password
+FORM_EMAIL_FROM=your_mail@yandex.ru
+```
+
+Общее:
+
+```
+FORM_EMAIL_TO=mironovlev3@gmail.com
+FORM_EMAIL_FROM=your_mail@yandex.ru
+```
+
+### Пример использования формы
+
+```tsx
+<Form
+  grid={{ columns: '1fr 1fr', gap: 12 }}
+  fields={[
+    { id: 'name', type: 'input', label: 'Введите имя', placeholder: 'Ваше имя' },
+    { id: 'email', type: 'email', label: 'Электронная почта', placeholder: '__@__' },
+    { id: 'subject', type: 'input', label: 'Тема', placeholder: 'Например: консультация', gridColumn: '1 / -1' },
+    { id: 'message', type: 'textarea', label: 'Текст обращения', placeholder: 'Введите текст', gridColumn: '1 / -1' }
+  ]}
+  onSubmit={(values) => console.log(values)}
+  enableEmailSubmit
+  emailTo="mironovlev3@gmail.com"
+  emailSubject="Сообщение с контактной формы"
+/>
+```
+
+Для форм авторизации/регистрации просто не указывайте `enableEmailSubmit` — отправка писем отключена, а ваши бизнес‑процессы обрабатываются через `onSubmit`.

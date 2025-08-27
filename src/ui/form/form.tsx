@@ -13,10 +13,16 @@ const Form: FC<FormProps> = ({
   grid,
   fields,
   onSubmit,
-  submitLabel = 'Отправить'
+  submitLabel = 'Отправить',
+  enableEmailSubmit,
+  emailTo,
+  emailSubject
 }) => {
   const rootClassName = classNames(styles.root, className)
   const formRef = useRef<HTMLFormElement | null>(null)
+  const [submitting, setSubmitting] = useState(false)
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
+  const [status, setStatus] = useState<{ type: 'idle' | 'success' | 'error'; message?: string }>({ type: 'idle' })
 
   const gridStyle: React.CSSProperties = useMemo(() => ({
     gridTemplateColumns: grid?.columns,
@@ -25,61 +31,120 @@ const Form: FC<FormProps> = ({
     columnGap: typeof grid?.columnGap === 'number' ? `${grid?.columnGap}px` : grid?.columnGap
   }), [grid?.columns, grid?.gap, grid?.rowGap, grid?.columnGap])
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    if (!onSubmit || !formRef.current) return
+    if (!formRef.current) return
     const data = new FormData(formRef.current)
     const values: Record<string, string> = {}
     fields.forEach((f) => {
       values[f.id] = String(data.get(f.id) ?? '')
     })
+    // reset errors/status
+    setFieldErrors({})
+    setStatus({ type: 'idle' })
+
+    // validate required fields
+    const errors: Record<string, string> = {}
+    fields.forEach((f) => {
+      if (f.required) {
+        const v = values[f.id]
+        if (f.type === 'checkbox') {
+          const checked = Boolean(data.get(f.id))
+          if (!checked) errors[f.id] = 'Обязательное поле'
+        } else if (!v || v.trim() === '') {
+          errors[f.id] = 'Обязательное поле'
+        }
+      }
+    })
+
     // simple email/phone validation if fields present
     const emailField = fields.find(f => f.type === 'email')
     if (emailField) {
       const email = values[emailField.id]
       const emailOk = /^[\w.!#$%&'*+/=?^`{|}~-]+@[\w-]+(?:\.[\w-]+)+$/.test(email)
-      if (!emailOk) {
-        alert('Проверьте корректность Email')
-        return
-      }
+      if (!emailOk) errors[emailField.id] = 'Проверьте корректность Email'
     }
     const phoneField = fields.find(f => f.type === 'tel')
     if (phoneField) {
       const phone = values[phoneField.id]
       const digits = phone.replace(/\D/g, '')
-      if (digits.length < 11) {
-        alert('Проверьте номер телефона')
-        return
-      }
+      if (digits.length > 0 && digits.length < 11) errors[phoneField.id] = 'Проверьте номер телефона'
     }
-    onSubmit(values)
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors)
+      setStatus({ type: 'error', message: 'Проверьте обязательные поля' })
+      return
+    }
+    // If a parent handler is provided, call it first
+    if (onSubmit) onSubmit(values)
+
+    // Optional built-in email sender
+    if (enableEmailSubmit) {
+      setSubmitting(true)
+      try {
+        const res = await fetch('/api/sendForm', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            values,
+            to: emailTo,
+            subject: emailSubject
+          })
+        })
+        if (!res.ok) {
+          let msg = 'Не удалось отправить форму. Попробуйте позже.'
+          try {
+            const data = await res.json()
+            if (data?.error) msg = String(data.error)
+          } catch { }
+          setStatus({ type: 'error', message: msg })
+          return
+        }
+        setStatus({ type: 'success', message: 'Сообщение отправлено' })
+        // reset form after success
+        try { formRef.current.reset() } catch { }
+      } catch (err) {
+        setStatus({ type: 'error', message: 'Ошибка сети. Попробуйте позже.' })
+      }
+      setSubmitting(false)
+    }
   }
 
   return (
     <form ref={formRef} className={rootClassName} onSubmit={handleSubmit}>
       <div className={styles.grid} style={gridStyle}>
-        {fields.map((f) => (
-          <div key={f.id} className={styles.field} style={{ gridColumn: f.gridColumn }}>
-            {f.label && <label className={styles.label} htmlFor={f.id}>{f.label}</label>}
-            {f.type === 'textarea' ? (
-              <textarea id={f.id} name={f.id} placeholder={f.placeholder} required={f.required} className={styles.textarea as unknown as string} />
-            ) : f.type === 'password' ? (
-              <PasswordField id={f.id} placeholder={f.placeholder} required={f.required} />
-            ) : f.type === 'checkbox' ? (
-              <label className={styles.checkbox}>
-                <input type="checkbox" id={f.id} name={f.id} required={f.required} />
-                <span>{f.placeholder}</span>
-              </label>
-            ) : (
-              <SmartInput id={f.id} type={f.type} placeholder={f.placeholder} required={f.required} />
-            )}
-          </div>
-        ))}
+        {fields.map((f) => {
+          const hasError = !!fieldErrors[f.id]
+          return (
+            <div key={f.id} className={styles.field} style={{ gridColumn: f.gridColumn }}>
+              {f.label && <label className={classNames(styles.label, hasError && styles.label_error)} htmlFor={f.id}>{f.label}</label>}
+              {f.type === 'textarea' ? (
+                <textarea id={f.id} name={f.id} placeholder={f.placeholder} required={f.required} aria-invalid={hasError} className={styles.textarea as unknown as string} />
+              ) : f.type === 'password' ? (
+                <PasswordField id={f.id} placeholder={f.placeholder} required={f.required} />
+              ) : f.type === 'checkbox' ? (
+                <label className={styles.checkbox}>
+                  <input type="checkbox" id={f.id} name={f.id} required={f.required} aria-invalid={hasError} />
+                  <span>{f.placeholder}</span>
+                </label>
+              ) : (
+                <SmartInput id={f.id} type={f.type} placeholder={f.placeholder} required={f.required} aria-invalid={hasError} />
+              )}
+              {hasError && <div className={styles.errorText}>{fieldErrors[f.id]}</div>}
+            </div>
+          )
+        })}
         <div className={styles.submit} style={{ gridColumn: '1 / -1' }}>
-          <Button buttonWidth="100%" type="submit" variant="gradient" icon={<ArrowWhiteIcon />}>
+          <Button buttonWidth="100%" type="submit" variant="gradient" icon={<ArrowWhiteIcon />} disabled={submitting}>
             {submitLabel}
           </Button>
         </div>
+        {status.type !== 'idle' && (
+          <div className={classNames(styles.alert, status.type === 'error' ? styles.alert_error : styles.alert_success)} style={{ gridColumn: '1 / -1' }}>
+            {status.message}
+          </div>
+        )}
       </div>
     </form>
   )

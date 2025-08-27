@@ -24,8 +24,10 @@ export interface FormProps {
   fields: FormFieldConfig[]
   onSubmit?: (values: Record<string, string>) => void
   submitLabel?: ReactNode
+  // Optional built-in email submitter. If enabled, component will POST to /api/sendForm
+  enableEmailSubmit?: boolean
+  emailTo?: string // recipient; default can be set in env on server
+  emailSubject?: string
 }
 
-export interface FormProps {
-  className?: string
-}
+// Duplicate interface below was erroneous; removed to avoid conflicts

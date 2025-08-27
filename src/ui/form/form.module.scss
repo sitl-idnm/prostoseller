@@ -22,9 +22,48 @@
   font-size: func.rem(12);
   color: rgba(24,24,24,0.7);
 }
+.label_error {
+  color: #c43d3d;
+}
 
 .submit {
   margin-top: func.rem(8);
+}
+
+.status {
+  margin-top: func.rem(8);
+  font-size: func.rem(14);
+  min-height: func.rem(18);
+}
+.status_error {
+  color: #c43d3d;
+}
+.status_success {
+  color: #2e7d32;
+}
+.alert {
+  margin-top: func.rem(8);
+  padding: func.rem(10) func.rem(12);
+  border-radius: 6px;
+  font-size: func.rem(14);
+  line-height: 1.4;
+  min-height: func.rem(40);
+}
+.alert_error {
+  background: #fff5f5;
+  border: 1px solid #f2c7c7;
+  color: #b3261e;
+}
+.alert_success {
+  background: #f1fff3;
+  border: 1px solid #b9e7c1;
+  color: #1b5e20;
+}
+.errorText {
+  margin-top: func.rem(4);
+  font-size: func.rem(12);
+  color: #c43d3d;
+  min-height: func.rem(14);
 }
 
 .textarea {
@@ -38,6 +77,10 @@
   border-radius: 4px;
   outline: none;
   resize: none;
+}
+.textarea[aria-invalid='true'] {
+  border-color: #e57373;
+  background-color: #fff7f7;
 }
 
 .passwordWrap {
