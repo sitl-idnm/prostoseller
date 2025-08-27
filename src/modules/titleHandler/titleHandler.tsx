@@ -13,6 +13,7 @@ const TitleHandler: FC<TitleHandlerProps> = ({
   mark,
   description,
   background,
+  hideTitleOnMobile,
   children
 }) => {
   const rootClassName = classNames(styles.root, className)
@@ -23,7 +24,7 @@ const TitleHandler: FC<TitleHandlerProps> = ({
         <div className={styles.inner}>
           <div className={styles.header}>
             {title && (
-              <Heading tagName={titleTagName} size={titleSize} className={styles.title}>
+              <Heading tagName={titleTagName} size={titleSize} className={classNames(styles.title, hideTitleOnMobile && styles.title_hideMobile)}>
                 {title}
               </Heading>
             )}

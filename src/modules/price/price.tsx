@@ -271,9 +271,13 @@ const Price: FC<PriceProps> = ({
           const track = document.querySelector(`.${styles.carouselTrack}`) as HTMLDivElement | null
           if (!track) return
           const children = Array.from(track.children) as HTMLElement[]
+          const childrenOrdered = children
+            .map((el, i) => ({ el, ord: Number(getComputedStyle(el).order || 0), i }))
+            .sort((a, b) => a.ord - b.ord || a.i - b.i)
+            .map(x => x.el)
           const current = Number(track.dataset.index || '0')
           const next = Math.max(0, current - 1)
-          const target = children[next]
+          const target = childrenOrdered[next]
           if (target) {
             const offset = target.offsetLeft
             track.style.transform = `translateX(${-offset}px)`
@@ -287,10 +291,14 @@ const Price: FC<PriceProps> = ({
           const track = document.querySelector(`.${styles.carouselTrack}`) as HTMLDivElement | null
           if (!track) return
           const children = Array.from(track.children) as HTMLElement[]
-          const maxIndex = Math.max(0, (children.length - 1))
+          const childrenOrdered = children
+            .map((el, i) => ({ el, ord: Number(getComputedStyle(el).order || 0), i }))
+            .sort((a, b) => a.ord - b.ord || a.i - b.i)
+            .map(x => x.el)
+          const maxIndex = Math.max(0, (childrenOrdered.length - 1))
           const current = Number(track.dataset.index || '0')
           const next = Math.min(maxIndex, current + 1)
-          const target = children[next]
+          const target = childrenOrdered[next]
           if (target) {
             const offset = target.offsetLeft
             track.style.transform = `translateX(${-offset}px)`
@@ -320,7 +328,7 @@ const Price: FC<PriceProps> = ({
                       Подключить
                     </Button>
                   ) : (
-                    <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink  icon={<ArrowWhiteIcon />}>
+                    <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink icon={<ArrowWhiteIcon />}>
                       Подключить
                     </Button>
                   )

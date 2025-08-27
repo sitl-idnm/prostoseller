@@ -14,6 +14,8 @@ export interface TitleHandlerProps {
   description?: ReactNode
   /** Доп. фон всей секции */
   background?: string
+  /** Скрыть заголовок на mobile-large */
+  hideTitleOnMobile?: boolean
   /** Содержимое ниже заголовка — любой модуль/контент */
   children?: ReactNode
 }

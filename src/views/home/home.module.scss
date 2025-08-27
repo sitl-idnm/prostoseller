@@ -58,6 +58,11 @@
   }
 }
 
+.graphIcon {
+  width: 76px;
+  height: 45px;
+}
+
 .iconwb {
   @include mixins.tablet {
     display: none;

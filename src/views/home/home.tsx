@@ -29,6 +29,7 @@ import WbOzon from '@icons/ozonwbicon.svg'
 import LupapupaIcon from '@icons/lupapupa.svg'
 import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 import ArrowIcon from '@icons/arrow.svg'
+import GraphIcon from '@icons/GraphicsLong.svg'
 
 const cards = [
   { key: 'accuracy', icon: <TochnostIcon />, title: 'Точность данных', text: 'Реальные данные напрямую с API Wildberries и Ozon — никаких искажений и задержек.', animated: true },
@@ -146,7 +147,9 @@ const Home: FC<HomeProps> = ({ className }) => {
           title={<>Пользуйтесь Prostoseller <span className={styles.purple}>бесплатно</span></>}
           titleTagName="h2"
           titleSize="lg"
-          mark={<>Пригласи друга</>}>
+          mark={<>Пригласи друга</>}
+          hideTitleOnMobile={true}
+        >
           <Content
             variant="split"
             backgroundRoot="url('/images/prostoseller_free.png') no-repeat center center / cover"
@@ -164,7 +167,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         </TitleHandler>
 
         <TitleHandler
-          title="Наши преимущества"
+          title={<>Наши <span className={styles.purple}>преимущества</span></>}
           titleTagName="h2"
           titleSize="lg"
           mark={<>Почему <b>Prostoseller</b></>}>
@@ -174,6 +177,8 @@ const Home: FC<HomeProps> = ({ className }) => {
           variant="split"
           backgroundRoot="#f7f7fb"
           title={<>Смотрите, как работает <span className={styles.purple}>Prostoseller</span> изнутри <span className={styles.icon_profit}><LupapupaIcon /></span></>}
+
+          titleSize="sm"
 
           description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
 
@@ -205,11 +210,11 @@ const Home: FC<HomeProps> = ({ className }) => {
         {/* Литой */}
         <Content
           variant="split"
-          backgroundRoot="linear-gradient(75deg,#FA457E 0%,#7B49FF 20%)"
+          backgroundRoot="url('/images/gradientBallBackground.png') no-repeat center center / cover"
           backgroundContent="transparent"
-          title={<><span className={styles.white}>Начните управлять своим бизнесом уже сегодня!</span></>}
+          title={<><span className={styles.white}>Начните управлять своим бизнесом уже сегодня!</span> <GraphIcon className={styles.graphIcon} /></>}
           titleTagName="h2"
-          titleSize="sm"
+          titleSize="md"
           buttons={<Button as="a" isRouteLink href={LINKS.connectFree} variant="white" style={{ width: '100%' }} icon={<ArrowIcon />}>Подключить бесплатно</Button>}
           imageSrc="/images/start_laptop.png"
           imageAlt="Скриншот кабинета"

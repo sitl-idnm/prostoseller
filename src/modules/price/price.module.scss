@@ -86,6 +86,13 @@
 		/* Ensure slides have no extra margins affecting offset */
 		> * { margin: 0; }
 	}
+
+	/* Reverse visual order on mobile-large */
+	@include mobile-large {
+		> :nth-child(1) { order: 3; }
+		> :nth-child(2) { order: 2; }
+		> :nth-child(3) { order: 1; }
+	}
 }
 
 .mobileNav {

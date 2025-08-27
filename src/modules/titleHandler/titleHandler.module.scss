@@ -64,6 +64,12 @@
 	}
 }
 
+.title_hideMobile {
+  @include mixins.mobile-large {
+    display: none;
+  }
+}
+
 .mark {
 	display: inline-flex;
 	align-items: center;
@@ -75,7 +81,7 @@
 	max-width: max-content;
 
 	padding: 13.5px 24px;
-	border-radius: 16px;
+	border-radius: 32px;
 	border: 1px solid var(--color-primary);
 	color: var(--color-primary);
 
