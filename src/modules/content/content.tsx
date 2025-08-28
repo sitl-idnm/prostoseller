@@ -46,7 +46,7 @@ const Content: FC<ContentProps> = ({
 
   useEffect(() => {
     const updateImageSrc = () => {
-      if (window.innerWidth < 9654 && imageAdaptive) {
+      if (window.innerWidth < 965 && imageAdaptive) {
         setCurrentImageSrc(imageAdaptive)
       } else {
         setCurrentImageSrc(imageSrc)
