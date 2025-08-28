@@ -38,4 +38,6 @@ export interface ContentProps {
   textColor?: boolean
   /** Размер контента */
   contentSize?: string
+  /** Адаптивность изображения */
+  imageAdaptive?: string
 }

@@ -1,4 +1,6 @@
-import { FC } from 'react'
+'use client'
+
+import { FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
 
 import styles from './content.module.scss'
@@ -23,6 +25,7 @@ const Content: FC<ContentProps> = ({
   buttonsNote,
   textColor,
   contentSize,
+  imageAdaptive,
   ...props
 }) => {
   const rootClassName = classNames(styles.root, className)
@@ -38,6 +41,29 @@ const Content: FC<ContentProps> = ({
   if (textColor) {
     txtColor = '#fff'
   }
+
+  const [currentImageSrc, setCurrentImageSrc] = useState(imageSrc)
+
+  useEffect(() => {
+    const updateImageSrc = () => {
+      if (window.innerWidth < 9654 && imageAdaptive) {
+        setCurrentImageSrc(imageAdaptive)
+      } else {
+        setCurrentImageSrc(imageSrc)
+      }
+    }
+
+    // Устанавливаем начальное значение
+    updateImageSrc()
+
+    // Добавляем обработчик изменения размера окна
+    window.addEventListener('resize', updateImageSrc)
+
+    // Очищаем обработчик при размонтировании компонента
+    return () => {
+      window.removeEventListener('resize', updateImageSrc)
+    }
+  }, [imageSrc, imageAdaptive])
 
   return (
     <section className={rootClassName} style={{ background: backgroundRoot, backgroundSize: 'cover', ...props }}>
@@ -61,7 +87,7 @@ const Content: FC<ContentProps> = ({
 
         {variant === 'split' && imageSrc && (
           <div className={styles.imageWrap}>
-            <Image src={imageSrc} alt={imageAlt} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+            <Image src={currentImageSrc || ''} alt={imageAlt} width={0} height={0} quality={100} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
           </div>
         )}
       </div>

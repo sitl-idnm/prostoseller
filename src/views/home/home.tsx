@@ -218,7 +218,7 @@ const Home: FC<HomeProps> = ({ className }) => {
           buttons={<Button as="a" isRouteLink href={LINKS.connectFree} variant="white" style={{ width: '100%' }} icon={<ArrowIcon />}>Подключить бесплатно</Button>}
           imageSrc="/images/start_laptop.png"
           imageAlt="Скриншот кабинета"
-
+          imageAdaptive="/images/start_laptop_mobile.png"
         />
       </Wrapper>
     </main >
