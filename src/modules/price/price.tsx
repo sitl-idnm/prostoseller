@@ -329,11 +329,11 @@ const Price: FC<PriceProps> = ({
                 </div>
                 {showConnectButtons && (
                   onConnect ? (
-                    <Button onClick={() => onConnect(plan.id, activePeriod)} icon={<ArrowWhiteIcon />}>
+                    <Button onClick={() => onConnect(plan.id, activePeriod)} icon={<ArrowWhiteIcon />} buttonWidth="100%" variant="gradient">
                       Подключить
                     </Button>
                   ) : (
-                    <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink icon={<ArrowWhiteIcon />}>
+                    <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink icon={<ArrowWhiteIcon />} buttonWidth="100%" variant="gradient">
                       Подключить
                     </Button>
                   )
