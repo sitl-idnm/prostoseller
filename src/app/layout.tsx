@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
 import { Footer } from '@modules/footer'
 import { Header } from '@modules/header'
+import { CookieBanner } from '@modules/cookieBanner'
+import { InstallPrompt } from '@modules/installPrompt'
 
 import '@styles/global.scss'
 
@@ -48,6 +50,8 @@ export default function RootLayout({
           </div>
 
           <div id="modal-root" />
+          <CookieBanner />
+          <InstallPrompt />
         </Provider>
       </body>
     </html>

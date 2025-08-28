@@ -1,0 +1,103 @@
+.prompt {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 9998;
+  max-width: 400px;
+  width: calc(100% - 40px);
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.iconSection {
+  flex-shrink: 0;
+}
+
+.owlIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.textSection {
+  flex: 1;
+}
+
+.message {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+  margin: 0;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #666;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #333;
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+// Адаптивность для мобильных устройств
+@media (max-width: 480px) {
+  .prompt {
+    top: 16px;
+    width: calc(100% - 32px);
+  }
+
+  .content {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .message {
+    font-size: 13px;
+  }
+
+  .owlIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .owlIcon svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+// Скрываем на десктопе
+@media (min-width: 1025px) {
+  .prompt {
+    display: none;
+  }
+}
