@@ -35,6 +35,20 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: func.rem(24);
+
+  @include mixins.tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gridWithImage {
+  @include mixins.tablet {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include mixins.tablet-small {
+    grid-template-columns: 1fr;
+  }
 }
 
 .formCol {}
@@ -120,4 +134,22 @@
 
 .purple {
   color: #A452D7;
+}
+
+.formCol {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.imageCol {
+  @include mixins.tablet {
+    display: none;
+  }
+}
+
+.imageColWithImage {
+  @include mixins.tablet {
+    display: flex;
+  }
 }

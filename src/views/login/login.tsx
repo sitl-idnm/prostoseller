@@ -86,7 +86,7 @@ const Login: FC<LoginProps> = ({
           </div>
         )}
         <div className={styles.content}>
-          <div className={styles.grid}>
+          <div className={classNames(styles.grid, { [styles.gridWithImage]: active === 'auth' })}>
             <div className={styles.formCol}>
               <h2>{formConfig.title}</h2>
               {formConfig.tabs === 'auth_partner' && (
@@ -126,7 +126,7 @@ const Login: FC<LoginProps> = ({
                 </div>
               )}
             </div>
-            <div className={styles.imageCol}>
+            <div className={classNames(styles.imageCol, { [styles.imageColWithImage]: active === 'auth' })}>
               <Image src="/images/contacts.png" alt="" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
             </div>
           </div>

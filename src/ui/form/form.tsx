@@ -151,7 +151,7 @@ const Form: FC<FormProps> = ({
           </Button>
         </div>
         {checkboxesAfterSubmit && (
-          <div style={{ gridColumn: '1 / -1' }}>
+          <div style={{ gridColumn: '1 / -1', gap: '16px', display: 'grid' }}>
             {fields.filter(f => f.type === 'checkbox').map((f) => {
               const hasError = !!fieldErrors[f.id]
               return (
