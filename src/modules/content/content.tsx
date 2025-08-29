@@ -26,6 +26,7 @@ const Content: FC<ContentProps> = ({
   textColor,
   contentSize,
   imageAdaptive,
+  imageWrapClassName,
   ...props
 }) => {
   const rootClassName = classNames(styles.root, className)
@@ -86,7 +87,7 @@ const Content: FC<ContentProps> = ({
         </div>
 
         {variant === 'split' && imageSrc && (
-          <div className={styles.imageWrap}>
+          <div className={classNames(styles.imageWrap, imageWrapClassName)}>
             <Image src={currentImageSrc || ''} alt={imageAlt} width={0} height={0} quality={100} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
           </div>
         )}

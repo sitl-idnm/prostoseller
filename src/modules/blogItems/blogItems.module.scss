@@ -10,6 +10,12 @@
 
 .grid {
   width: 100%;
+
+  @include mixins.mobile-large {
+    display: flex !important;
+    flex-direction: column;
+    gap: func.rem(16) !important;
+  }
 }
 
 .moreWrap {

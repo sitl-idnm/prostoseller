@@ -24,7 +24,7 @@ const TitleHandler: FC<TitleHandlerProps> = ({
         <div className={styles.inner}>
           <div className={styles.header}>
             {title && (
-              <Heading tagName={titleTagName} size={titleSize} className={classNames(styles.title, hideTitleOnMobile && styles.title_hideMobile)}>
+              <Heading tagName={titleTagName} size={titleSize} className={classNames(styles.title, titleSize === 'lg' && styles.title_lg, hideTitleOnMobile && styles.title_hideMobile)}>
                 {title}
               </Heading>
             )}

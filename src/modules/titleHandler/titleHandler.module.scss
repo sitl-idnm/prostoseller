@@ -41,7 +41,6 @@
 
 	color: #333;
 
-
 	display: inline-block;
 	gap: func.rem(10);
 
@@ -61,6 +60,16 @@
 
 	&:hover {
 		transform: translateX(10px);
+	}
+}
+
+.title_lg {
+	font-size: 40px;
+	font-weight: 700;
+	line-height: 1.4;
+
+	@include mixins.mobile-large {
+		font-size: 24px;
 	}
 }
 

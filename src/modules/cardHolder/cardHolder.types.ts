@@ -13,4 +13,5 @@ export interface CardData {
 export interface CardHolderProps {
   className?: string
   cards: CardData[]
+  vertical?: boolean // Для вертикального расположения карточек
 }

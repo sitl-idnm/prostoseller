@@ -40,4 +40,6 @@ export interface ContentProps {
   contentSize?: string
   /** Адаптивность изображения */
   imageAdaptive?: string
+  /** CSS класс для обертки изображения */
+  imageWrapClassName?: string
 }

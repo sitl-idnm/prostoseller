@@ -94,7 +94,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
           </div>
           <div className={styles.promoInner}>
             <div className={styles.promoText}>Получите скидку 20% при оплате на 6 месяцев</div>
-            <Link href="#" className={styles.promoCta}>Получить скидку <span className={styles.iconSale}><SaleIcon /></span></Link>
+            <Link href="/price" className={styles.promoCta}>Получить скидку <span className={styles.iconSale}><SaleIcon /></span></Link>
           </div>
           <div className={`${styles.promoImage} ${styles.promoImageGift}`}>
             <Image src={giftImageSrc} alt="sale" />

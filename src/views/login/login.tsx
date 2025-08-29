@@ -127,7 +127,22 @@ const Login: FC<LoginProps> = ({
               )}
             </div>
             <div className={classNames(styles.imageCol, { [styles.imageColWithImage]: active === 'auth' })}>
-              <Image src="/images/contacts.png" alt="" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
+              <Image
+                src="/images/formImageDesktop.png"
+                alt=""
+                width={800}
+                height={600}
+                quality={100}
+                className={styles.desktopImage}
+              />
+              <Image
+                src="/images/formImage.png"
+                alt=""
+                width={800}
+                height={600}
+                quality={100}
+                className={styles.mobileImage}
+              />
             </div>
           </div>
         </div>

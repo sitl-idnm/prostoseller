@@ -76,3 +76,10 @@
 .white {
   color: #fff;
 }
+
+.letsStartImageWrap {
+  @include mixins.mobile-large {
+    margin-top: -50px;
+    height: 300px !important;
+  }
+}

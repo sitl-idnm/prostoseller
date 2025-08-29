@@ -15,6 +15,12 @@
   background: #fff;
   padding: 40px;
   border-radius: 16px;
+
+  @include mixins.mobile-large {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+  }
 }
 
 .tab {
@@ -151,5 +157,26 @@
 .imageColWithImage {
   @include mixins.tablet {
     display: flex;
+  }
+}
+
+// Стили для разных изображений на разных устройствах
+.desktopImage {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  @include mixins.tablet {
+    display: none; // Скрываем на планшетах и мобильных
+  }
+}
+
+.mobileImage {
+  display: none; // Скрываем на десктопе
+
+  @include mixins.tablet {
+    display: block; // Показываем на планшетах и мобильных
+    width: 100%;
+    height: auto;
   }
 }

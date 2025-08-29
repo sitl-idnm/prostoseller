@@ -108,11 +108,11 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
                     <li><Link href="/login" className={styles.loginBtn} onClick={() => setIsOpen(false)}>
                       <span className={styles.icon}><IconAdmin /></span>Войти / зарегистрироваться</Link></li>
                     <li><Link href="/price" onClick={() => setIsOpen(false)}>Тарифы</Link></li>
-                    <li><Link href="/partners" onClick={() => setIsOpen(false)}>Пригласи друга</Link></li>
+                    <li><Link href="/inviteFriend" onClick={() => setIsOpen(false)}>Пригласи друга</Link></li>
                     <li><Link href="/partners" onClick={() => setIsOpen(false)}>Партнерская программа</Link></li>
-                    <li><Link href="/about" onClick={() => setIsOpen(false)}>О нас</Link></li>
-                    <li><Link href="/partners" onClick={() => setIsOpen(false)}>Контакты</Link></li>
-                    <li><Link href="/about" onClick={() => setIsOpen(false)}>Блог</Link></li>
+                    <li><Link href="/company" onClick={() => setIsOpen(false)}>О компании</Link></li>
+                    <li><Link href="/contacts" onClick={() => setIsOpen(false)}>Контакты</Link></li>
+                    <li><Link href="/blog" onClick={() => setIsOpen(false)}>Блог</Link></li>
                   </ul>
                 </div>
               </div>

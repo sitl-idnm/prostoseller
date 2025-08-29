@@ -1,6 +1,6 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, useState, useEffect } from 'react'
 import classNames from 'classnames'
 
 import styles from './cardHolder.module.scss'
@@ -11,11 +11,25 @@ import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
 const CardHolder: FC<CardHolderProps> = ({
   className,
-  cards
+  cards,
+  vertical = false
 }) => {
   const rootClassName = classNames(styles.root, className)
+  const [isMobile, setIsMobile] = useState(false)
 
-  const cols = 3
+  // Определяем мобильную версию
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
+
+  const cols = 3 // Возвращаем к 3 колонкам как было
   const remainder = cards.length % cols
   const getCellClass = (index: number) => {
     const base = classNames(styles.cell, styles.item)
@@ -27,6 +41,42 @@ const CardHolder: FC<CardHolderProps> = ({
     return base
   }
 
+  // Рендер для мобильного режима с vertical (карточки друг под другом)
+  if (isMobile && vertical) {
+    return (
+      <div className={rootClassName}>
+        <div className={styles.verticalGrid}>
+          {cards.map((c, idx) => (
+            <div key={c.key ?? idx} className={styles.verticalItem}>
+              <Card animated={c.animated} icon={c.icon} title={c.title} text={c.text} action={c.action} image={c.image} />
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  // Рендер для мобильного режима без vertical (горизонтальный скролл с двумя рядами)
+  if (isMobile && !vertical) {
+    return (
+      <div className={rootClassName}>
+        <div className={styles.mobileScrollContainer}>
+          {cards.map((c, idx) => (
+            <div key={c.key ?? idx} className={styles.mobileCard}>
+              <Card animated={c.animated} icon={c.icon} title={c.title} text={c.text} action={c.action} image={c.image} />
+            </div>
+          ))}
+        </div>
+        <div className={styles.button}>
+          <Button as="a" isRouteLink href="/login" variant="gradient" buttonWidth="100%" size="md" icon={<ArrowWhiteIcon />}>
+            Подключить бесплатно
+          </Button>
+        </div>
+      </div>
+    )
+  }
+
+  // Десктопная версия (сетка 3x3 для всех случаев)
   return (
     <div className={rootClassName}>
       <div className={styles.grid}>

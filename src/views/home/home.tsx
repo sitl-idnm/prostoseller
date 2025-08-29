@@ -1,4 +1,6 @@
-import { FC } from 'react'
+'use client'
+
+import { FC, useState, useEffect } from 'react'
 import { Button, Wrapper } from '@/ui'
 import { LINKS } from '@/shared/const'
 import classNames from 'classnames'
@@ -55,6 +57,18 @@ const cards = [
 
 const Home: FC<HomeProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
+  const [isMobileLarge, setIsMobileLarge] = useState(false)
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobileLarge(window.innerWidth <= 965)
+    }
+
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
 
   return (
     <main className={rootClassName}>
@@ -210,7 +224,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         {/* Литой */}
         <Content
           variant="split"
-          backgroundRoot="url('/images/gradientBallBackground.png') no-repeat center center / cover"
+          backgroundRoot={isMobileLarge ? "url('/images/gradientMobileContent.png') no-repeat center center / cover" : "url('/images/gradientBallBackground.png') no-repeat center center / cover"}
           backgroundContent="transparent"
           title={<><span className={styles.white}>Начните управлять своим бизнесом уже сегодня!</span> <GraphIcon className={styles.graphIcon} /></>}
           titleTagName="h2"
@@ -219,6 +233,8 @@ const Home: FC<HomeProps> = ({ className }) => {
           imageSrc="/images/start_laptop.png"
           imageAlt="Скриншот кабинета"
           imageAdaptive="/images/start_laptop_mobile.png"
+          className={styles.letsStart}
+          imageWrapClassName={styles.letsStartImageWrap}
         />
       </Wrapper>
     </main >

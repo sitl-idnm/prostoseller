@@ -17,7 +17,7 @@ const Price: FC<PriceProps> = ({
   className,
   title = 'Тарифы',
   plans,
-  defaultPeriod = 'month',
+  defaultPeriod = 'sixMonths',
   period,
   onPeriodChange,
   showPeriodSwitch = true,
@@ -126,6 +126,75 @@ const Price: FC<PriceProps> = ({
 
   // store previous prices to avoid animating 0 -> 0
   const prevPricesRef = useRef<Record<string, number>>({})
+
+  // Touch/swipe functionality
+  const trackRef = useRef<HTMLDivElement | null>(null)
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const touchEndRef = useRef<{ x: number; y: number } | null>(null)
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return
+    touchEndRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartRef.current || !touchEndRef.current || !trackRef.current) return
+
+    const startX = touchStartRef.current.x
+    const endX = touchEndRef.current.x
+    const startY = touchStartRef.current.y
+    const endY = touchEndRef.current.y
+
+    const diffX = startX - endX
+    const diffY = startY - endY
+
+    // Check if it's a horizontal swipe (more horizontal than vertical)
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+      const track = trackRef.current
+      const children = Array.from(track.children) as HTMLElement[]
+      const childrenOrdered = children
+        .map((el, i) => ({ el, ord: Number(getComputedStyle(el).order || 0), i }))
+        .sort((a, b) => a.ord - b.ord || a.i - b.i)
+        .map(x => x.el)
+
+      const maxIndex = Math.max(0, (childrenOrdered.length - 1))
+      const current = Number(track.dataset.index || '0')
+
+      if (diffX > 0) {
+        // Swipe left - next
+        const next = Math.min(maxIndex, current + 1)
+        const target = childrenOrdered[next]
+        if (target) {
+          const offset = target.offsetLeft
+          track.style.transform = `translateX(${-offset}px)`
+          track.dataset.index = String(next)
+        }
+      } else {
+        // Swipe right - previous
+        const next = Math.max(0, current - 1)
+        const target = childrenOrdered[next]
+        if (target) {
+          const offset = target.offsetLeft
+          track.style.transform = `translateX(${-offset}px)`
+          track.dataset.index = String(next)
+        }
+      }
+    }
+
+    // Reset touch state
+    touchStartRef.current = null
+    touchEndRef.current = null
+  }
 
   const AnimatedPrice: FC<{ id: string; value: number }> = ({ id, value }) => {
     const elRef = useRef<HTMLDivElement | null>(null)
@@ -309,7 +378,14 @@ const Price: FC<PriceProps> = ({
         </button>
       </div>
       <div className={styles.grid}>
-        <div className={styles.carouselTrack} data-index="0">
+        <div
+          className={styles.carouselTrack}
+          data-index="0"
+          ref={trackRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           {plansToRender.map((plan) => (
             <div className={styles.card} key={plan.id}>
               <div>

@@ -66,3 +66,41 @@
 		margin-right: 8px;
 	}
 }
+
+/* Вертикальное расположение карточек */
+.verticalGrid {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.verticalItem {
+	width: 100%;
+
+	@include mobile-large {
+		height: 149px;
+	}
+}
+
+/* Мобильный горизонтальный скролл с двумя рядами */
+.mobileScrollContainer {
+	display: grid;
+	grid-template-columns: repeat(4, 170px); // 4 карточки в ряду
+	grid-template-rows: repeat(2, auto); // 2 ряда
+	grid-auto-flow: column; // Заполняем по колонкам, а не по строкам
+	gap: 8px;
+	overflow-x: auto;
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE 10+ */
+	padding-bottom: func.rem(8);
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.mobileCard {
+	min-width: 170px;
+	display: flex;
+	height: 249px;
+}

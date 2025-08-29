@@ -55,7 +55,7 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           subtitle="Приводи один раз, зарабатывай долго!"
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="100%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="100%" icon={<ArrowWhiteIcon />}>Стать партнером</Button>
             </>
           }
           imageSrc="/images/partners_gift.png"
@@ -68,7 +68,7 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           }
         />
         <CalcIncome
-          title={<>Рассчитайте Ваш <span className={styles.purple}>доход</span> c <span className={styles.purple}>Prostoseller</span></>}
+          title={<>Рассчитайте Ваш <span className={styles.purple}>доход</span> c&nbsp;<span className={styles.purple}>Prostoseller</span></>}
           text={<>Получайте доход после оплаты клиентом любого из тарифов</>}
         />
         <PartnersStages
@@ -86,7 +86,7 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           titleTagName="h2"
           titleSize="lg"
           mark={<>Бонусы</>}>
-          <CardHolder cards={cards} />
+          <CardHolder cards={cards} vertical />
         </TitleHandler>
         <TitleHandler
           title={<>Наши <span className={styles.purple}>партнеры</span></>}

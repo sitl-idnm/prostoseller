@@ -23,13 +23,12 @@
 		line-height: 1.2;
 
 		@include tablet {
-			font-size: 24px;
 
 			max-width: 100%;
 		}
 
 		@include mobile-large {
-			font-size: 20px;
+			font-size: 24px;
 
 			max-width: 100%;
 		}
