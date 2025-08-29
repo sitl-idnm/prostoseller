@@ -192,7 +192,7 @@ const Home: FC<HomeProps> = ({ className }) => {
           backgroundRoot="#f7f7fb"
           title={<>Смотрите, как работает <span className={styles.purple}>Prostoseller</span> изнутри <span className={styles.icon_profit}><LupapupaIcon /></span></>}
 
-          titleSize="sm"
+          titleSize="md"
 
           description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
 

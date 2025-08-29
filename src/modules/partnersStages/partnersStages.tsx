@@ -226,8 +226,8 @@ const PartnersStages: FC<PartnersStagesProps> = ({
             <FirstStage />
           </div>
           <div className={`${styles.stageContent} ${styles.firstText}`}>
-            <h2>Подключите магазин</h2>
-            <p>Интеграция в один клик — уже через минуту данные в системе!</p>
+            <h2>{titleStage[0]}</h2>
+            {textStage && <p>{textStage[0]}</p>}
           </div>
         </div>
         <div className={styles.mobileLines}>
@@ -248,8 +248,8 @@ const PartnersStages: FC<PartnersStagesProps> = ({
             ref={MobileSecondStageTextRef}
             className={styles.stageContent}
           >
-            <h2>Сервис автоматически соберёт и рассчитает все показатели</h2>
-            <p>Вы отдыхаете — сервис считает, анализирует и показывает ключевые цифры</p>
+            <h2>{titleStage[1]}</h2>
+            {textStage && <p>{textStage[1]}</p>}
           </div>
         </div>
         <div className={styles.mobileLines}>
@@ -270,8 +270,8 @@ const PartnersStages: FC<PartnersStagesProps> = ({
             ref={MobileThirdStageTextRef}
             className={styles.stageContent}
           >
-            <h2>Управлять бизнесом теперь станет значительно проще</h2>
-            <p>Понимайте, что работает, а что — нет. Принимайте решения на основе точных данных, а не на интуиции.</p>
+            <h2>{titleStage[2]}</h2>
+            {textStage && <p>{textStage[2]}</p>}
           </div>
         </div>
       </div>
