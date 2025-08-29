@@ -2,6 +2,7 @@
 
 import { FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
+import Link from 'next/link'
 import styles from './cookieBanner.module.scss'
 import { shouldShowCookieBanner, saveCookieBannerShown } from './cookieBanner.utils'
 import { Button } from '@/ui'
@@ -24,10 +25,7 @@ const CookieBanner: FC<CookieBannerProps> = ({ className }) => {
 		setIsVisible(false)
 	}
 
-	const handlePolicyClick = (e: React.MouseEvent) => {
-		e.preventDefault()
-		window.open('http://91.107.122.241/policy', '_blank')
-	}
+
 
 	if (!isVisible) return null
 
@@ -42,15 +40,14 @@ const CookieBanner: FC<CookieBannerProps> = ({ className }) => {
 							на обработку файлов cookies и пользовательских данных, собираемых посредством
 							агрегаторов статистики посетителей веб-сайтов, в целях ведения статистики посещений
 							сайта в соответствии с{' '}
-							<a
-								href="http://91.107.122.241/policy"
-								onClick={handlePolicyClick}
+							<Link
+								href="/policy"
 								className={styles.policyLink}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
 								политикой конфиденциальности и обработки персональных данных
-							</a>.
+							</Link>.
 						</p>
 					</div>
 					<div className={styles.buttonSection}>
