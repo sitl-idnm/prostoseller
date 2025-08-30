@@ -56,7 +56,7 @@ export const useServerViews = (postId: string, initialViews: number) => {
 		if (!isLoading && postId) {
 			incrementViews()
 		}
-	}, [isLoading, postId])
+	}, [isLoading, postId, incrementViews])
 
 	return { views, isLoading, error, incrementViews }
 }
