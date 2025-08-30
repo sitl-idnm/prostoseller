@@ -126,6 +126,34 @@
 	}
 }
 
+.title_lgmin {
+  font-size: 54px;
+	line-height: 1.4;
+	font-weight: 700;
+
+	@include tablet {
+		font-size: 32px;
+	}
+
+	@include mobile-small {
+		font-size: 20px;
+	}
+}
+
+.title_lgplus {
+  font-size: 54px;
+	line-height: 1.4;
+	font-weight: 700;
+
+	@include tablet {
+		font-size: 32px;
+	}
+
+	@include mobile-small {
+		font-size: 20px;
+	}
+}
+
 .subtitle {
 	max-width: 100%;
 

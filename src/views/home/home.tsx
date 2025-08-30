@@ -4,6 +4,7 @@ import { FC, useState, useEffect } from 'react'
 import { Button, Wrapper } from '@/ui'
 import { LINKS } from '@/shared/const'
 import classNames from 'classnames'
+import Image from 'next/image'
 
 import styles from './home.module.scss'
 import { HomeProps } from './home.types'
@@ -79,7 +80,7 @@ const Home: FC<HomeProps> = ({ className }) => {
           backgroundRoot="transparent"
           backgroundContent="#fff"
           title={<>Удваиваем Вашу <span className={`${styles.iconwb} ${styles.icon_profit}`}><WbIcon /></span> прибыль на&nbsp;<span className={styles.wb}>Wildberries</span> и&nbsp;<span className={styles.ozon}>Ozon</span><span className={styles.icon_profit}><OzonIcon /></span></>}
-          titleSize="lg"
+          titleSize="lgmin"
           subtitle={<><span className={styles.purple}>8 из 10</span> пользователей <span className={styles.purple}>увеличивают прибыль</span> в среднем на <span className={styles.purple}>18%</span> уже на втором месяце использования сервиса</>}
           description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
           buttons={
@@ -144,7 +145,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         </TitleHandler>
 
         <PartnersStages
-          title={<><span className={styles.purple}>3 простых шага</span>, чтобы начать зарабатывать <span className={styles.purple}>больше в 2 раза</span> <span className={styles.icon_profit}><WbOzon /></span></>}
+          title={<><span className={styles.purple}>3 простых шага</span>, чтобы начать зарабатывать <span className={styles.purple}>больше в 2 раза</span> {!isMobileLarge && <span className={styles.icon_profit}><WbOzon /></span>}</>}
           titleStage={[<>Подключите магазин</>, <>Сервис автоматически соберёт и рассчитает все показатели</>, <>Управлять бизнесом теперь станет значительно проще</>]}
           textStage={[<>Интеграция в один клик — уже через минуту данные в системе!</>, <>Вы отдыхаете — сервис считает, анализирует и показывает ключевые цифры</>, <>Понимайте, что работает, а что — нет. Принимайте решения на основе точных данных, а не на интуиции.</>]}
           mark={<>Как работает <b>Prostoseller</b></>}
@@ -164,6 +165,18 @@ const Home: FC<HomeProps> = ({ className }) => {
           mark={<>Пригласи друга</>}
           hideTitleOnMobile={true}
         >
+          {isMobileLarge && (
+            <div className={styles.mobileImageContainer}>
+              <Image
+                src="/images/rupor.png"
+                alt="Протестируйте Prostoseller бесплатно"
+                width={120}
+                height={120}
+                quality={100}
+                className={styles.mobileImage}
+              />
+            </div>
+          )}
           <Content
             variant="split"
             backgroundRoot="url('/images/prostoseller_free.png') no-repeat center center / cover"

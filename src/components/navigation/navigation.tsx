@@ -66,7 +66,7 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
 
           <li className={classNames(styles.item, styles.dropdown)}>
             <button className={styles.trigger} type="button" onClick={() => {
-              window.location.href = '/about'
+              window.location.href = '/company'
             }}>
               О нас <span className={styles.caret} aria-hidden>▾</span>
             </button>

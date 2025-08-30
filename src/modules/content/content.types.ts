@@ -21,7 +21,7 @@ export interface ContentProps {
   /** HTML‑тег заголовка */
   titleTagName?: 'h1' | 'h2' | 'h3' | 'h4'
   /** Визуальный размер заголовка */
-  titleSize?: 'sm' | 'md' | 'lg'
+  titleSize?: 'sm' | 'md' | 'lg' | 'lgplus' | 'lgmin'
 
   /** Подзаголовок */
   subtitle?: ReactNode
