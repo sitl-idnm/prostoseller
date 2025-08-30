@@ -55,7 +55,7 @@ const BlogItems: FC<BlogItemsProps> = ({
 
       {canShowMore && (
         <div className={styles.moreWrap}>
-          <Button onClick={handleShowMore}>
+          <Button variant="gradientOutline" onClick={handleShowMore}>
             Показать ещё
           </Button>
         </div>

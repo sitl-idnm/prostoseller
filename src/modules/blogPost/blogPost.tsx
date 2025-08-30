@@ -8,6 +8,8 @@ import styles from './blogPost.module.scss'
 import { BlogPostProps } from './blogPost.types'
 import { Wrapper } from '@/ui/wrapper'
 import { BlogItems } from '@/modules/blogItems'
+import { useServerViews } from '@/shared/hooks/useServerViews'
+import { formatViews } from '@/shared/utils/formatViews'
 
 interface TocItem { id: string; text: string }
 
@@ -15,6 +17,9 @@ const BlogPost: FC<BlogPostProps> = ({ className, title, author, authorRole, aut
 	const rootClassName = classNames(styles.root, className)
 	const contentRef = useRef<HTMLDivElement | null>(null)
 	const [toc, setToc] = useState<TocItem[]>([])
+
+	// Используем хук для управления просмотрами с сервера
+	const { views: currentViews } = useServerViews(currentId || '', typeof views === 'number' ? views : 0)
 
 	useEffect(() => {
 		const root = contentRef.current
@@ -59,7 +64,7 @@ const BlogPost: FC<BlogPostProps> = ({ className, title, author, authorRole, aut
 						</div>
 						<div className={styles.metaRow}>
 							<div className={styles.metaLabel}>Количество просмотров:</div>
-							<div className={styles.metaValue}>{typeof views === 'number' ? views : '—'}</div>
+							<div className={styles.metaValue}>{formatViews(currentViews)}</div>
 						</div>
 					</div>
 				</div>

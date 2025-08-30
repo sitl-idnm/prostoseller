@@ -1,0 +1,65 @@
+.tableContainer {
+  margin: 20px 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin-bottom: 20px;
+
+  th, td {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 8px 10px;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  th {
+    background: #f8f8fb;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  tbody tr:nth-child(odd) td {
+    background: #fcfcff;
+  }
+
+  tbody tr:nth-child(even) td {
+    background: #ffffff;
+  }
+}
+
+.featureName {
+  font-weight: 600;
+  text-align: left !important;
+}
+
+.price {
+  text-align: right !important;
+  font-weight: 600;
+  color: #333;
+}
+
+.checkmark {
+  text-align: center !important;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.dash {
+  text-align: center !important;
+  color: #999;
+}
+
+/* Адаптивность */
+@media (max-width: 965px) {
+  .tableContainer {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table {
+    min-width: 800px;
+  }
+}

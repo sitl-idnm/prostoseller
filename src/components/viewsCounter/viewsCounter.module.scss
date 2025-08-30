@@ -1,0 +1,15 @@
+.counter {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 14px;
+	color: #666;
+
+	.icon {
+		font-size: 16px;
+	}
+
+	.views {
+		font-weight: 500;
+	}
+}

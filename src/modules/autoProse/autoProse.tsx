@@ -10,15 +10,25 @@ import { AutoProseProps } from './autoProse.types'
 const isH2 = (line: string): boolean => /^\d+\.\s/.test(line.trim())
 const isH3 = (line: string): boolean => /^\d+\.\d+\s/.test(line.trim()) || /^\d+\.\d+\.\s/.test(line.trim())
 
-// Explicit heading markers (wrapper): [[h2]] Title, [[h3]] Subtitle
+// Explicit heading markers (wrapper): [[h1]] Title, [[h2]] Title, [[h3]] Subtitle
+const isExplicitH1 = (line: string): boolean => /^\[\[h1\]\]/i.test(line.trim())
 const isExplicitH2 = (line: string): boolean => /^\[\[h2\]\]/i.test(line.trim())
 const isExplicitH3 = (line: string): boolean => /^\[\[h3\]\]/i.test(line.trim())
-const stripExplicitHeading = (line: string): string => line.replace(/^\[\[(h2|h3)\]\]\s*/i, '')
+const stripExplicitHeading = (line: string): string => line.replace(/^\[\[(h1|h2|h3)\]\]\s*/i, '')
+
+// Right alignment marker: [[right]] Text
+const isRightAligned = (line: string): boolean => /\[\[right\]\]/i.test(line.trim())
+const stripRightAlignment = (line: string): string => line.replace(/\[\[right\]\]\s*/gi, '')
+
+// Margin 20px marker: [[margin20]] Text
+const isMargin20 = (line: string): boolean => /\[\[margin20\]\]/i.test(line.trim())
+const stripMargin20 = (line: string): string => line.replace(/\[\[margin20\]\]\s*/gi, '')
 
 // Also support simple markdown-style headings as a convenience
+const isMdH1 = (line: string): boolean => /^#\s+/.test(line.trim())
 const isMdH2 = (line: string): boolean => /^##\s+/.test(line.trim())
 const isMdH3 = (line: string): boolean => /^###\s+/.test(line.trim())
-const stripMdHeading = (line: string): string => line.replace(/^#{2,3}\s+/, '')
+const stripMdHeading = (line: string): string => line.replace(/^#{1,3}\s+/, '')
 
 const LINK_REGEX = /(https?:\/\/[^\s<>'")]+|\/[A-Za-z0-9\-._~/#?\]@!$&'()*+,;=%]+)/g
 const trimTrailingPunctuation = (token: string): { core: string; trailing: string } => {
@@ -123,20 +133,68 @@ const AutoProse: FC<AutoProseProps> = ({ className, text, children }) => {
 				continue
 			}
 
-			// Explicit and markdown-style headings
-			if (isExplicitH2(line) || isMdH2(line) || isH2(line)) {
-				const textContent = isExplicitH2(line) ? stripExplicitHeading(line) : isMdH2(line) ? stripMdHeading(line) : line
-				elements.push(<h2 key={`h2-${i}`} className={styles.h2}>{renderWithLinks(textContent, `h2-${i}`)}</h2>)
+			// Check for combined markers
+			const hasMargin20 = isMargin20(line)
+			const hasRightAlign = isRightAligned(line)
+			const hasH1 = isExplicitH1(line)
+			const hasH2 = isExplicitH2(line)
+			const hasH3 = isExplicitH3(line)
+			const hasMdH1 = isMdH1(line)
+			const hasMdH2 = isMdH2(line)
+			const hasMdH3 = isMdH3(line)
+
+			// Strip all markers to get clean text
+			let cleanText = line
+			if (hasMargin20) cleanText = stripMargin20(cleanText)
+			if (hasRightAlign) cleanText = stripRightAlignment(cleanText)
+			if (hasH1 || hasH2 || hasH3) cleanText = stripExplicitHeading(cleanText)
+			if (hasMdH1 || hasMdH2 || hasMdH3) cleanText = stripMdHeading(cleanText)
+
+			// Build className for combined styles
+			const combinedClasses: string[] = []
+			if (hasMargin20) combinedClasses.push(styles.margin20)
+			if (hasRightAlign) combinedClasses.push(styles.textRight)
+
+			const combinedClassName = combinedClasses.length > 0 ? combinedClasses.join(' ') : undefined
+
+			// Render appropriate element with combined styles
+			if (hasH1 || hasMdH1) {
+				elements.push(
+					<h1 key={`h1-${i}`} className={classNames(styles.h1, combinedClassName)}>
+						{renderWithLinks(cleanText, `h1-${i}`)}
+					</h1>
+				)
 				continue
 			}
-			if (isExplicitH3(line) || isMdH3(line) || isH3(line)) {
-				const textContent = isExplicitH3(line) ? stripExplicitHeading(line) : isMdH3(line) ? stripMdHeading(line) : line
-				elements.push(<h3 key={`h3-${i}`} className={styles.h3}>{renderWithLinks(textContent, `h3-${i}`)}</h3>)
+			if (hasH2 || hasMdH2 || isH2(line)) {
+				const textContent = hasH2 || hasMdH2 ? cleanText : line
+				elements.push(
+					<h2 key={`h2-${i}`} className={classNames(styles.h2, combinedClassName)}>
+						{renderWithLinks(textContent, `h2-${i}`)}
+					</h2>
+				)
+				continue
+			}
+			if (hasH3 || hasMdH3 || isH3(line)) {
+				const textContent = hasH3 || hasMdH3 ? cleanText : line
+				elements.push(
+					<h3 key={`h3-${i}`} className={classNames(styles.h3, combinedClassName)}>
+						{renderWithLinks(textContent, `h3-${i}`)}
+					</h3>
+				)
 				continue
 			}
 
-			// Paragraph fallback
-			elements.push(<p key={`p-${i}`} className={styles.p}>{renderWithLinks(line, `p-${i}`)}</p>)
+			// Regular paragraph or div with combined styles
+			if (combinedClassName) {
+				elements.push(
+					<div key={`combined-${i}`} className={combinedClassName}>
+						{renderWithLinks(cleanText, `combined-${i}`)}
+					</div>
+				)
+			} else {
+				elements.push(<p key={`p-${i}`} className={styles.p}>{renderWithLinks(line, `p-${i}`)}</p>)
+			}
 		}
 
 		return elements
