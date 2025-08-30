@@ -3,6 +3,8 @@ import classNames from 'classnames'
 
 import styles from './thanks.module.scss'
 import { ThanksProps } from './thanks.types'
+import { ThankYou } from '@/components/thankYou/thankYou'
+import { Wrapper } from '@/ui/wrapper'
 
 const Thanks: FC<ThanksProps> = ({
   className
@@ -11,6 +13,9 @@ const Thanks: FC<ThanksProps> = ({
 
   return (
     <main className={rootClassName}>
+      <Wrapper className={styles.wrapper}>
+        <ThankYou />
+      </Wrapper>
     </main>
   )
 }
