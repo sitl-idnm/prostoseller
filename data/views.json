@@ -1,27 +1,27 @@
 {
   "sezonnye-tovary-na-zimu": {
-    "views": 2346,
-    "lastUpdated": 1756554304942
+    "views": 2347,
+    "lastUpdated": 1756628569311
   },
   "sezonnye-tovary-na-osen": {
-    "views": 2217,
-    "lastUpdated": 1703123456789
+    "views": 2218,
+    "lastUpdated": 1756628751325
   },
   "prioritet-skladov-ozon": {
-    "views": 4106,
-    "lastUpdated": 1703123456789
+    "views": 4107,
+    "lastUpdated": 1756628847995
   },
   "kak-podklyuchit-ehdo-dlya-ozon": {
-    "views": 2604,
-    "lastUpdated": 1703123456789
+    "views": 2605,
+    "lastUpdated": 1756629215780
   },
   "samyie-prodavaemyie-tovaryi-na-ozon": {
     "views": 3891,
     "lastUpdated": 1703123456789
   },
   "sezonnye-tovary-na-marketpleysah": {
-    "views": 1892,
-    "lastUpdated": 1703123456789
+    "views": 1893,
+    "lastUpdated": 1756629702449
   },
   "kak-otgruzit-tovar-na-ozon": {
     "views": 2165,
@@ -34,5 +34,9 @@
   "trebovaniya-k-upakovke-tovara-na-ozon": {
     "views": 7122,
     "lastUpdated": 1703123456789
+  },
+  "seasonal-products": {
+    "views": 1,
+    "lastUpdated": 1756629687622
   }
 }

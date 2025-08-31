@@ -72,6 +72,22 @@
   margin: 16px 0;
   border-radius: 16px;
   overflow: hidden;
+  aspect-ratio: 21/9; // Широкое соотношение для главного изображения
+
+  @include tablet-small {
+    aspect-ratio: 16/9; // Более квадратные пропорции на планшетах
+  }
+
+  @include mobile-small {
+    aspect-ratio: 4/3; // Еще более квадратные пропорции на мобильных
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 .grid {
   display: grid;

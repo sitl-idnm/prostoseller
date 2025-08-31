@@ -16,11 +16,22 @@
   border-radius: 12px;
   overflow: hidden;
   margin: 0 16px;
+  aspect-ratio: 16/9; // Одинаковые пропорции для всех картинок
+
+  @include mixins.tablet {
+    aspect-ratio: 4/3; // Более квадратные пропорции на планшетах
+  }
+
+  @include mixins.mobile {
+    aspect-ratio: 3/2; // Еще более квадратные пропорции на мобильных
+  }
 }
 .image {
   width: 100%;
-  height: auto;
+  height: 100%; // Занимает всю высоту контейнера
   display: block;
+  object-fit: cover; // Обрезает картинку, сохраняя пропорции
+  object-position: center; // Центрирует картинку
 }
 
 .content {

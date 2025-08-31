@@ -32,7 +32,7 @@ export default async function PostPage() {
 			date="18.09.2024"
 			readTimeMin={5}
 			views={2165}
-			imageSrc="/images/banner.jpg"
+			imageSrc="/images/blog/kak-otgruzit-tovar-na-ozon-2.jpg"
 			currentId={currentId}
 			related={related}
 		>

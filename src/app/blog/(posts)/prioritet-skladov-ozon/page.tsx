@@ -32,7 +32,7 @@ export default async function PostPage() {
 			date="30.09.2024"
 			readTimeMin={5}
 			views={4106}
-			imageSrc="/images/banner.jpg"
+			imageSrc="/images/blog/756025960506462.jpg"
 			currentId={currentId}
 			related={related}
 		>
