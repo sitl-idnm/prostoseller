@@ -5,6 +5,12 @@
 .root {
   width: 100%;
   padding: func.rem(40) 0;
+
+  margin-top: 180px;
+
+  @include mixins.mobile-large {
+    margin-top: 136px;
+  }
 }
 
 .wrapper {
@@ -18,12 +24,6 @@
 
   @include mixins.tablet-small {
     gap: 60px;
-  }
-}
-
-.content {
-  div {
-    font-size: 1.1rem;
   }
 }
 

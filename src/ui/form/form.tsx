@@ -18,7 +18,8 @@ const Form: FC<FormProps> = ({
   enableEmailSubmit,
   emailTo,
   emailSubject,
-  checkboxesAfterSubmit
+  checkboxesAfterSubmit,
+  buttonWidth
 }) => {
   const rootClassName = classNames(styles.root, className)
   const formRef = useRef<HTMLFormElement | null>(null)
@@ -146,7 +147,7 @@ const Form: FC<FormProps> = ({
           )
         })}
         <div className={styles.submit} style={{ gridColumn: '1 / -1' }}>
-          <Button buttonWidth="100%" type="submit" variant="gradient" icon={<ArrowWhiteIcon />} disabled={submitting}>
+          <Button buttonWidth={buttonWidth} type="submit" variant="gradient" icon={<ArrowWhiteIcon />} disabled={submitting}>
             {submitLabel}
           </Button>
         </div>

@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 import styles from './calculator.module.scss'
 import { CalculatorProps } from './calculator.types'
-import { Button } from '@/ui'
+import { Button, RadioButton } from '@/ui'
 import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
 const Calculator: FC<CalculatorProps> = ({
@@ -64,12 +64,18 @@ const Calculator: FC<CalculatorProps> = ({
   return (
     <div className={rootClassName}>
       <div className={styles.tabs}>
-        <Button className={classNames(styles.tab, plan === 'base' && styles.tab_active)} onClick={() => setPlan('base')} variant={plan === 'base' ? 'purple' : 'purpleOutline'} buttonWidth='100%'>
+        <RadioButton
+          isSelected={plan === 'base'}
+          onClick={() => setPlan('base')}
+        >
           Базовый
-        </Button>
-        <Button className={classNames(styles.tab, plan === 'optimal' && styles.tab_active)} onClick={() => setPlan('optimal')} variant={plan === 'optimal' ? 'purple' : 'purpleOutline'} buttonWidth='100%'>
+        </RadioButton>
+        <RadioButton
+          isSelected={plan === 'optimal'}
+          onClick={() => setPlan('optimal')}
+        >
           Оптимальный
-        </Button>
+        </RadioButton>
       </div>
       <div className={styles.title}>Тариф {plan === 'base' ? 'базовый' : 'оптимальный'}</div>
       <div className={styles.hint}>Укажите количество проведенных оплат клиентов:</div>

@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 import styles from './price.module.scss'
 import { BillingPeriod, FeatureState, PriceProps, TariffPlan } from './price.types'
-import { Button } from '@/ui'
+import { Button, RadioButton } from '@/ui'
 import Link from 'next/link'
 
 import Absent from '@icons/absent.svg'
@@ -26,6 +26,8 @@ const Price: FC<PriceProps> = ({
 }) => {
   const rootClassName = classNames(styles.root, className)
   const [innerPeriod, setInnerPeriod] = useState<BillingPeriod>(defaultPeriod)
+  const [currentPlanIndex, setCurrentPlanIndex] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const activePeriod = period || innerPeriod
 
   const setPeriod = (p: BillingPeriod) => {
@@ -53,7 +55,7 @@ const Price: FC<PriceProps> = ({
           { label: 'Внесение и учёт самовыкупов', state: 'included' },
           { label: 'Капитализация складов', state: 'included' },
           { label: 'Экспорт файлов', state: 'included' },
-          { label: 'Автоматизированная рассылка отчётов на Email', state: 'included' },
+          { label: 'Автоматизированная рассылка отчётов на email, уведомление в Тelegram-bot', state: 'included' },
           { label: 'Живая поддержка клиентов', state: 'included' },
           { label: 'Управление планированием', state: 'included' },
           { label: 'Расчёт оборачиваемости товаров и планирование поставок', state: 'included' },
@@ -80,13 +82,13 @@ const Price: FC<PriceProps> = ({
           { label: 'Внесение и учёт самовыкупов', state: 'included' },
           { label: 'Капитализация складов', state: 'included' },
           { label: 'Экспорт файлов', state: 'included' },
-          { label: 'Автоматизированная рассылка отчётов на Email', state: 'included' },
+          { label: 'Автоматизированная рассылка отчётов на email, уведомление в Тelegram-bot', state: 'included' },
           { label: 'Живая поддержка клиентов', state: 'included' },
           { label: 'Управление планированием', state: 'absent' },
           { label: 'Расчёт оборачиваемости товаров и планирование поставок', state: 'absent' },
           { label: 'Расходы на рекламу (детализировано)', state: 'absent' },
-          { label: 'Калькулятор доходности и планирование цен 990 руб', state: 'addon' },
-          { label: 'Каждый дополнительный магазин 990 руб', state: 'addon' }
+          { label: 'Калькулятор доходности и цен <strong>990 руб</strong>', state: 'addon' },
+          { label: `Каждый дополнительный магазин <strong>990 руб</strong>`, state: 'addon' }
         ],
         priceByPeriod: { month: 1990, sixMonths: 1590 }
       },
@@ -108,13 +110,13 @@ const Price: FC<PriceProps> = ({
           { label: 'Внесение и учёт самовыкупов', state: 'included' },
           { label: 'Капитализация складов', state: 'included' },
           { label: 'Экспорт файлов', state: 'included' },
-          { label: 'Автоматизированная рассылка отчётов на Email', state: 'included' },
+          { label: 'Автоматизированная рассылка отчётов на email, уведомление в Тelegram-bot', state: 'included' },
           { label: 'Живая поддержка клиентов', state: 'included' },
           { label: 'Управление планированием', state: 'included' },
           { label: 'Расчёт оборачиваемости товаров и планирование поставок', state: 'included' },
           { label: 'Расходы на рекламу (детализировано)', state: 'included' },
           { label: 'Калькулятор доходности и планирование цен', state: 'included' },
-          { label: 'Каждый дополнительный магазин 990 руб', state: 'addon' }
+          { label: 'Каждый дополнительный магазин <strong>990 руб</strong>', state: 'addon' }
         ],
         priceByPeriod: { month: 3990, sixMonths: 3190 }
       }
@@ -127,6 +129,30 @@ const Price: FC<PriceProps> = ({
   // store previous prices to avoid animating 0 -> 0
   const prevPricesRef = useRef<Record<string, number>>({})
 
+  // Автоматическое пролистывание карусели на мобильных
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const isMobile = window.innerWidth <= 768
+    if (!isMobile || !isAutoPlaying) return
+
+    const interval = setInterval(() => {
+      setCurrentPlanIndex((prev) => (prev + 1) % plansToRender.length)
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [isAutoPlaying, plansToRender.length])
+
+  // Обновление позиции карусели
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const isMobile = window.innerWidth <= 768
+    if (!isMobile || !trackRef.current) return
+
+    const track = trackRef.current
+    const offset = currentPlanIndex * 100
+    track.style.transform = `translateX(-${offset}%)`
+  }, [currentPlanIndex])
+
   // Touch/swipe functionality
   const trackRef = useRef<HTMLDivElement | null>(null)
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
@@ -137,6 +163,7 @@ const Price: FC<PriceProps> = ({
       x: e.touches[0].clientX,
       y: e.touches[0].clientY
     }
+    setIsAutoPlaying(false)
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -148,7 +175,7 @@ const Price: FC<PriceProps> = ({
   }
 
   const handleTouchEnd = () => {
-    if (!touchStartRef.current || !touchEndRef.current || !trackRef.current) return
+    if (!touchStartRef.current || !touchEndRef.current) return
 
     const startX = touchStartRef.current.x
     const endX = touchEndRef.current.x
@@ -160,40 +187,32 @@ const Price: FC<PriceProps> = ({
 
     // Check if it's a horizontal swipe (more horizontal than vertical)
     if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-      const track = trackRef.current
-      const children = Array.from(track.children) as HTMLElement[]
-      const childrenOrdered = children
-        .map((el, i) => ({ el, ord: Number(getComputedStyle(el).order || 0), i }))
-        .sort((a, b) => a.ord - b.ord || a.i - b.i)
-        .map(x => x.el)
-
-      const maxIndex = Math.max(0, (childrenOrdered.length - 1))
-      const current = Number(track.dataset.index || '0')
-
       if (diffX > 0) {
         // Swipe left - next
-        const next = Math.min(maxIndex, current + 1)
-        const target = childrenOrdered[next]
-        if (target) {
-          const offset = target.offsetLeft
-          track.style.transform = `translateX(${-offset}px)`
-          track.dataset.index = String(next)
-        }
+        setCurrentPlanIndex((prev) => Math.min(plansToRender.length - 1, prev + 1))
       } else {
         // Swipe right - previous
-        const next = Math.max(0, current - 1)
-        const target = childrenOrdered[next]
-        if (target) {
-          const offset = target.offsetLeft
-          track.style.transform = `translateX(${-offset}px)`
-          track.dataset.index = String(next)
-        }
+        setCurrentPlanIndex((prev) => Math.max(0, prev - 1))
       }
     }
+
+    // Возобновляем автопрокрутку через 10 секунд
+    setTimeout(() => {
+      setIsAutoPlaying(true)
+    }, 10000)
 
     // Reset touch state
     touchStartRef.current = null
     touchEndRef.current = null
+  }
+
+  const goToPlan = (index: number) => {
+    setCurrentPlanIndex(index)
+    setIsAutoPlaying(false)
+    // Возобновляем автопрокрутку через 10 секунд
+    setTimeout(() => {
+      setIsAutoPlaying(true)
+    }, 10000)
   }
 
   const AnimatedPrice: FC<{ id: string; value: number }> = ({ id, value }) => {
@@ -311,10 +330,19 @@ const Price: FC<PriceProps> = ({
       [styles.feature_hidden]: state === 'hidden',
       [styles.feature_addon]: state === 'addon'
     })
+
+    // Если label содержит HTML теги, используем dangerouslySetInnerHTML
+    const labelString = typeof label === 'string' ? label : String(label)
+    const hasHtmlTags = /<[^>]*>/g.test(labelString)
+
     return (
       <div className={className} key={idx}>
         {icon}
-        <div>{label}</div>
+        {hasHtmlTags ? (
+          <div dangerouslySetInnerHTML={{ __html: labelString }} />
+        ) : (
+          <div>{label}</div>
+        )}
       </div>
     )
   }
@@ -325,62 +353,36 @@ const Price: FC<PriceProps> = ({
         <h2>{title}</h2>
         {showPeriodSwitch && (
           <div className={styles.switch}>
-            <Button variant={activePeriod === 'sixMonths' ? 'purple' : 'purpleOutline'} onClick={() => setPeriod('sixMonths')}>
-              6 мес&nbsp;<b>скидка 20%</b>&nbsp;(в отчете данные за 6 мес)
-            </Button>
-            <Button variant={activePeriod === 'month' ? 'purple' : 'purpleOutline'} onClick={() => setPeriod('month')}>
-              1 мес (в отчете данные за 2 мес)
-            </Button>
+            <div className={styles.periodOption}>
+              <RadioButton
+                className={styles.periodRadioButton}
+                isSelected={activePeriod === 'sixMonths'}
+                onClick={() => setPeriod('sixMonths')}
+              >
+                6 месяцев со скидкой 20%
+              </RadioButton>
+              <div className={classNames(styles.periodDescription, activePeriod === 'sixMonths' && styles.periodDescription_active)}>
+                Пользователю доступны в отчете данные за оплаченный месяц и 5 предыдущих месяцев
+              </div>
+            </div>
+            <div className={styles.periodOption}>
+              <RadioButton
+                className={styles.periodRadioButton}
+                isSelected={activePeriod === 'month'}
+                onClick={() => setPeriod('month')}
+              >
+                1 месяц без скидки
+              </RadioButton>
+              <div className={classNames(styles.periodDescription, activePeriod === 'month' && styles.periodDescription_active)}>
+                Пользователю доступны в отчете данные за оплаченный месяц и предыдущий месяц
+              </div>
+            </div>
           </div>
         )}
-      </div>
-      <div className={styles.mobileNav}>
-        <button className={styles.navBtn} type="button" aria-label="Предыдущий" onClick={() => {
-          if (typeof window === 'undefined') return
-          const track = document.querySelector(`.${styles.carouselTrack}`) as HTMLDivElement | null
-          if (!track) return
-          const children = Array.from(track.children) as HTMLElement[]
-          const childrenOrdered = children
-            .map((el, i) => ({ el, ord: Number(getComputedStyle(el).order || 0), i }))
-            .sort((a, b) => a.ord - b.ord || a.i - b.i)
-            .map(x => x.el)
-          const current = Number(track.dataset.index || '0')
-          const next = Math.max(0, current - 1)
-          const target = childrenOrdered[next]
-          if (target) {
-            const offset = target.offsetLeft
-            track.style.transform = `translateX(${-offset}px)`
-            track.dataset.index = String(next)
-          }
-        }}>
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-        </button>
-        <button className={styles.navBtn} type="button" aria-label="Следующий" onClick={() => {
-          if (typeof window === 'undefined') return
-          const track = document.querySelector(`.${styles.carouselTrack}`) as HTMLDivElement | null
-          if (!track) return
-          const children = Array.from(track.children) as HTMLElement[]
-          const childrenOrdered = children
-            .map((el, i) => ({ el, ord: Number(getComputedStyle(el).order || 0), i }))
-            .sort((a, b) => a.ord - b.ord || a.i - b.i)
-            .map(x => x.el)
-          const maxIndex = Math.max(0, (childrenOrdered.length - 1))
-          const current = Number(track.dataset.index || '0')
-          const next = Math.min(maxIndex, current + 1)
-          const target = childrenOrdered[next]
-          if (target) {
-            const offset = target.offsetLeft
-            track.style.transform = `translateX(${-offset}px)`
-            track.dataset.index = String(next)
-          }
-        }}>
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-        </button>
       </div>
       <div className={styles.grid}>
         <div
           className={styles.carouselTrack}
-          data-index="0"
           ref={trackRef}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
@@ -418,6 +420,18 @@ const Price: FC<PriceProps> = ({
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Индикаторы прогресса */}
+      <div className={styles.carouselIndicators}>
+        {plansToRender.map((_, idx) => (
+          <button
+            key={idx}
+            className={classNames(styles.carouselDot, { [styles.carouselDotActive]: currentPlanIndex === idx })}
+            onClick={() => goToPlan(idx)}
+            aria-label={`Перейти к тарифу ${idx + 1}`}
+          />
+        ))}
       </div>
     </section>
   )

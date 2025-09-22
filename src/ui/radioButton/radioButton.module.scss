@@ -1,0 +1,94 @@
+@use "@styles/func";
+@use "@styles/variables";
+@use "@styles/mixins";
+
+.root {
+  @include mixins.reset-btn;
+  display: flex;
+  align-items: center;
+  gap: func.rem(12);
+  padding: func.rem(16) func.rem(24);
+  border: 1px solid var(--color-purple);
+  border-radius: func.rem(999);
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: all variables.$transition;
+  width: 100%;
+  font-weight: 600;
+  font-size: func.rem(16);
+  color: var(--color-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #eeeeee;
+  }
+}
+
+.root_selected {
+  background: var(--color-white-default);
+  color: var(--color-purple);
+
+  &:hover {
+    background: var(--color-white-default);
+  }
+}
+
+.radioIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: func.rem(20);
+  height: func.rem(20);
+  flex-shrink: 0;
+}
+
+.radioCircle {
+  width: func.rem(16);
+  height: func.rem(16);
+  border: 2px solid var(--color-purple);
+  border-radius: 50%;
+  background: var(--color-white-default);
+  transition: all variables.$transition;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    content: '';
+    width: func.rem(8);
+    height: func.rem(8);
+    border-radius: 50%;
+    background: var(--color-purple);
+    opacity: 0;
+    transform: scale(0);
+    transition: all variables.$transition;
+  }
+}
+
+.radioCircle_selected {
+  &::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.text {
+  font-weight: 600;
+  font-size: func.rem(16);
+  line-height: 1.2;
+}
+
+@include mixins.tablet-small {
+  .root {
+    padding: func.rem(12) func.rem(20);
+    font-size: func.rem(14);
+    min-width: func.rem(130);
+  }
+
+  .text {
+    font-size: func.rem(14);
+  }
+}

@@ -25,7 +25,7 @@ const Blog: FC<BlogProps> = async ({ className }) => {
             tags: p.tags
           }))}
           columns={3}
-          initialRows={1}
+          initialRows={2}
           showMoreStep={3}
         />
       </Wrapper>

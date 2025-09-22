@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState, useEffect } from 'react'
 import classNames from 'classnames'
 
 import styles from './plusMinus.module.scss'
@@ -15,6 +15,74 @@ const PlusMinus: FC<PlusMinusProps> = ({
   becameIcon
 }) => {
   const rootClassName = classNames(styles.root, className)
+  const [isMobile, setIsMobile] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+
+  // Определяем мобильную версию
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
+
+  // Автоматическое пролистывание карусели
+  useEffect(() => {
+    if (!isMobile || !isAutoPlaying) return
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % pairs.length)
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [isMobile, isAutoPlaying, pairs.length])
+
+  // Обработчики для свайпов
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+    setIsAutoPlaying(false)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe && currentSlide < pairs.length - 1) {
+      setCurrentSlide(currentSlide + 1)
+    }
+    if (isRightSwipe && currentSlide > 0) {
+      setCurrentSlide(currentSlide - 1)
+    }
+
+    // Возобновляем автопрокрутку через 10 секунд после последнего касания
+    setTimeout(() => {
+      setIsAutoPlaying(true)
+    }, 10000)
+  }
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index)
+    setIsAutoPlaying(false)
+    // Возобновляем автопрокрутку через 10 секунд
+    setTimeout(() => {
+      setIsAutoPlaying(true)
+    }, 10000)
+  }
 
   return (
     <div className={rootClassName}>
@@ -51,26 +119,48 @@ const PlusMinus: FC<PlusMinusProps> = ({
         </div>
       </div>
 
-      {/* Mobile: парами */}
-      <div className={styles.pair}>
-        {pairs.map((pair, idx) => (
-          <div key={`pair-${idx}`}>
-            <div className={`${styles.card} ${styles.card_was}`}>
-              <div className={styles.cardHeader}>
-                {wasIcon && <span className={styles.icon}>{wasIcon}</span>}
-                <div className={styles.title}>{wasTitle}</div>
+      {/* Mobile: карусель */}
+      <div className={styles.mobileCarousel}>
+        <div
+          className={styles.carouselContainer}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div
+            className={styles.carouselTrack}
+            style={{ transform: `translateX(-${currentSlide * 85}%)` }}
+          >
+            {pairs.map((pair, idx) => (
+              <div key={`pair-${idx}`} className={styles.carouselSlide}>
+                <div className={`${styles.card} ${styles.card_was}`}>
+                  <div className={styles.cardHeader}>
+                    {wasIcon && <span className={styles.icon}>{wasIcon}</span>}
+                    <div className={styles.title}>{wasTitle}</div>
+                  </div>
+                  <div className={styles.list}>{pair.was}</div>
+                </div>
+                <div className={classNames(styles.card, styles.card_success, styles.card_became)} style={{ marginTop: 12 }}>
+                  <div className={styles.cardHeader}>
+                    {becameIcon && <span className={styles.icon}>{becameIcon}</span>}
+                    <div className={styles.title}>{becameTitle}</div>
+                  </div>
+                  <div className={styles.list}>{pair.became}</div>
+                </div>
               </div>
-              <div className={styles.list}>{pair.was}</div>
-            </div>
-            <div className={classNames(styles.card, styles.card_success, styles.card_became)} style={{ marginTop: 12 }}>
-              <div className={styles.cardHeader}>
-                {becameIcon && <span className={styles.icon}>{becameIcon}</span>}
-                <div className={styles.title}>{becameTitle}</div>
-              </div>
-              <div className={styles.list}>{pair.became}</div>
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
+        <div className={styles.carouselIndicators}>
+          {pairs.map((_, idx) => (
+            <button
+              key={idx}
+              className={classNames(styles.carouselDot, { [styles.carouselDotActive]: currentSlide === idx })}
+              onClick={() => goToSlide(idx)}
+              aria-label={`Перейти к слайду ${idx + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )

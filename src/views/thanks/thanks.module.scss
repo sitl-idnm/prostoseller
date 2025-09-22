@@ -6,6 +6,12 @@
   width: 100%;
   padding: func.rem(40) 0;
   flex-grow: 0 !important;
+
+  margin-top: 180px;
+
+  @include mixins.mobile-large {
+    margin-top: 136px;
+  }
 }
 
 .wrapper {

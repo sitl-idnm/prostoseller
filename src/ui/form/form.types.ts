@@ -31,6 +31,7 @@ export interface FormProps {
   emailSubject?: string
   // If true, all checkbox fields will be rendered after the submit button
   checkboxesAfterSubmit?: boolean
+  buttonWidth?: string
 }
 
 // Duplicate interface below was erroneous; removed to avoid conflicts

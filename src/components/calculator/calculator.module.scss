@@ -30,20 +30,7 @@
 	gap: 24px;
 }
 
-.tab {
-	padding: func.rem(10) func.rem(24);
-	border-radius: func.rem(999);
-	border: none;
-	color: var(--color-purple);
-	background: transparent;
-	cursor: pointer;
-	min-width: func.rem(150);
-}
-
-.tab_active {
-	color: var(--color-white-default);
-	background: linear-gradient(90deg, var(--color-purple), var(--color-purple-dark));
-}
+// Стили для RadioButton теперь в отдельном компоненте
 
 .title {
 	text-align: center;
@@ -204,7 +191,7 @@
 	font-weight: 800;
 	font-size: func.rem(28);
 	display: inline-block;
-	background: linear-gradient(90deg, #ff4f88, #7b49ff);
+	background: linear-gradient(90deg, #005BFF, #ff4f88);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;

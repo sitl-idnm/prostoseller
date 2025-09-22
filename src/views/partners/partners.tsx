@@ -55,7 +55,7 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           subtitle="Приводи один раз, зарабатывай долго!"
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="100%" icon={<ArrowWhiteIcon />}>Стать партнером</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="70%" icon={<ArrowWhiteIcon />}>Стать партнером</Button>
             </>
           }
           imageSrc="/images/partners_gift.png"
@@ -77,7 +77,7 @@ const Partners: FC<PartnersProps> = ({ className }) => {
           mark={<>Как стать партнером?</>}
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="100%" icon={<ArrowWhiteIcon />}>Cтать партнером</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="50%" icon={<ArrowWhiteIcon />}>Cтать партнером</Button>
             </>
           }
         />
