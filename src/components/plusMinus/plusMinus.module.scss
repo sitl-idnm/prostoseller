@@ -20,6 +20,8 @@
 		flex-direction: column;
 		gap: 16px;
 
+		align-items: center;
+
 		width: 680px;
 
 		@include mobile-large {

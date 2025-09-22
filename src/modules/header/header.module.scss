@@ -3,10 +3,14 @@
 @use "@styles/variables";
 
 .root {
-  position: relative;
+  position: fixed;
   max-width: 1600px;
   width: 100%;
   margin: 20px auto 0;
+
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
 
   &::after {
     z-index: 1;
@@ -31,7 +35,7 @@
   padding: 20px 24px;
   background-color: var(--color-white-default);
 
-  border-radius: 16px;
+  border-radius: 16px 16px 0 0;
 
   @include mixins.tablet {
     padding: 18px 16px;

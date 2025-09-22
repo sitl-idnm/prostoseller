@@ -27,6 +27,8 @@ const Content: FC<ContentProps> = ({
   contentSize,
   imageAdaptive,
   imageWrapClassName,
+  buttonsPosition,
+  buttonsStyle,
   ...props
 }) => {
   const rootClassName = classNames(styles.root, className)
@@ -80,8 +82,8 @@ const Content: FC<ContentProps> = ({
           {subDescription && (
             <div className={styles.subDescription}>{subDescription}</div>
           )}
-          <div className={styles.buttonsWrap}>
-            {buttons && <div className={styles.buttons}>{buttons}</div>}
+          <div className={classNames(styles.buttonsWrap, className?.includes('hideButtonsOnMobile') && styles.hideButtonsOnMobile)} style={{ maxWidth: buttonsStyle }}>
+            {buttons && <div className={styles.buttons} style={{ justifyContent: buttonsPosition }}>{buttons}</div>}
             {buttonsNote && <div className={styles.buttonsNote}>{buttonsNote}</div>}
           </div>
         </div>

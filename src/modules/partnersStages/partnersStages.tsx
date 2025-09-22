@@ -45,7 +45,8 @@ const PartnersStages: FC<PartnersStagesProps> = ({
   titleStage,
   textStage,
   mark,
-  buttons
+  buttons,
+  buttonsNote
 }) => {
   const rootClassName = classNames(styles.root, className)
   const [isMobile, setIsMobile] = useState(false)
@@ -213,11 +214,6 @@ const PartnersStages: FC<PartnersStagesProps> = ({
           </div>
         </div>
       </div>
-      {buttons &&
-        <div className={styles.buttons}>
-          {buttons}
-        </div>
-      }
 
       {/* Мобильная версия */}
       <div className={styles.mobile}>
@@ -229,10 +225,6 @@ const PartnersStages: FC<PartnersStagesProps> = ({
             <h2>{titleStage[0]}</h2>
             {textStage && <p>{textStage[0]}</p>}
           </div>
-        </div>
-        <div className={styles.mobileLines}>
-          <Image src={DisactiveLine} alt="Disactive Line" className={styles.disactiveLine} />
-          <Image src={ActiveLine} alt="Active Line" className={styles.activeLine} ref={MobileFirstLineRef} />
         </div>
         <div className={styles.mobileStage}>
           <div className={styles.stage}>
@@ -251,10 +243,6 @@ const PartnersStages: FC<PartnersStagesProps> = ({
             <h2>{titleStage[1]}</h2>
             {textStage && <p>{textStage[1]}</p>}
           </div>
-        </div>
-        <div className={styles.mobileLines}>
-          <Image src={DisactiveLine} alt="Disactive Line" className={styles.disactiveLine} />
-          <Image src={ActiveLine} alt="Active Line" className={styles.activeLine} ref={MobileSecondLineRef} />
         </div>
         <div className={styles.mobileStage}>
           <div className={styles.stage}>
@@ -275,6 +263,13 @@ const PartnersStages: FC<PartnersStagesProps> = ({
           </div>
         </div>
       </div>
+      {buttons &&
+        <div className={styles.buttons}>
+          {buttons}
+          {buttonsNote && <p className={styles.buttonsNote}>{buttonsNote}</p>}
+        </div>
+      }
+
     </section>
   )
 }

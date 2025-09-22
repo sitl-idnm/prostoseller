@@ -208,11 +208,18 @@
 	align-items: center;
 }
 
+.buttonsWrap.hideButtonsOnMobile {
+	@include mobile-large {
+		display: none !important;
+	}
+}
+
 .buttons {
 	display: flex;
 	flex-wrap: nowrap;
 	align-items: center;
 	gap: func.rem(12);
+	justify-content: center;
 
 	width: 100%;
 
@@ -221,6 +228,7 @@
 
 		flex-wrap: wrap;
 	}
+
 
 	a {
 		@include tablet {
@@ -251,7 +259,7 @@
 
 .buttonsNote {
 	font-size: func.rem(16);
-	font-weight: 400;
+	font-weight: 700;
 	line-height: 1.5;
 	color: rgba(24, 24, 24, 0.8);
 

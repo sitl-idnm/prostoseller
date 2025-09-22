@@ -16,6 +16,8 @@ const CardHolder: FC<CardHolderProps> = ({
 }) => {
   const rootClassName = classNames(styles.root, className)
   const [isMobile, setIsMobile] = useState(false)
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [maxScroll, setMaxScroll] = useState(0)
 
   // Определяем мобильную версию
   useEffect(() => {
@@ -28,6 +30,20 @@ const CardHolder: FC<CardHolderProps> = ({
 
     return () => window.removeEventListener('resize', checkScreenSize)
   }, [])
+
+  // Обработчик скролла для индикаторов
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLDivElement
+    setScrollPosition(target.scrollLeft)
+    setMaxScroll(target.scrollWidth - target.clientWidth)
+  }
+
+  // Определяем активную точку
+  const getActiveDot = () => {
+    if (maxScroll === 0) return 0
+    const progress = scrollPosition / maxScroll
+    return progress > 0.5 ? 1 : 0
+  }
 
   const cols = 3 // Возвращаем к 3 колонкам как было
   const remainder = cards.length % cols
@@ -60,12 +76,16 @@ const CardHolder: FC<CardHolderProps> = ({
   if (isMobile && !vertical) {
     return (
       <div className={rootClassName}>
-        <div className={styles.mobileScrollContainer}>
+        <div className={styles.mobileScrollContainer} onScroll={handleScroll}>
           {cards.map((c, idx) => (
             <div key={c.key ?? idx} className={styles.mobileCard}>
               <Card animated={c.animated} icon={c.icon} title={c.title} text={c.text} action={c.action} image={c.image} />
             </div>
           ))}
+        </div>
+        <div className={styles.scrollIndicators}>
+          <div className={classNames(styles.dot, { [styles.dotActive]: getActiveDot() === 0 })} />
+          <div className={classNames(styles.dot, { [styles.dotActive]: getActiveDot() === 1 })} />
         </div>
         <div className={styles.button}>
           <Button as="a" isRouteLink href="/login" variant="gradient" buttonWidth="100%" size="md" icon={<ArrowWhiteIcon />}>
@@ -90,6 +110,7 @@ const CardHolder: FC<CardHolderProps> = ({
         <Button as="a" isRouteLink href="/login" variant="gradient" buttonWidth="100%" size="md" icon={<ArrowWhiteIcon />}>
           Подключить бесплатно
         </Button>
+        <div className={styles.buttonsNote}>4 дня бесплатно без привязки карты</div>
       </div>
     </div>
   )

@@ -5,6 +5,25 @@
 .root {
   width: 100%;
   padding: func.rem(40) 0;
+
+  margin-top: 180px;
+}
+
+.buttonsNote {
+	font-size: func.rem(16);
+	font-weight: 700;
+	line-height: 1.5;
+	color: rgba(24, 24, 24, 0.8);
+
+  margin-top: 16px;
+
+  text-align: center;
+
+	@include mixins.tablet {
+		font-size: 16px;
+
+    display: none;
+	}
 }
 
 .wrapper {

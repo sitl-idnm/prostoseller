@@ -45,7 +45,7 @@ const PlusMinus: FC<PlusMinusProps> = ({
         </div>
       </div>
       <div className={styles.button}>
-        <Button variant="gradient" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
+        <Button buttonWidth='70%' variant="gradient" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
         <div>
           <p>4 дня бесплатно без привязки карты</p>
         </div>

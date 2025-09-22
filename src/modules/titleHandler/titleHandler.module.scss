@@ -99,15 +99,8 @@
 	font-weight: 400;
 	line-height: 1.5;
 
-	transition: all variables.$transition;
-
 	@include mixins.mobile-large {
 		display: none;
-	}
-
-	&:hover {
-		transform: translateY(-5px);
-		background-color: rgba(164, 82, 215, 0.12);
 	}
 }
 
