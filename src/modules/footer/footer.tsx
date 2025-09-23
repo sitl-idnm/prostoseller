@@ -5,9 +5,6 @@ import styles from './footer.module.scss'
 import Logo from '@icons/logo-footer.svg'
 import SocialLinks from '@/components/socialLinks/socialLinks'
 
-import IconLocation from '@icons/location.svg'
-import MailIcon from '@icons/mail_dog.svg'
-import PhoneIcon from '@icons/footer_phone.svg'
 import Wrapper from '@/ui/wrapper/wrapper'
 
 const Footer: FC = () => (
@@ -19,63 +16,36 @@ const Footer: FC = () => (
             <Link href="/" className={styles.logo}>
               <Logo />
             </Link>
-            <div className={styles.contactsMobile}>
-              <ul className={styles.contactList}>
-                <li className={styles.contactItem}>
-                  <span className={styles.icon}><IconLocation /></span>
-                  <span>г. Москва ул.Рябиновая д.26 стр.8 БЦ Wast Plaza</span>
-                </li>
-                <li className={styles.contactItem}>
-                  <span className={styles.icon}><PhoneIcon /></span>
-                  <a href="tel:+74953637386">+7(495)363-73-86</a>
-                </li>
-                <li className={styles.contactItem}>
-                  <span className={styles.icon}><MailIcon /></span>
-                  <a href="mailto:info@prostoseller.com">info@prostoseller.com</a>
-                </li>
-              </ul>
-            </div>
             <p className={styles.subtitle}>
-              Ваш главный аналитик для увеличения доходов на маркетплейсах
+              Удваиваем вашу прибыль на <span className={styles.wb}>Wildberries</span> и <span className={styles.ozon}>Ozon</span>
             </p>
-            <SocialLinks />
-          </div>
-
-          <div className={styles.contacts}>
-            <div className={styles.title}>Контакты</div>
-            <ul className={styles.contactList}>
-              <li className={styles.contactItem}>
-                <span className={styles.icon}><IconLocation /></span>
-                <span>г. Москва ул.Рябиновая д.26 стр.8 БЦ Wast Plaza</span>
-              </li>
-              <li className={styles.contactItem}>
-                <span className={styles.icon}><PhoneIcon /></span>
-                <a href="tel:+74953637386">+7(495)363-73-86</a>
-              </li>
-              <li className={styles.contactItem}>
-                <span className={styles.icon}><MailIcon /></span>
-                <a href="mailto:info@prostoseller.com">info@prostoseller.com</a>
-              </li>
-            </ul>
           </div>
 
           <div className={styles.navCol}>
             <ul className={styles.links}>
               <li><Link href="/">Главная</Link></li>
-              <li><Link href="/login">Войти/зарегистрироваться</Link></li>
-              <li><Link href="/company">О компании</Link></li>
-              <li><Link href="/contacts">Контакты</Link></li>
-              <li><Link href="/blog">Блог</Link></li>
+              <li><Link href="/login">Зарегистрироваться</Link></li>
+              <li><Link href="/login">Войти</Link></li>
+              <li><Link href="/price">Тарифы</Link></li>
+              <li><Link href="/how-it-works">Как работает Prostoseller</Link></li>
             </ul>
           </div>
 
           <div className={styles.navCol}>
             <ul className={styles.links}>
-              <li><Link href="/how-it-works">Как работает Prostoseller</Link></li>
+              <li><Link href="/how-it-works">Пригласи друга</Link></li>
               <li><Link href="/partners">Партнерская программа</Link></li>
-              <li><Link href="/inviteFriend">Пригласи друга</Link></li>
-              <li><Link href="/price">Тарифы</Link></li>
-              <li><Link href="/thanks">DEMO - кабинет</Link></li>
+              <li><Link href="/inviteFriend">О компании</Link></li>
+              <li><Link href="/price">Блог</Link></li>
+            </ul>
+          </div>
+
+          <div className={styles.navCol}>
+            <ul className={styles.links}>
+              <li><Link href="/contacts">Контакты</Link></li>
+              <li><SocialLinks /></li>
+              <li><Link href="/inviteFriend">Поддержка</Link></li>
+              <li><Link href="mailto:info@prostoseller.com">info@prostoseller.com</Link></li>
             </ul>
           </div>
         </div>

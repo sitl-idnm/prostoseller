@@ -5,4 +5,5 @@ export interface PartnersStagesProps {
   textStage?: Array<React.ReactNode>
   mark?: React.ReactNode
   buttons?: React.ReactNode
+  buttonsNote?: string
 }

@@ -5,6 +5,29 @@
 .root {
   width: 100%;
   padding: func.rem(40) 0;
+
+  margin-top: 180px;
+
+  @include mixins.mobile-large {
+    margin-top: 136px;
+  }
+}
+
+.buttonsNote {
+	font-size: func.rem(16);
+	font-weight: 700;
+	line-height: 1.5;
+	color: rgba(24, 24, 24, 0.8);
+
+  margin-top: 16px;
+
+  text-align: center;
+
+	@include mixins.tablet {
+		font-size: 16px;
+
+    display: none;
+	}
 }
 
 .wrapper {
@@ -88,7 +111,7 @@
   position: absolute;
   top: 20px;
   right: -4px;
-  z-index: 10;
+  z-index: 1;
   width: 120px;
   height: 120px;
 }

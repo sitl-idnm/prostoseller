@@ -19,6 +19,17 @@
 	}
 }
 
+.buttonsNote {
+	font-size: func.rem(16);
+	font-weight: 700;
+	line-height: 1.5;
+	color: rgba(24, 24, 24, 0.8);
+
+	@include tablet {
+		font-size: 16px;
+	}
+}
+
 .grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -103,4 +114,24 @@
 	min-width: 170px;
 	display: flex;
 	height: 249px;
+}
+
+/* Индикаторы прокрутки */
+.scrollIndicators {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+	margin: 16px 0;
+}
+
+.dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: rgba(24, 24, 24, 0.2);
+	transition: background-color 0.3s ease;
+}
+
+.dotActive {
+	background-color: #A452D7;
 }

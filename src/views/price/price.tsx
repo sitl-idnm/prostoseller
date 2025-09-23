@@ -35,20 +35,20 @@ const Price: FC<PriceProps> = ({
   return (
     <main className={rootClassName}>
       <Wrapper className={styles.wrapper}>
-        {!isMobileLarge && (
-          <Content
-            variant="split"
-            backgroundRoot="url('/images/pricebackground.png') no-repeat center center / cover"
-            backgroundContent="transparent"
-            title="Тарифы"
-            subtitle="Мы знаем как важно получать выгоду селлерам, поэтому сделали скидку при оплате тарифа на шесть месяцев!"
-            textColor={true}
-            contentSize="minmax(0, 65%) minmax(0, 35%)"
-            imageSrc="/images/monitor.png"
-            imageAlt="Скриншот кабинета"
-            className={styles.content}
-          />
-        )}
+        <Content
+          variant="split"
+          backgroundRoot="url('/images/pricebackground.png') no-repeat center center / cover"
+          backgroundContent="transparent"
+          title="Тарифы"
+          subtitle= {!isMobileLarge ?"Мы знаем как важно получать выгоду селлерам, поэтому сделали скидку при оплате тарифа на шесть месяцев!" : null}
+          textColor={true}
+          contentSize="minmax(0, 65%) minmax(0, 35%)"
+          imageSrc="/images/monitor.png"
+          imageAlt={!isMobileLarge ? "Скриншот кабинета" : ''}
+          className={styles.content}
+          imageAdaptive='/'
+          description={isMobileLarge ? "Мы знаем как важно получать выгоду селлерам, поэтому сделали скидку при оплате тарифа на шесть месяцев!" : null}
+        />
         <PriceModule
           period={period}
           onPeriodChange={setPeriod}

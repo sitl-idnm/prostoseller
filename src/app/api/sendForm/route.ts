@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { valuesToHtml, sendEmailViaSmtp } from '@/shared/api/mail'
 
+export const runtime = 'nodejs'
+
 export async function POST(req: NextRequest) {
 	try {
 		const body = await req.json()

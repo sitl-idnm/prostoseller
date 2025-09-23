@@ -37,91 +37,148 @@
 
 .switch {
 	display: flex;
-	gap: 12px;
+	gap: 24px;
+	max-width: 650px;
 
 	@include mobile-large {
-		flex-direction: column;
-		align-items: stretch;
+		flex-direction: row;
+		align-items: flex-start;
 		width: 100%;
+		gap: 12px;
+
+		align-self: center;
+	}
+}
+
+.periodOption {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	@include mobile-large {
+		flex: 1;
+	}
+}
+
+.periodDescription {
+	font-size: 14px;
+	color: #333333;
+	line-height: 1.4;
+	margin-top: 4px;
+	text-align: center;
+	transition: color 0.3s ease;
+
+	@include mobile-large {
+		font-size: 12px;
+		line-height: 1.3;
+		text-align: left;
+	}
+
+	&_active {
+		color: #333333;
+		font-weight: 700;
+	}
+
+	&_purple {
+		color: white;
+		background-color: rgba(164, 82, 215, 1);
+		padding: 4px;
+		border-radius: 32px;
+	}
+
+	&_percent {
+		background-color: rgba(255, 255, 255, 1);
+		padding: 4px;
+		border-radius: 32px;
+	}
+}
+
+.periodDescriptionMobile {
+	align-self: center;
+
+	div {
+		text-align: center;
 	}
 }
 
 .grid {
-
 	/* mobile carousel */
-	@media (max-width: 767px) {
+	@include mobile-large {
 		display: block;
 		position: relative;
-		padding: 0; /* full width cards */
 		overflow: hidden;
+		width: 100%;
+		margin: 0 auto;
+		max-width: 400px;
+		height: auto;
 	}
 }
 
 .card {
-	border-radius: func.rem(16);
+	border-radius: 16px;
 	background: var(--color-white-default);
-	padding: func.rem(20);
+	padding: 20px;
 
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 
-	@media (max-width: 767px) {
+	@include mobile-large {
 		width: 100%;
-		flex: 0 0 100%;
-		/* stacked via JS translateX on track */
+		max-width: 350px;
+		padding: 20px;
+		box-sizing: border-box;
+		margin: 0 auto;
 	}
 }
 
 .carouselTrack {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: func.rem(16);
+	gap: 16px;
 
-	@media (max-width: 767px) {
-		display: flex;
-		gap: func.rem(16);
-		transition: transform 0.3s ease;
-		/* Ensure slides have no extra margins affecting offset */
-		> * { margin: 0; }
-	}
-
-	/* Reverse visual order on mobile-large */
 	@include mobile-large {
-		> :nth-child(1) { order: 3; }
-		> :nth-child(2) { order: 2; }
-		> :nth-child(3) { order: 1; }
-	}
-}
-
-.mobileNav {
-	display: none;
-	@media (max-width: 767px) {
 		display: flex;
-		gap: func.rem(8);
-		justify-content: flex-end;
-		margin-bottom: func.rem(12);
+		width: 100%;
+		gap: 8px;
+
+		> * {
+			flex: 0 0 100%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: flex-start;
+		}
 	}
 }
 
-.navBtn {
-	@media (max-width: 767px) {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 40px;
-		height: 40px;
-		border-radius: 999px;
-		border: 1px solid #d6c4ff;
-		background: #fff;
-		color: var(--color-purple);
-		cursor: pointer;
-		transition: background variables.$transition, transform variables.$transition;
-		&:hover { background: #f7f2ff; transform: translateY(-1px); }
-		&:active { transform: translateY(0); }
-		svg { width: 20px; height: 20px; display: block; }
+/* Индикаторы карусели */
+.carouselIndicators {
+	display: none;
+	justify-content: center;
+	gap: 8px;
+	margin: 16px 0;
+
+	@include mobile-large {
+		display: flex;
 	}
 }
+
+.carouselDot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: rgba(24, 24, 24, 0.2);
+	transition: background-color 0.3s ease;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+
+.carouselDotActive {
+	background-color: #A452D7;
+}
+
 
 .planTitle {
 	font-weight: 700;
@@ -176,14 +233,9 @@
 		font-size: 12px;
 	}
 
-	&:hover {
-		transform: scale(1.05);
-		color: var(--color-primary);
-	}
-
 	svg {
-		width: func.rem(20);
-		height: func.rem(20);
+		width: 13px;
+		height: 13px;
 		flex: 0 0 auto;
 	}
 }
@@ -207,6 +259,7 @@
 	align-items: center;
 	gap: 16px;
 	margin-top: 12px;
+	width: 100%;
 
 	a {
 		width: 100%;
@@ -233,7 +286,7 @@
 	line-height: 1.5;
 	display: inline-block;
 
-	background: linear-gradient(75deg, #FA457E 0%, #7B49FF 100%);
+	background: linear-gradient(75deg, #005BFF 0%, #FA457E 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;

@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import styles from './login.module.scss'
 import { LoginProps } from './login.types'
 import { Wrapper } from '@/ui/wrapper'
-import { Form, Button } from '@/ui'
+import { Form, Button, RadioButton } from '@/ui'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import type { FormFieldConfig } from '@/ui/form/form.types'
@@ -80,23 +80,24 @@ const Login: FC<LoginProps> = ({
   return (
     <main className={rootClassName}>
       <Wrapper className={styles.wrapper}>
-        {active === 'partner' && (
-          <div className={styles.backLink} onClick={() => switchMode('auth')}>
-            <span aria-hidden>←</span> Назад к авторизации
-          </div>
-        )}
         <div className={styles.content}>
           <div className={classNames(styles.grid, { [styles.gridWithImage]: active === 'auth' })}>
             <div className={styles.formCol}>
               <h2>{formConfig.title}</h2>
               {formConfig.tabs === 'auth_partner' && (
                 <div className={styles.tabs}>
-                  <Button type="button" variant={active === 'auth' ? 'purple' : 'purpleOutline'} onClick={() => switchMode('auth')}>
+                  <RadioButton
+                    isSelected={active === 'auth'}
+                    onClick={() => switchMode('auth')}
+                  >
                     Авторизация
-                  </Button>
-                  <Button type="button" variant={active === 'partner' ? 'purple' : 'purpleOutline'} onClick={() => switchMode('partner')}>
+                  </RadioButton>
+                  <RadioButton
+                    isSelected={active === 'partner'}
+                    onClick={() => switchMode('partner')}
+                  >
                     Регистрация для партнеров
-                  </Button>
+                  </RadioButton>
                 </div>
               )}
               <Form
@@ -114,12 +115,14 @@ const Login: FC<LoginProps> = ({
                 }}
                 submitLabel={<span>{formConfig.submit}</span>}
                 checkboxesAfterSubmit={active !== 'auth'}
+                buttonWidth={active === 'auth' ? '100%' : '70%'}
+                className={styles.formButton}
               />
               {formConfig.aux && (
-                <div className={styles.ctaNote} style={{ gridColumn: '1 / -1' }}>
+                <div className={classNames(styles.ctaNote, active === 'register' && styles.ctaNoteCentered)} style={{ gridColumn: '1 / -1' }}>
                   {formConfig.aux.text}
                   <div style={{ marginTop: 8 }}>
-                    <Button type="button" variant="gradientOutline" onClick={() => switchMode(formConfig.aux!.to)} buttonWidth="100%">
+                    <Button type="button" variant="gradientOutline" onClick={() => switchMode(formConfig.aux!.to)} buttonWidth={active === 'auth' ? '100%' : '70%'}>
                       {formConfig.aux!.cta}
                     </Button>
                   </div>

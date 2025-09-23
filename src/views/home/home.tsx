@@ -47,9 +47,12 @@ const cards = [
     icon: <RykiIcon />,
     title: 'Начните управлять своим бизнесом уже сегодня!',
     action: (
-      <Button as="a" isRouteLink href="/login" variant="gradient" size="md" icon={<ArrowWhiteIcon />}>
-        Подключить бесплатно
-      </Button>
+      <>
+        <Button as="a" isRouteLink href="/login" variant="gradient" size="md" icon={<ArrowWhiteIcon />}>
+          Подключить бесплатно
+        </Button>
+        <div className={styles.buttonsNote}>4 дня бесплатно без привязки карты</div>
+      </>
     ),
     image: '/images/end_laptop.png',
     animated: true,
@@ -81,12 +84,12 @@ const Home: FC<HomeProps> = ({ className }) => {
           backgroundContent="#fff"
           title={<>Удваиваем Вашу <span className={`${styles.iconwb} ${styles.icon_profit}`}><WbIcon /></span> прибыль на&nbsp;<span className={styles.wb}>Wildberries</span> и&nbsp;<span className={styles.ozon}>Ozon</span><span className={styles.icon_profit}><OzonIcon /></span></>}
           titleSize="lgmin"
+          titleTagName="h1"
           subtitle={<><span className={styles.purple}>8 из 10</span> пользователей <span className={styles.purple}>увеличивают прибыль</span> в среднем на <span className={styles.purple}>18%</span> уже на втором месяце использования сервиса</>}
           description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="70%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
-              <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradientOutline" buttonWidth="30%">Demo-кабинет</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="60%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
             </>
           }
           buttonsNote="4 дня бесплатно без привязки карты"
@@ -149,10 +152,10 @@ const Home: FC<HomeProps> = ({ className }) => {
           titleStage={[<>Подключите магазин</>, <>Сервис автоматически соберёт и рассчитает все показатели</>, <>Управлять бизнесом теперь станет значительно проще</>]}
           textStage={[<>Интеграция в один клик — уже через минуту данные в системе!</>, <>Вы отдыхаете — сервис считает, анализирует и показывает ключевые цифры</>, <>Понимайте, что работает, а что — нет. Принимайте решения на основе точных данных, а не на интуиции.</>]}
           mark={<>Как работает <b>Prostoseller</b></>}
+          buttonsNote="4 дня бесплатно без привязки карты"
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="48%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
-              <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradientOutline" buttonWidth="48%">Demo-кабинет</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="50%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
             </>
           }
         />
@@ -182,14 +185,16 @@ const Home: FC<HomeProps> = ({ className }) => {
             backgroundRoot="url('/images/prostoseller_free.png') no-repeat center center / cover"
             backgroundContent='transparent'
             title={<>Приглашайте друзей в <span className={styles.purple}>Prostoseller</span> и пользуйтесь сервисом бесплатно</>}
-            titleTagName="h1"
+            titleTagName="h3"
             titleSize="sm"
             subtitle="За каждого друга - по одному бесплатному месяцу тебе и ему"
             description="Публикуйте свой пригласительный код в социальных сетях, делитесь кодом с друзьями и получайте свой бонус за каждое его использование"
             subDescription="Пригласил 12 друзей - ДЕРЖИ ГОД БЕСПЛАТНОЙ АНАЛИТИКИ"
-            buttons={<Button as="a" isRouteLink href={LINKS.invite ?? LINKS.connectFree} style={{ width: '100%' }} variant="gradient" icon={<ArrowWhiteIcon />}>Пользоваться бесплатно</Button>}
+            buttons={<Button as="a" isRouteLink href={LINKS.invite ?? LINKS.connectFree} style={{ width: '60%' }} variant="gradient" icon={<ArrowWhiteIcon />}>Пользоваться бесплатно</Button>}
             imageSrc="/images/box_free.png"
             imageAlt="Скриншот кабинета"
+            contentSize='minmax(0, 60%) minmax(0, 40%)'
+            buttonsPosition='flex-start'
           />
         </TitleHandler>
 
@@ -209,13 +214,17 @@ const Home: FC<HomeProps> = ({ className }) => {
 
           description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
 
+          buttonsPosition='flex-start'
+          buttonsStyle='70%'
           buttons={
             <>
               <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradient" icon={<ArrowWhiteIcon />} buttonWidth="100%">Demo-кабинет</Button>
             </>
           }
+          buttonsNote="4 дня бесплатно без привязки карты"
           imageSrc="/images/laptop-see.png"
           imageAlt="Скриншот кабинета"
+          className="hideButtonsOnMobile"
         />
         <Price />
         <TitleHandler
@@ -237,11 +246,11 @@ const Home: FC<HomeProps> = ({ className }) => {
         {/* Литой */}
         <Content
           variant="split"
-          backgroundRoot={isMobileLarge ? "url('/images/gradientMobileContent.png') no-repeat center center / cover" : "url('/images/gradientBallBackground.png') no-repeat center center / cover"}
+          backgroundRoot={'linear-gradient(90deg, rgba(250, 69, 126, 1) 0%, rgba(0, 91, 255, 1) 100%)'}
           backgroundContent="transparent"
           title={<><span className={styles.white}>Начните управлять своим бизнесом уже сегодня!</span> <GraphIcon className={styles.graphIcon} /></>}
           titleTagName="h2"
-          titleSize="md"
+          titleSize="sm"
           buttons={<Button as="a" isRouteLink href={LINKS.connectFree} variant="white" style={{ width: '100%' }} icon={<ArrowIcon />}>Подключить бесплатно</Button>}
           imageSrc="/images/start_laptop.png"
           imageAlt="Скриншот кабинета"

@@ -42,4 +42,8 @@ export interface ContentProps {
   imageAdaptive?: string
   /** CSS класс для обертки изображения */
   imageWrapClassName?: string
+  /** Позиция кнопок */
+  buttonsPosition?: string
+  /** Стили для контейнера кнопок */
+  buttonsStyle?: string
 }

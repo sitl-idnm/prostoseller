@@ -9,8 +9,10 @@ import { NavigationProps } from './navigation.types'
 import BurgerIcon from '@icons/burger.svg'
 import Link from 'next/link'
 
-import IconAdmin from '@icons/admin.svg'
 import Logo from '@/modules/header/logo'
+import { Portal } from '@/service/portal'
+import { Button } from '@/ui'
+import { SocialLinks } from '@/components'
 
 const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
   const rootClassName = classNames(styles.root, className)
@@ -18,9 +20,9 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    if (!isMobile) return
-
-    const unlock = () => {
+    if (!isMobile) {
+      // Ensure scroll is unlocked if switching to desktop
+      const html = document.documentElement
       const top = document.body.style.top
       document.body.style.position = ''
       document.body.style.top = ''
@@ -28,13 +30,19 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
       document.body.style.right = ''
       document.body.style.width = ''
       document.body.style.overflow = ''
+      document.body.dataset.scrollLocked = ''
       if (top) {
         const y = parseInt(top || '0', 10)
-        window.scrollTo(0, -y)
+        const prev = html.style.scrollBehavior
+        html.style.scrollBehavior = 'auto'
+        window.scrollTo({ top: -y, left: 0, behavior: 'auto' })
+        html.style.scrollBehavior = prev
       }
+      return
     }
 
-    if (isOpen) {
+    const lock = () => {
+      if (document.body.dataset.scrollLocked === '1') return
       const scrollY = window.scrollY
       document.body.style.position = 'fixed'
       document.body.style.top = `-${scrollY}px`
@@ -42,6 +50,31 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
       document.body.style.right = '0'
       document.body.style.width = '100%'
       document.body.style.overflow = 'hidden'
+      document.body.dataset.scrollLocked = '1'
+    }
+
+    const unlock = () => {
+      if (document.body.dataset.scrollLocked !== '1') return
+      const html = document.documentElement
+      const top = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+      document.body.dataset.scrollLocked = ''
+      if (top) {
+        const y = parseInt(top || '0', 10)
+        const prev = html.style.scrollBehavior
+        html.style.scrollBehavior = 'auto'
+        window.scrollTo({ top: -y, left: 0, behavior: 'auto' })
+        html.style.scrollBehavior = prev
+      }
+    }
+
+    if (isOpen) {
+      lock()
       return () => unlock()
     } else {
       unlock()
@@ -87,36 +120,44 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
         </div>
         {
           isOpen && (
-            <div className={styles.root} onClick={() => setIsOpen(false)}>
-              <div className={styles.wrapper}>
-                <div className={styles.menu} onClick={(e) => e.stopPropagation()}>
-                  <button
-                    type="button"
-                    className={styles.close}
-                    aria-label="Закрыть меню"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <span className={styles.closeIcon} aria-hidden>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                        <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                      </svg>
-                    </span>
-                  </button>
-                  <ul>
-                    <li onClick={() => setIsOpen(false)}><Logo /></li>
-                    <li><Link href="/login" className={styles.loginBtn} onClick={() => setIsOpen(false)}>
-                      <span className={styles.icon}><IconAdmin /></span>Войти / зарегистрироваться</Link></li>
-                    <li><Link href="/price" onClick={() => setIsOpen(false)}>Тарифы</Link></li>
-                    <li><Link href="/inviteFriend" onClick={() => setIsOpen(false)}>Пригласи друга</Link></li>
-                    <li><Link href="/partners" onClick={() => setIsOpen(false)}>Партнерская программа</Link></li>
-                    <li><Link href="/company" onClick={() => setIsOpen(false)}>О компании</Link></li>
-                    <li><Link href="/contacts" onClick={() => setIsOpen(false)}>Контакты</Link></li>
-                    <li><Link href="/blog" onClick={() => setIsOpen(false)}>Блог</Link></li>
-                  </ul>
+            <Portal selector="#modal-root">
+              <div className={styles.root} onClick={() => setIsOpen(false)}>
+                <div className={styles.wrapper}>
+                  <div className={styles.menu} onClick={(e) => e.stopPropagation()}>
+                    <div className={styles.menuTop}>
+                      <Logo />
+                      <div className={styles.menuTopRight}>
+                        <SocialLinks />
+                        <button
+                          type="button"
+                          className={styles.burger}
+                          aria-label="Закрыть меню"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <span className={styles.burgerIcon}>
+                            <BurgerIcon />
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className={styles.menuCta}>
+                      <Button isRouteLink as='a' href={'/login'} variant='gradient' buttonWidth="90%">Зарегистрироваться</Button>
+                      <Button isRouteLink as='a' href={'/login'} variant='gradientOutline' buttonWidth="70%">Войти</Button>
+                    </div>
+
+                    <ul>
+                      <li><Link href="/price" onClick={() => setIsOpen(false)}>Тарифы</Link></li>
+                      <li><Link href="/inviteFriend" onClick={() => setIsOpen(false)}>Пригласи друга</Link></li>
+                      <li><Link href="/partners" onClick={() => setIsOpen(false)}>Партнерская программа</Link></li>
+                      <li><Link href="/company" onClick={() => setIsOpen(false)}>О компании</Link></li>
+                      <li><Link href="/contacts" onClick={() => setIsOpen(false)}>Контакты</Link></li>
+                      <li><Link href="/blog" onClick={() => setIsOpen(false)}>Блог</Link></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Portal>
           )
         }
       </>

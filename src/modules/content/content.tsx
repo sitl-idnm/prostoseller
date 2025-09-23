@@ -27,6 +27,8 @@ const Content: FC<ContentProps> = ({
   contentSize,
   imageAdaptive,
   imageWrapClassName,
+  buttonsPosition,
+  buttonsStyle,
   ...props
 }) => {
   const rootClassName = classNames(styles.root, className)
@@ -76,20 +78,22 @@ const Content: FC<ContentProps> = ({
             </Heading>
           )}
           {subtitle && <div className={styles.subtitle} style={{ color: txtColor }}>{subtitle}</div>}
-          {description && <div className={styles.description}>{description}</div>}
+          {description && <div className={styles.description} style={{ color: txtColor }}>{description}</div>}
           {subDescription && (
             <div className={styles.subDescription}>{subDescription}</div>
           )}
-          <div className={styles.buttonsWrap}>
-            {buttons && <div className={styles.buttons}>{buttons}</div>}
+          <div className={classNames(styles.buttonsWrap, className?.includes('hideButtonsOnMobile') && styles.hideButtonsOnMobile)} style={{ maxWidth: buttonsStyle }}>
+            {buttons && <div className={styles.buttons} style={{ justifyContent: buttonsPosition }}>{buttons}</div>}
             {buttonsNote && <div className={styles.buttonsNote}>{buttonsNote}</div>}
           </div>
         </div>
 
         {variant === 'split' && imageSrc && (
-          <div className={classNames(styles.imageWrap, imageWrapClassName)}>
-            <Image src={currentImageSrc || ''} alt={imageAlt} width={0} height={0} quality={100} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
-          </div>
+          imageAdaptive === '/' ? null : (
+            <div className={classNames(styles.imageWrap, imageWrapClassName)}>
+              <Image src={currentImageSrc || ''} alt={imageAlt} width={0} height={0} quality={100} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+            </div>
+          )
         )}
       </div>
     </section>

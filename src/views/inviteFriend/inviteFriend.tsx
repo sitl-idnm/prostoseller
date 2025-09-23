@@ -29,9 +29,10 @@ const InviteFriend: FC<InviteFriendProps> = ({
           subtitle="За каждого друга - по одному бесплатному месяцу тебе и ему"
           description="Публикуйте свой пригласительный код в социальных сетях, делитесь кодом с друзьями и получайте свой бонус за каждое его использование"
           subDescription="Пригласил 12 друзей - ДЕРЖИ ГОД БЕСПЛАТНОЙ АНАЛИТИКИ"
-          buttons={<Button as="a" isRouteLink href={LINKS.invite ?? LINKS.connectFree} style={{ width: '100%' }} variant="gradient" icon={<ArrowWhiteIcon />}>Пользоваться бесплатно</Button>}
+          buttons={<Button as="a" isRouteLink href={LINKS.invite ?? LINKS.connectFree} style={{ width: '50%' }} variant="gradient" icon={<ArrowWhiteIcon />}>Пользоваться бесплатно</Button>}
           imageSrc="/images/box_free.png"
           imageAlt="Скриншот кабинета"
+          contentSize='minmax(0, 59%) minmax(0, 41%)'
         />
         <TitleHandler
           title={<>Наши <span className={styles.purple}>партнеры</span></>}

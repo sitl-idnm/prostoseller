@@ -3,12 +3,22 @@
 @use '@styles/mixins';
 @use '@styles/variables';
 
-.root {}
+.root {
+  margin-top: 180px;
+
+  @include mixins.mobile-large {
+    margin-top: 136px;
+  }
+}
 
 .tabs {
   display: flex;
-  gap: func.rem(8);
+  gap: func.rem(24);
   margin-bottom: func.rem(16);
+
+  @include mixins.tablet-small {
+    gap: func.rem(16);
+  }
 }
 
 .content {
@@ -23,18 +33,15 @@
   }
 }
 
-.tab {
-  padding: func.rem(8) func.rem(14);
-  border-radius: 20px;
-  border: 1px solid rgba(0,0,0,0.12);
-  background: #fff;
-  cursor: pointer;
-}
-
-.tab_active {
-  background: linear-gradient(90deg,#f45be0,#6c4af2);
-  color: #fff;
-  border-color: transparent;
+// Стили для кнопок формы - на мобильных делаем 100% ширины
+.formButton {
+  :global(.submit) {
+    @include mixins.mobile-large {
+      button {
+        width: 100% !important;
+      }
+    }
+  }
 }
 
 .grid {
@@ -64,6 +71,13 @@
   margin-top: func.rem(12);
   font-size: func.rem(14);
   color: rgba(0,0,0,0.6);
+}
+
+.ctaNoteCentered {
+  div {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .backLink {

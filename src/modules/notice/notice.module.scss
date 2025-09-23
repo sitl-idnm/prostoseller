@@ -21,8 +21,12 @@
 		color: #333;
 		text-align: center;
 
-		@include mobile-large {
+		@include tablet {
 			font-size: 20px;
+		}
+
+		@include mobile-large {
+			font-size: 18px;
 			line-height: 1.4;
 		}
 	}
