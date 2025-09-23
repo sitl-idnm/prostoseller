@@ -78,7 +78,7 @@ const Content: FC<ContentProps> = ({
             </Heading>
           )}
           {subtitle && <div className={styles.subtitle} style={{ color: txtColor }}>{subtitle}</div>}
-          {description && <div className={styles.description}>{description}</div>}
+          {description && <div className={styles.description} style={{ color: txtColor }}>{description}</div>}
           {subDescription && (
             <div className={styles.subDescription}>{subDescription}</div>
           )}
@@ -89,9 +89,11 @@ const Content: FC<ContentProps> = ({
         </div>
 
         {variant === 'split' && imageSrc && (
-          <div className={classNames(styles.imageWrap, imageWrapClassName)}>
-            <Image src={currentImageSrc || ''} alt={imageAlt} width={0} height={0} quality={100} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
-          </div>
+          imageAdaptive === '/' ? null : (
+            <div className={classNames(styles.imageWrap, imageWrapClassName)}>
+              <Image src={currentImageSrc || ''} alt={imageAlt} width={0} height={0} quality={100} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+            </div>
+          )
         )}
       </div>
     </section>

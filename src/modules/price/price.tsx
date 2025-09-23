@@ -28,6 +28,7 @@ const Price: FC<PriceProps> = ({
   const [innerPeriod, setInnerPeriod] = useState<BillingPeriod>(defaultPeriod)
   const [currentPlanIndex, setCurrentPlanIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
   const activePeriod = period || innerPeriod
 
   const setPeriod = (p: BillingPeriod) => {
@@ -129,10 +130,23 @@ const Price: FC<PriceProps> = ({
   // store previous prices to avoid animating 0 -> 0
   const prevPricesRef = useRef<Record<string, number>>({})
 
+  // Определение мобильного устройства
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 965) // mobile-large breakpoint
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   // Автоматическое пролистывание карусели на мобильных
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const isMobile = window.innerWidth <= 768
     if (!isMobile || !isAutoPlaying) return
 
     const interval = setInterval(() => {
@@ -140,18 +154,18 @@ const Price: FC<PriceProps> = ({
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [isAutoPlaying, plansToRender.length])
+  }, [isMobile, isAutoPlaying, plansToRender.length])
 
   // Обновление позиции карусели
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const isMobile = window.innerWidth <= 768
     if (!isMobile || !trackRef.current) return
 
     const track = trackRef.current
-    const offset = currentPlanIndex * 100
-    track.style.transform = `translateX(-${offset}%)`
-  }, [currentPlanIndex])
+    const offset = currentPlanIndex * 358
+    track.style.transform = `translateX(-${offset}px)`
+    track.style.transition = 'transform 0.5s ease-in-out'
+  }, [isMobile, currentPlanIndex])
 
   // Touch/swipe functionality
   const trackRef = useRef<HTMLDivElement | null>(null)
@@ -159,6 +173,7 @@ const Price: FC<PriceProps> = ({
   const touchEndRef = useRef<{ x: number; y: number } | null>(null)
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    if (!isMobile) return
     touchStartRef.current = {
       x: e.touches[0].clientX,
       y: e.touches[0].clientY
@@ -167,7 +182,7 @@ const Price: FC<PriceProps> = ({
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!touchStartRef.current) return
+    if (!isMobile || !touchStartRef.current) return
     touchEndRef.current = {
       x: e.touches[0].clientX,
       y: e.touches[0].clientY
@@ -175,7 +190,7 @@ const Price: FC<PriceProps> = ({
   }
 
   const handleTouchEnd = () => {
-    if (!touchStartRef.current || !touchEndRef.current) return
+    if (!isMobile || !touchStartRef.current || !touchEndRef.current) return
 
     const startX = touchStartRef.current.x
     const endX = touchEndRef.current.x
@@ -359,11 +374,13 @@ const Price: FC<PriceProps> = ({
                 isSelected={activePeriod === 'sixMonths'}
                 onClick={() => setPeriod('sixMonths')}
               >
-                6 месяцев со скидкой 20%
+                {isMobile ? <>6 месяцев <span className={activePeriod === 'sixMonths' ? styles.periodDescription_purple : styles.periodDescription_percent}>-20%</span></> : '6 месяцев со скидкой 20%'}
               </RadioButton>
-              <div className={classNames(styles.periodDescription, activePeriod === 'sixMonths' && styles.periodDescription_active)}>
-                Пользователю доступны в отчете данные за оплаченный месяц и 5 предыдущих месяцев
-              </div>
+              {!isMobile && (
+                <div className={classNames(styles.periodDescription, activePeriod === 'sixMonths' && styles.periodDescription_active)}>
+                  Пользователю доступны в отчете данные за оплаченный месяц и 5 предыдущих месяцев
+                </div>
+              )}
             </div>
             <div className={styles.periodOption}>
               <RadioButton
@@ -371,14 +388,29 @@ const Price: FC<PriceProps> = ({
                 isSelected={activePeriod === 'month'}
                 onClick={() => setPeriod('month')}
               >
-                1 месяц без скидки
+                {isMobile ? '1 месяц' : '1 месяц без скидки'}
               </RadioButton>
-              <div className={classNames(styles.periodDescription, activePeriod === 'month' && styles.periodDescription_active)}>
-                Пользователю доступны в отчете данные за оплаченный месяц и предыдущий месяц
-              </div>
+              {!isMobile && (
+                <div className={classNames(styles.periodDescription, activePeriod === 'month' && styles.periodDescription_active)}>
+                  Пользователю доступны в отчете данные за оплаченный месяц и предыдущий месяц
+                </div>
+              )}
             </div>
           </div>
         )}
+        {isMobile && (
+          <div className={styles.periodDescriptionMobile}>
+            {activePeriod === 'sixMonths' ? (
+              <div className={classNames(styles.periodDescription, activePeriod === 'sixMonths' && styles.periodDescription_active)}>
+              Пользователю доступны в отчете данные за оплаченный месяц и 5 предыдущих месяцев
+            </div>
+            ) : (
+              <div className={classNames(styles.periodDescription, activePeriod === 'month' && styles.periodDescription_active)}>
+              Пользователю доступны в отчете данные за оплаченный месяц и предыдущий месяц
+            </div>
+            )}
+          </div>
+          )}
       </div>
       <div className={styles.grid}>
         <div

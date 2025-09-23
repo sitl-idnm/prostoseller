@@ -106,12 +106,16 @@ const CardHolder: FC<CardHolderProps> = ({
           </div>
         ))}
       </div>
-      <div className={styles.button}>
-        <Button as="a" isRouteLink href="/login" variant="gradient" buttonWidth="100%" size="md" icon={<ArrowWhiteIcon />}>
-          Подключить бесплатно
-        </Button>
-        <div className={styles.buttonsNote}>4 дня бесплатно без привязки карты</div>
-      </div>
+      {
+        !vertical && (
+        <div className={styles.button}>
+          <Button as="a" isRouteLink href="/login" variant="gradient" buttonWidth="100%" size="md" icon={<ArrowWhiteIcon />}>
+            Подключить бесплатно
+          </Button>
+          <div className={styles.buttonsNote}>4 дня бесплатно без привязки карты</div>
+        </div>
+        )
+      }
     </div>
   )
 }
