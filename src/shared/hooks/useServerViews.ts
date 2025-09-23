@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 export const useServerViews = (postId: string, initialViews: number) => {
 	const [views, setViews] = useState(initialViews)
@@ -30,7 +30,7 @@ export const useServerViews = (postId: string, initialViews: number) => {
 	}, [postId, initialViews])
 
 	// Функция для увеличения счетчика просмотров
-	const incrementViews = async () => {
+	const incrementViews = useCallback(async () => {
 		try {
 			const response = await fetch('/api/views', {
 				method: 'POST',
@@ -49,7 +49,7 @@ export const useServerViews = (postId: string, initialViews: number) => {
 			console.error('Error incrementing views:', error)
 		}
 		return false
-	}
+	}, [postId])
 
 	// Увеличиваем счетчик при загрузке страницы
 	useEffect(() => {
