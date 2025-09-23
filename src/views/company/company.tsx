@@ -33,7 +33,7 @@ const Company: FC<CompanyProps> = ({
           contentSize='minmax(0, 50%) minmax(0, 50%)'
         />
         <TitleHandler
-          title={<><span className={styles.purple>НАША ЦЕЛЬ</span> – сделать прибыль селлеров больше, а бизнес понятнее!</>}
+          title={<><span className={styles.purple}>НАША ЦЕЛЬ</span> – сделать прибыль селлеров больше, а бизнес понятнее!</>}
           titleTagName="h2"
           titleSize="lg"
           mark={<>Наша <b>миссия</b></>}
