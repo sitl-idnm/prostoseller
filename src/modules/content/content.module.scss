@@ -86,11 +86,11 @@
 	font-weight: 700;
 
 	@include tablet {
-		font-size: 24px;
+		font-size: 26px;
 	}
 
 	@include mobile-large {
-		font-size: 18px;
+		font-size: 20px;
 	}
 }
 
@@ -103,13 +103,13 @@
 		font-size: 20px;
 	}
 
-	@include mobile-small {
+	@include mobile-large {
 		font-size: 24px;
 	}
 }
 
 .title_lg {
-  font-size: 54px;
+  font-size: 50px;
 	line-height: 1.4;
 	font-weight: 700;
 
@@ -117,7 +117,7 @@
 		font-size: 32px;
 	}
 
-	@include mobile-small {
+	@include mobile-large {
 		font-size: 24px;
 	}
 }
@@ -137,15 +137,11 @@
 }
 
 .title_lgplus {
-  font-size: 54px;
+  font-size: 40px;
 	line-height: 1.4;
 	font-weight: 700;
 
 	@include tablet {
-		font-size: 32px;
-	}
-
-	@include mobile-small {
 		font-size: 20px;
 	}
 }
@@ -258,13 +254,13 @@
 }
 
 .buttonsNote {
-	font-size: func.rem(16);
+	font-size: 16px;
 	font-weight: 700;
 	line-height: 1.5;
 	color: rgba(24, 24, 24, 0.8);
 
-	@include tablet {
-		font-size: 16px;
+	@include mobile-large {
+		font-size: 14px;
 	}
 }
 

@@ -215,11 +215,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: func.rem(44);
-  padding: 0 35.5px;
-  color: var(--color-black-default);
+  height: 44px;
+  padding: 0 31.5px;
+  color: rgba(164, 82, 215, 1);
   background: var(--color-white-default);
-  border-radius: func.rem(22);
+  border-radius: 22px;
+  font-size: 18px;
+  font-weight: 700;
+
+  gap: 6px;
+
+  @include mixins.tablet {
+    font-size: 14px;
+
+    padding: 0 20px;
+  }
+
+  @media (max-width: 982px) {
+    padding: 0 11px;
+  }
 
   @include mixins.mobile-large {
     font-size: 12px;

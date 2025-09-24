@@ -165,10 +165,6 @@
 	@include mixins.tablet {
 		font-size: 14px;
 	}
-
-	@media (max-width: 1167px) {
-		font-size: 12px;
-	}
 }
 
 .link,
@@ -183,10 +179,6 @@
 
 	@include mixins.tablet {
 		font-size: 14px;
-	}
-
-	@media (max-width: 1167px) {
-		font-size: 12px;
 	}
 
 	@include mixins.tablet-small {
@@ -226,10 +218,6 @@
 	@include mixins.tablet {
 		font-size: 14px;
 	}
-
-	@media (max-width: 1167px) {
-		font-size: 12px;
-	}
 }
 
 .menuItem {
@@ -239,15 +227,11 @@
 	@include mixins.tablet {
 		font-size: 14px;
 	}
-
-	@media (max-width: 1167px) {
-		font-size: 12px;
-	}
 }
 
 .menuLink {
 	display: block;
-	padding: func.rem(8) func.rem(12);
+	padding: 8px 12px;
 	border-radius: func.rem(8);
 	white-space: nowrap;
 	color: var(--color-black-default);
