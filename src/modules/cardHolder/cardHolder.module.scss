@@ -96,7 +96,7 @@
 /* Мобильный горизонтальный скролл с двумя рядами */
 .mobileScrollContainer {
 	display: grid;
-	grid-template-columns: repeat(4, 170px); // 4 карточки в ряду
+	grid-template-columns: repeat(4, auto); // 4 карточки в ряду
 	grid-template-rows: repeat(2, auto); // 2 ряда
 	grid-auto-flow: column; // Заполняем по колонкам, а не по строкам
 	gap: 8px;

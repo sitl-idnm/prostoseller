@@ -84,6 +84,15 @@
 .graphIcon {
   width: 76px;
   height: 45px;
+
+  @include mixins.tablet {
+    width: 67px;
+    height: 40px;
+  }
+
+  @include mixins.mobile-large {
+    display: none;
+  }
 }
 
 .iconwb {

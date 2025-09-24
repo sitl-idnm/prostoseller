@@ -7,14 +7,13 @@
 
 .header {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: space-between;
 	gap: func.rem(12);
 	margin-bottom: func.rem(20);
 
-	@include tablet-small {
+	@include mobile-large {
 		flex-direction: column;
-		align-items: flex-start;
 	}
 
 	h2 {
@@ -112,6 +111,11 @@
 		max-width: 400px;
 		height: auto;
 	}
+
+	// desktop/tablet: make cards equal height so price rows align
+	@include tablet {
+		align-items: stretch;
+	}
 }
 
 .card {
@@ -122,6 +126,12 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	height: 100%;
+
+	// grow the top content so the price block sits at the bottom consistently
+	> div:first-child {
+		flex: 1 1 auto;
+	}
 
 	@include mobile-large {
 		width: 100%;
@@ -141,13 +151,14 @@
 		display: flex;
 		width: 100%;
 		gap: 8px;
+		align-items: stretch; // make slides equal height
 
 		> * {
 			flex: 0 0 100%;
 			width: 100%;
 			display: flex;
 			justify-content: center;
-			align-items: flex-start;
+			align-items: stretch; // stretch card vertically
 		}
 	}
 }
@@ -257,13 +268,39 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 16px;
+	gap: 12px;
 	margin-top: 12px;
 	width: 100%;
 
 	a {
 		width: 100%;
 		background: linear-gradient(75deg, #FA457E 0%, #7B49FF 100%);
+	}
+}
+
+.priceNote {
+	font-size: 14px;
+	color: rgba(24, 24, 24, 0.7);
+	text-align: center;
+	margin-top: -8px;
+
+	@include tablet {
+		font-size: 11px;
+	}
+}
+
+// reserved space between price and button to align prices across cards
+.priceNoteSpacer {
+	min-height: 18px; // enough for one line of helper text
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
+	color: rgba(24, 24, 24, 0.7);
+
+	@include tablet {
+		font-size: 12px;
+		min-height: 16px;
 	}
 }
 
@@ -278,6 +315,10 @@
 	font-weight: 600;
 	text-decoration: line-through;
 	font-size: 14px;
+
+	@include tablet {
+		font-size: 12px;
+	}
 }
 
 .priceValue {
@@ -290,6 +331,10 @@
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
+
+	@include tablet {
+		font-size: 24px;
+	}
 }
 
 .priceValue_bump {

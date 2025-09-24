@@ -167,6 +167,24 @@ const Price: FC<PriceProps> = ({
     track.style.transition = 'transform 0.5s ease-in-out'
   }, [isMobile, currentPlanIndex])
 
+  // Выравниваем высоту карточек в слайдере на мобиле
+  useEffect(() => {
+    if (!isMobile || !trackRef.current) return
+
+    const equalizeHeights = () => {
+      const cards = Array.from(trackRef.current!.querySelectorAll(`.${styles.card}`)) as HTMLDivElement[]
+      if (!cards.length) return
+      // сбрасываем, замеряем и выставляем одинаковую высоту
+      cards.forEach(c => { c.style.minHeight = '' })
+      const maxH = Math.max(...cards.map(c => c.getBoundingClientRect().height))
+      cards.forEach(c => { c.style.minHeight = `${Math.ceil(maxH)}px` })
+    }
+
+    equalizeHeights()
+    window.addEventListener('resize', equalizeHeights)
+    return () => window.removeEventListener('resize', equalizeHeights)
+  }, [isMobile, plansToRender.length])
+
   // Touch/swipe functionality
   const trackRef = useRef<HTMLDivElement | null>(null)
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
@@ -402,15 +420,15 @@ const Price: FC<PriceProps> = ({
           <div className={styles.periodDescriptionMobile}>
             {activePeriod === 'sixMonths' ? (
               <div className={classNames(styles.periodDescription, activePeriod === 'sixMonths' && styles.periodDescription_active)}>
-              Пользователю доступны в отчете данные за оплаченный месяц и 5 предыдущих месяцев
-            </div>
+                Пользователю доступны в отчете данные за оплаченный месяц и 5 предыдущих месяцев
+              </div>
             ) : (
               <div className={classNames(styles.periodDescription, activePeriod === 'month' && styles.periodDescription_active)}>
-              Пользователю доступны в отчете данные за оплаченный месяц и предыдущий месяц
-            </div>
+                Пользователю доступны в отчете данные за оплаченный месяц и предыдущий месяц
+              </div>
             )}
           </div>
-          )}
+        )}
       </div>
       <div className={styles.grid}>
         <div
@@ -436,6 +454,9 @@ const Price: FC<PriceProps> = ({
                     <div className={styles.oldPrice}>{`${plan.priceByPeriod.month.toLocaleString('ru-RU')} руб`}</div>
                   )}
                   <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />
+                </div>
+                <div className={styles.priceNoteSpacer}>
+                  {activePeriod === 'sixMonths' && plan.priceByPeriod.sixMonths > 0 ? 'При оплате за 6 месяцев' : ''}
                 </div>
                 {showConnectButtons && (
                   onConnect ? (

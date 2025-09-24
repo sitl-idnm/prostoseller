@@ -22,7 +22,7 @@ const CardHolder: FC<CardHolderProps> = ({
   // Определяем мобильную версию
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768)
+      setIsMobile(window.innerWidth <= 963)
     }
 
     checkScreenSize()

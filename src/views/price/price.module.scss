@@ -6,7 +6,7 @@
   width: 100%;
   padding: func.rem(40) 0;
 
-  margin-top: 180px;
+  margin-top: 200px;
 
   @include mixins.mobile-large {
     margin-top: 136px;
@@ -16,7 +16,15 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 24px;
+
+  section:nth-child(2) > div:first-child {
+      justify-content: flex-end;
+
+      h2 {
+        display: none;
+      }
+  }
 }
 
 .title {

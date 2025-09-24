@@ -70,6 +70,10 @@
 		color: #333333;
 		text-align: center;
 		margin-bottom: 40px;
+
+		@include tablet {
+			font-size: 20px;
+		}
 	}
 }
 
@@ -226,5 +230,16 @@
 
 	@include mobile-large {
 		font-size: 16px;
+	}
+}
+
+.buttonsNote {
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.5;
+	color: rgba(24, 24, 24, 0.8);
+
+	@include mobile-large {
+		font-size: 14px;
 	}
 }
