@@ -144,28 +144,74 @@ const Price: FC<PriceProps> = ({
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // Автоматическое пролистывание карусели на мобильных
+  // refs for native scroll container and measuring slide step
+  const trackRef = useRef<HTMLDivElement | null>(null)
+  const scrollRef = useRef<HTMLDivElement | null>(null)
+  const stepRef = useRef<number>(0)
+
+  // measure slide step and restore scroll position
+  useEffect(() => {
+    if (!isMobile || !trackRef.current || !scrollRef.current) return
+
+    const measure = () => {
+      const slides = Array.from(trackRef.current!.children) as HTMLElement[]
+      if (slides.length >= 2) {
+        const left0 = slides[0].offsetLeft
+        const left1 = slides[1].offsetLeft
+        stepRef.current = Math.max(1, left1 - left0)
+      } else if (slides.length === 1) {
+        stepRef.current = slides[0].getBoundingClientRect().width
+      } else {
+        stepRef.current = scrollRef.current!.clientWidth
+      }
+    }
+
+    measure()
+
+    // restore scrollLeft
+    try {
+      const saved = sessionStorage.getItem('Price:scrollLeft')
+      if (saved) {
+        scrollRef.current.scrollLeft = parseFloat(saved) || 0
+      }
+    } catch { }
+
+    const onResize = () => {
+      measure()
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [isMobile, plansToRender.length])
+
+  // update current index from native scroll and persist scrollLeft
+  const handleNativeScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const el = e.currentTarget
+    const step = stepRef.current || el.clientWidth
+    if (step > 0) {
+      const idx = Math.round(el.scrollLeft / step)
+      if (idx !== currentPlanIndex) {
+        setCurrentPlanIndex(Math.max(0, Math.min(plansToRender.length - 1, idx)))
+      }
+    }
+    try {
+      sessionStorage.setItem('Price:scrollLeft', String(el.scrollLeft))
+    } catch { }
+  }
+
+  // Автоматическое пролистывание карусели на мобильных (скроллом)
   useEffect(() => {
     if (typeof window === 'undefined') return
-    if (!isMobile || !isAutoPlaying) return
+    if (!isMobile || !isAutoPlaying || !scrollRef.current) return
 
-    const interval = setInterval(() => {
-      setCurrentPlanIndex((prev) => (prev + 1) % plansToRender.length)
+    const id = setInterval(() => {
+      const next = (currentPlanIndex + 1) % plansToRender.length
+      const step = stepRef.current || scrollRef.current!.clientWidth
+      scrollRef.current!.scrollTo({ left: next * step, behavior: 'smooth' })
+      setCurrentPlanIndex(next)
     }, 5000)
 
-    return () => clearInterval(interval)
-  }, [isMobile, isAutoPlaying, plansToRender.length])
-
-  // Обновление позиции карусели
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    if (!isMobile || !trackRef.current) return
-
-    const track = trackRef.current
-    const offset = currentPlanIndex * 358
-    track.style.transform = `translateX(-${offset}px)`
-    track.style.transition = 'transform 0.5s ease-in-out'
-  }, [isMobile, currentPlanIndex])
+    return () => clearInterval(id)
+  }, [isMobile, isAutoPlaying, plansToRender.length, currentPlanIndex])
 
   // Выравниваем высоту карточек в слайдере на мобиле
   useEffect(() => {
@@ -185,63 +231,21 @@ const Price: FC<PriceProps> = ({
     return () => window.removeEventListener('resize', equalizeHeights)
   }, [isMobile, plansToRender.length])
 
-  // Touch/swipe functionality
-  const trackRef = useRef<HTMLDivElement | null>(null)
-  const touchStartRef = useRef<{ x: number; y: number } | null>(null)
-  const touchEndRef = useRef<{ x: number; y: number } | null>(null)
-
-  const handleTouchStart = (e: React.TouchEvent) => {
+  // Touch/swipe handlers no longer needed for native scroll, keep only autoplay control
+  const handleTouchStart = () => {
     if (!isMobile) return
-    touchStartRef.current = {
-      x: e.touches[0].clientX,
-      y: e.touches[0].clientY
-    }
     setIsAutoPlaying(false)
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isMobile || !touchStartRef.current) return
-    touchEndRef.current = {
-      x: e.touches[0].clientX,
-      y: e.touches[0].clientY
-    }
-  }
-
-  const handleTouchEnd = () => {
-    if (!isMobile || !touchStartRef.current || !touchEndRef.current) return
-
-    const startX = touchStartRef.current.x
-    const endX = touchEndRef.current.x
-    const startY = touchStartRef.current.y
-    const endY = touchEndRef.current.y
-
-    const diffX = startX - endX
-    const diffY = startY - endY
-
-    // Check if it's a horizontal swipe (more horizontal than vertical)
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-      if (diffX > 0) {
-        // Swipe left - next
-        setCurrentPlanIndex((prev) => Math.min(plansToRender.length - 1, prev + 1))
-      } else {
-        // Swipe right - previous
-        setCurrentPlanIndex((prev) => Math.max(0, prev - 1))
-      }
-    }
-
-    // Возобновляем автопрокрутку через 10 секунд
-    setTimeout(() => {
-      setIsAutoPlaying(true)
-    }, 10000)
-
-    // Reset touch state
-    touchStartRef.current = null
-    touchEndRef.current = null
+    // resume after inactivity
+    setTimeout(() => setIsAutoPlaying(true), 10000)
   }
 
   const goToPlan = (index: number) => {
     setCurrentPlanIndex(index)
     setIsAutoPlaying(false)
+    if (scrollRef.current) {
+      const step = stepRef.current || scrollRef.current.clientWidth
+      scrollRef.current.scrollTo({ left: index * step, behavior: 'smooth' })
+    }
     // Возобновляем автопрокрутку через 10 секунд
     setTimeout(() => {
       setIsAutoPlaying(true)
@@ -432,46 +436,50 @@ const Price: FC<PriceProps> = ({
       </div>
       <div className={styles.grid}>
         <div
-          className={styles.carouselTrack}
-          ref={trackRef}
+          ref={scrollRef}
+          onScroll={handleNativeScroll}
           onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', width: '100%' }}
         >
-          {plansToRender.map((plan) => (
-            <div className={styles.card} key={plan.id}>
-              <div>
-                <div className={styles.planTitle}>{plan.title}</div>
-                <div className={styles.planSubPurple}>{plan.shops}</div>
-                <div className={styles.planSub}>{plan.description}</div>
-                <div className={styles.features}>
-                  {plan.features.map((f, i) => renderFeature(f.state, f.label, i))}
+          <div
+            className={styles.carouselTrack}
+            ref={trackRef}
+          >
+            {plansToRender.map((plan) => (
+              <div className={styles.card} key={plan.id}>
+                <div>
+                  <div className={styles.planTitle}>{plan.title}</div>
+                  <div className={styles.planSubPurple}>{plan.shops}</div>
+                  <div className={styles.planSub}>{plan.description}</div>
+                  <div className={styles.features}>
+                    {plan.features.map((f, i) => renderFeature(f.state, f.label, i))}
+                  </div>
                 </div>
-              </div>
-              <div className={styles.priceRow}>
-                <div className={styles.priceLine}>
-                  {activePeriod === 'sixMonths' && plan.priceByPeriod.month > plan.priceByPeriod.sixMonths && (
-                    <div className={styles.oldPrice}>{`${plan.priceByPeriod.month.toLocaleString('ru-RU')} руб`}</div>
+                <div className={styles.priceRow}>
+                  <div className={styles.priceLine}>
+                    {activePeriod === 'sixMonths' && plan.priceByPeriod.month > plan.priceByPeriod.sixMonths && (
+                      <div className={styles.oldPrice}>{`${plan.priceByPeriod.month.toLocaleString('ru-RU')} руб`}</div>
+                    )}
+                    <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />
+                  </div>
+                  <div className={styles.priceNoteSpacer}>
+                    {activePeriod === 'sixMonths' && plan.priceByPeriod.sixMonths > 0 ? 'При оплате за 6 месяцев' : ''}
+                  </div>
+                  {showConnectButtons && (
+                    onConnect ? (
+                      <Button onClick={() => onConnect(plan.id, activePeriod)} icon={<ArrowWhiteIcon />} buttonWidth="100%" variant="gradient">
+                        Подключить
+                      </Button>
+                    ) : (
+                      <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink icon={<ArrowWhiteIcon />} buttonWidth="100%" variant="gradient">
+                        Подключить
+                      </Button>
+                    )
                   )}
-                  <AnimatedPrice id={plan.id + '-price'} value={plan.priceByPeriod[activePeriod]} />
                 </div>
-                <div className={styles.priceNoteSpacer}>
-                  {activePeriod === 'sixMonths' && plan.priceByPeriod.sixMonths > 0 ? 'При оплате за 6 месяцев' : ''}
-                </div>
-                {showConnectButtons && (
-                  onConnect ? (
-                    <Button onClick={() => onConnect(plan.id, activePeriod)} icon={<ArrowWhiteIcon />} buttonWidth="100%" variant="gradient">
-                      Подключить
-                    </Button>
-                  ) : (
-                    <Button as={Link} href={{ pathname: '/login', query: { plan: plan.id, period: activePeriod } }} isRouteLink icon={<ArrowWhiteIcon />} buttonWidth="100%" variant="gradient">
-                      Подключить
-                    </Button>
-                  )
-                )}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 

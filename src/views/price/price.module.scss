@@ -6,7 +6,7 @@
   width: 100%;
   padding: func.rem(40) 0;
 
-  margin-top: 200px;
+  margin-top: 203px;
 
   @include mixins.mobile-large {
     margin-top: 136px;
@@ -31,12 +31,6 @@
   color: var(--color-blue);
   text-align: center;
   margin: 0 auto func.rem(32);
-}
-
-.content {
-  div {
-    font-size: 1.35rem;
-  }
 }
 
 .image {

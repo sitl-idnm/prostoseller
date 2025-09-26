@@ -6,6 +6,7 @@ import Logo from '@icons/logo-footer.svg'
 import SocialLinks from '@/components/socialLinks/socialLinks'
 
 import Wrapper from '@/ui/wrapper/wrapper'
+import { LINKS } from '@/shared/const'
 
 const Footer: FC = () => (
   <footer className={styles.root}>
@@ -24,19 +25,19 @@ const Footer: FC = () => (
           <div className={styles.navCol}>
             <ul className={styles.links}>
               <li><Link href="/">Главная</Link></li>
-              <li><Link href="/login">Зарегистрироваться</Link></li>
+              <li><Link href={LINKS.connectFree}>Зарегистрироваться</Link></li>
               <li><Link href="/login">Войти</Link></li>
               <li><Link href="/price">Тарифы</Link></li>
-              <li><Link href="/how-it-works">Как работает Prostoseller</Link></li>
+              <li><Link href="/#how-it-works">Как работает Prostoseller</Link></li>
             </ul>
           </div>
 
           <div className={styles.navCol}>
             <ul className={styles.links}>
-              <li><Link href="/how-it-works">Пригласи друга</Link></li>
+              <li><Link href="/inviteFriend">Пригласи друга</Link></li>
               <li><Link href="/partners">Партнерская программа</Link></li>
-              <li><Link href="/inviteFriend">О компании</Link></li>
-              <li><Link href="/price">Блог</Link></li>
+              <li><Link href="/company">О компании</Link></li>
+              <li><Link href="/blog">Блог</Link></li>
             </ul>
           </div>
 
@@ -44,7 +45,7 @@ const Footer: FC = () => (
             <ul className={styles.links}>
               <li><Link href="/contacts">Контакты</Link></li>
               <li><SocialLinks /></li>
-              <li><Link href="/inviteFriend">Поддержка</Link></li>
+              <li><Link href="https://wa.me/message/E3CSFZG7WBDMA1" target="_blank" rel="noopener noreferrer">Поддержка</Link></li>
               <li><Link href="mailto:info@prostoseller.com">info@prostoseller.com</Link></li>
             </ul>
           </div>

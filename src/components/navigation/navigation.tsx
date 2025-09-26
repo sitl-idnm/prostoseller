@@ -142,8 +142,8 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
                     </div>
 
                     <div className={styles.menuCta}>
-                      <Button isRouteLink as='a' href={'/login'} variant='gradient' buttonWidth="90%">Зарегистрироваться</Button>
-                      <Button isRouteLink as='a' href={'/login'} variant='gradientOutline' buttonWidth="70%">Войти</Button>
+                      <Button isRouteLink as='a' href={'/login'} variant='gradient' buttonWidth="90%" onClick={() => setIsOpen(false)}>Зарегистрироваться</Button>
+                      <Button isRouteLink as='a' href={'/login'} variant='gradientOutline' buttonWidth="70%" onClick={() => setIsOpen(false)}>Войти</Button>
                     </div>
 
                     <ul>

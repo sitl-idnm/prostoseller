@@ -90,12 +90,18 @@
 	width: 100%;
 	overflow: hidden;
 	position: relative;
+
+	// allow inner content to extend vertically if needed
+	overflow-y: visible;
 }
 
 .carouselTrack {
 	display: flex;
 	transition: transform 0.5s ease-in-out;
 	width: 100%;
+
+	// allow children to stretch in height
+	align-items: stretch;
 }
 
 .carouselSlide {
@@ -105,6 +111,9 @@
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
+
+	// let slides grow based on content
+	align-self: stretch;
 }
 
 /* Индикаторы карусели */
@@ -160,7 +169,8 @@
 		margin-bottom: 0;
 
 		border-radius: 8px;
-		min-height: 120px;
+		// remove fixed min-height to avoid clipping large text
+		min-height: auto;
 		flex: 1;
 	}
 

@@ -58,8 +58,6 @@ const PartnersStages: FC<PartnersStagesProps> = ({
   const secondStageTextRef = useRef<HTMLDivElement>(null)
   const thirdStageTextRef = useRef<HTMLDivElement>(null)
 
-  const MobileFirstLineRef = useRef<HTMLImageElement>(null)
-  const MobileSecondLineRef = useRef<HTMLImageElement>(null)
   const MobileSecondStageRef = useRef<HTMLDivElement>(null)
   const MobileSecondStageTextRef = useRef<HTMLDivElement>(null)
   const MobileThirdStageRef = useRef<HTMLDivElement>(null)
@@ -79,11 +77,18 @@ const PartnersStages: FC<PartnersStagesProps> = ({
 
   useGSAP(() => {
     const tl = gsap.timeline({
+      repeat: -1,
+      repeatDelay: 3,
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top 80%',
         end: 'bottom 20%',
-        toggleActions: 'play none none reverse',
+        toggleActions: 'play none none none',
+        invalidateOnRefresh: true,
+        onEnter: (self) => self.animation?.restart(),
+        onEnterBack: (self) => self.animation?.restart(),
+        onLeave: (self) => self.animation?.pause(0),
+        onLeaveBack: (self) => self.animation?.pause(0),
         markers: false
       }
     })
@@ -97,6 +102,7 @@ const PartnersStages: FC<PartnersStagesProps> = ({
           width: '50%',
           duration: 1,
           ease: 'power2.inOut',
+          delay: 3,
         })
 
         tl.to([secondStageRef.current, secondStageTextRef.current], {
@@ -111,6 +117,7 @@ const PartnersStages: FC<PartnersStagesProps> = ({
           width: '100%',
           duration: 1,
           ease: 'power2.inOut',
+          delay: 3,
         })
 
         tl.to([thirdStageRef.current, thirdStageTextRef.current], {
@@ -120,35 +127,28 @@ const PartnersStages: FC<PartnersStagesProps> = ({
         }, '-=0.5')
       }
     } else {
-      // Мобильная анимация
-      if (MobileFirstLineRef.current) {
-        tl.fromTo(MobileFirstLineRef.current, {
-          width: '0%',
-        }, {
-          width: '100%',
-          duration: 1,
-          ease: 'power2.inOut',
-        })
+      // Мобильная анимация без линий
+      const mobSecondEls = [MobileSecondStageRef.current, MobileSecondStageTextRef.current].filter((el): el is HTMLDivElement => !!el)
+      const mobThirdEls = [MobileThirdStageRef.current, MobileThirdStageTextRef.current].filter((el): el is HTMLDivElement => !!el)
 
-        tl.to([MobileSecondStageRef.current, MobileSecondStageTextRef.current], {
+      if (mobSecondEls.length) {
+        tl.set(mobSecondEls, { opacity: 0.5 })
+        tl.to(mobSecondEls, {
           opacity: 1,
           duration: 0.8,
           ease: 'power2.inOut',
-        }, '-=0.3')
-
-        tl.fromTo(MobileSecondLineRef.current, {
-          width: '0%',
-        }, {
-          width: '100%',
-          duration: 1,
-          ease: 'power2.inOut',
+          delay: 3,
         })
+      }
 
-        tl.to([MobileThirdStageRef.current, MobileThirdStageTextRef.current], {
+      if (mobThirdEls.length) {
+        tl.set(mobThirdEls, { opacity: 0.5 })
+        tl.to(mobThirdEls, {
           opacity: 1,
           duration: 0.8,
           ease: 'power2.inOut',
-        }, '-=0.3')
+          delay: 3,
+        })
       }
     }
   }, [isMobile])
