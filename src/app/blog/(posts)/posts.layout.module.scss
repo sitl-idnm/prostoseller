@@ -1,0 +1,10 @@
+@use '@styles/mixins' as *;
+
+.root {
+	/* space for fixed header */
+	margin-top: 203px;
+
+	@include mobile-large {
+		margin-top: 136px;
+	}
+}

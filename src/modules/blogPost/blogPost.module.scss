@@ -47,26 +47,51 @@
   border-radius: 8px;
   background: #9e9e9e;
 }
-.authorTitle { font-size: 14px; color: #888; }
-.authorName { font-size: 16px; font-weight: 600; }
-.authorRole { font-size: 13px; color: #888; }
+
+.authorTitle {
+  font-size: 12px;
+  color: #888;
+  line-height: 150%;
+}
+
+.authorName {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 140%;
+}
+
+.authorRole {
+  font-size: 10px;
+  color: #888;
+  line-height: 150%;
+}
 
 .metaRight {
   display: grid;
   grid-template-columns: 1fr auto;
 }
+
 .metaRow {
   display: contents;
 }
+
 .metaLabel {
   color: #888;
   padding: 8px 0;
   border-bottom: 1px solid rgba(0,0,0,0.06);
+
+  @include mobile-large {
+    font-size: 12px;
+  }
 }
 .metaValue {
   padding: 8px 0;
   border-bottom: 1px solid rgba(0,0,0,0.06);
   text-align: right;
+
+  @include mobile-large {
+    font-size: 12px;
+  }
 }
 .cover {
   margin: 16px 0;
@@ -100,7 +125,7 @@
   }
 }
 .toc {
-  position: sticky;
+  position: relative;
   top: 12px;
   align-self: start;
   border: 1px solid rgba(0,0,0,0.06);

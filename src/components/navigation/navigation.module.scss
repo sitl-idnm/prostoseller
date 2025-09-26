@@ -194,8 +194,7 @@
 	margin-left: func.rem(6);
 }
 
-.dropdown:hover .menu,
-.dropdown:focus-within .menu {
+.dropdown:hover .menu {
 	opacity: 1;
 	pointer-events: auto;
 	transform: translateY(0);
@@ -248,11 +247,6 @@
 	width: 30px;
 	height: 30px;
 	cursor: pointer;
-	transition: transform variables.$transition;
-
-	&:hover {
-		transform: translateY(-5px);
-	}
 
 	&Icon {
 		width: 100%;

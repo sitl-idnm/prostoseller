@@ -46,6 +46,22 @@ const Content: FC<ContentProps> = ({
   }
 
   const [currentImageSrc, setCurrentImageSrc] = useState(imageSrc)
+  const [isMobileLarge, setIsMobileLarge] = useState(false)
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      try {
+        const mql = window.matchMedia('(max-width: 965px)')
+        setIsMobileLarge(!!mql.matches)
+      } catch {
+        setIsMobileLarge(window.innerWidth < 965)
+      }
+    }
+
+    updateIsMobile()
+    window.addEventListener('resize', updateIsMobile)
+    return () => window.removeEventListener('resize', updateIsMobile)
+  }, [])
 
   useEffect(() => {
     const updateImageSrc = () => {
@@ -88,12 +104,10 @@ const Content: FC<ContentProps> = ({
           </div>
         </div>
 
-        {variant === 'split' && imageSrc && (
-          imageAdaptive === '/' ? null : (
-            <div className={classNames(styles.imageWrap, imageWrapClassName)}>
-              <Image src={currentImageSrc || ''} alt={imageAlt} width={0} height={0} quality={100} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
-            </div>
-          )
+        {variant === 'split' && imageSrc && !(imageAdaptive === '/' && isMobileLarge) && (
+          <div className={classNames(styles.imageWrap, imageWrapClassName)}>
+            <Image src={currentImageSrc || ''} alt={imageAlt} width={0} height={0} quality={100} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          </div>
         )}
       </div>
     </section>

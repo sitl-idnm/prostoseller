@@ -48,10 +48,10 @@ const Header: FC<HeaderProps> = ({ className }) => {
                 <Navigation isMobile={isMobile} />
                 <div className={styles.meta}>
                   <SocialLinks />
-                  <Button isRouteLink as='a' href={"/login"} className={styles.loginBtn} variant='gradient'>
+                  <Button isRouteLink as='a' href='login?mode=register' className={styles.loginBtn} variant='gradient'>
                     Зарегистрироваться
                   </Button>
-                  <Button isRouteLink as='a' href={"/login"} className={styles.loginBtn} variant='gradientOutline'>
+                  <Button isRouteLink as='a' href="/login" className={styles.loginBtn} variant='gradientOutline'>
                     Войти
                   </Button>
                 </div>

@@ -89,7 +89,7 @@ const Home: FC<HomeProps> = ({ className }) => {
           description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="60%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="460px" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
             </>
           }
           buttonsNote="4 дня бесплатно без привязки карты"
@@ -146,19 +146,20 @@ const Home: FC<HomeProps> = ({ className }) => {
             ]}
           />
         </TitleHandler>
-
-        <PartnersStages
-          title={<><span className={styles.purple}>3 простых шага</span>, чтобы начать зарабатывать <span className={styles.purple}>больше в 2 раза</span> {!isMobileLarge && <span className={styles.icon_profit}><WbOzon /></span>}</>}
-          titleStage={[<>Подключите магазин</>, <>Сервис автоматически соберёт и рассчитает все показатели</>, <>Управлять бизнесом теперь станет значительно проще</>]}
-          textStage={[<>Интеграция в один клик — уже через минуту данные в системе!</>, <>Вы отдыхаете — сервис считает, анализирует и показывает ключевые цифры</>, <>Понимайте, что работает, а что — нет. Принимайте решения на основе точных данных, а не на интуиции.</>]}
-          mark={<>Как работает <b>Prostoseller</b></>}
-          buttonsNote="4 дня бесплатно без привязки карты"
-          buttons={
-            <>
-              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="50%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
-            </>
-          }
-        />
+        <div id='how-it-works'>
+          <PartnersStages
+            title={<><span className={styles.purple}>3 простых шага</span>, чтобы начать зарабатывать <span className={styles.purple}>больше в 2 раза</span> {!isMobileLarge && <span className={styles.icon_profit}><WbOzon /></span>}</>}
+            titleStage={[<>Подключите магазин</>, <>Сервис автоматически соберёт и рассчитает все показатели</>, <>Управлять бизнесом теперь станет значительно проще</>]}
+            textStage={[<>Интеграция в один клик — уже через минуту данные в системе!</>, <>Вы отдыхаете — сервис считает, анализирует и показывает ключевые цифры</>, <>Понимайте, что работает, а что — нет. Принимайте решения на основе точных данных, а не на интуиции.</>]}
+            mark={<>Как работает <b>Prostoseller</b></>}
+            buttonsNote="4 дня бесплатно без привязки карты"
+            buttons={
+              <>
+                <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="460px" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
+              </>
+            }
+          />
+        </div>
 
         {/* Литой */}
         <TitleHandler
@@ -190,7 +191,7 @@ const Home: FC<HomeProps> = ({ className }) => {
             subtitle="За каждого друга - по одному бесплатному месяцу тебе и ему"
             description="Публикуйте свой пригласительный код в социальных сетях, делитесь кодом с друзьями и получайте свой бонус за каждое его использование"
             subDescription="Пригласил 12 друзей - ДЕРЖИ ГОД БЕСПЛАТНОЙ АНАЛИТИКИ"
-            buttons={<Button as="a" isRouteLink href={LINKS.invite ?? LINKS.connectFree} style={{ width: '60%' }} variant="gradient" icon={<ArrowWhiteIcon />}>Пользоваться бесплатно</Button>}
+            buttons={<Button as="a" isRouteLink href='https://lk.prostoseller.com/index.php?r=user%2Freferal' target='_blank' style={{ width: '460px' }} variant="gradient" icon={<ArrowWhiteIcon />}>Пользоваться бесплатно</Button>}
             imageSrc="/images/box_free.png"
             imageAlt="Скриншот кабинета"
             contentSize='minmax(0, 60%) minmax(0, 40%)'
@@ -215,10 +216,10 @@ const Home: FC<HomeProps> = ({ className }) => {
           description={<>Отчет <span className={styles.purple}>Prostoseller</span> покажет самые прибыльные товары, оптимизирует затраты, улучшит планирование и поможет направить инвестиции для роста прибыли.</>}
 
           buttonsPosition='flex-start'
-          buttonsStyle='70%'
+          buttonsStyle='max-content'
           buttons={
             <>
-              <Button as="a" isRouteLink href={LINKS.demoCabinet} variant="gradient" icon={<ArrowWhiteIcon />} buttonWidth="100%">Demo-кабинет</Button>
+              <Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" icon={<ArrowWhiteIcon />} buttonWidth="460px">Подключить бесплатно</Button>
             </>
           }
           buttonsNote="4 дня бесплатно без привязки карты"

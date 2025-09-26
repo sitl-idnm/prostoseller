@@ -67,6 +67,9 @@
 
 	color: #333;
 
+	position: relative;
+	z-index: 1;
+
 	@media (max-width: 1396px) {
 		font-size: 48px;
 	}
@@ -230,11 +233,11 @@
 		@include tablet {
 			font-size: 18px !important;
 
-			width: 100% !important;
 			height: 56px;
 		}
 
-		@include tablet-small {
+		@include mobile-large {
+			width: 100% !important;
 			font-size: 16px !important;
 		}
 	}

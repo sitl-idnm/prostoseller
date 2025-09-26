@@ -16,6 +16,10 @@ const isExplicitH2 = (line: string): boolean => /^\[\[h2\]\]/i.test(line.trim())
 const isExplicitH3 = (line: string): boolean => /^\[\[h3\]\]/i.test(line.trim())
 const stripExplicitHeading = (line: string): string => line.replace(/^\[\[(h1|h2|h3)\]\]\s*/i, '')
 
+// Explicit bold marker: [[b]] Text
+const isExplicitBold = (line: string): boolean => /^\[\[b\]\]/i.test(line.trim())
+const stripExplicitBold = (line: string): string => line.replace(/^\[\[b\]\]\s*/i, '')
+
 // Right alignment marker: [[right]] Text
 const isRightAligned = (line: string): boolean => /\[\[right\]\]/i.test(line.trim())
 const stripRightAlignment = (line: string): string => line.replace(/\[\[right\]\]\s*/gi, '')
@@ -142,6 +146,7 @@ const AutoProse: FC<AutoProseProps> = ({ className, text, children }) => {
 			const hasMdH1 = isMdH1(line)
 			const hasMdH2 = isMdH2(line)
 			const hasMdH3 = isMdH3(line)
+			const hasBold = isExplicitBold(line)
 
 			// Strip all markers to get clean text
 			let cleanText = line
@@ -149,6 +154,7 @@ const AutoProse: FC<AutoProseProps> = ({ className, text, children }) => {
 			if (hasRightAlign) cleanText = stripRightAlignment(cleanText)
 			if (hasH1 || hasH2 || hasH3) cleanText = stripExplicitHeading(cleanText)
 			if (hasMdH1 || hasMdH2 || hasMdH3) cleanText = stripMdHeading(cleanText)
+			if (hasBold) cleanText = stripExplicitBold(cleanText)
 
 			// Build className for combined styles
 			const combinedClasses: string[] = []
@@ -166,35 +172,31 @@ const AutoProse: FC<AutoProseProps> = ({ className, text, children }) => {
 				)
 				continue
 			}
-			if (hasH2 || hasMdH2 || isH2(line)) {
-				const textContent = hasH2 || hasMdH2 ? cleanText : line
-				elements.push(
-					<h2 key={`h2-${i}`} className={classNames(styles.h2, combinedClassName)}>
-						{renderWithLinks(textContent, `h2-${i}`)}
-					</h2>
-				)
+			// Explicit and markdown-style headings
+			if (isExplicitH2(line) || isMdH2(line) || isH2(line)) {
+				const textContent = isExplicitH2(line) ? stripExplicitHeading(line) : isMdH2(line) ? stripMdHeading(line) : line
+				elements.push(<h2 key={`h2-${i}`} className={styles.h2}>{renderWithLinks(textContent, `h2-${i}`)}</h2>)
 				continue
 			}
-			if (hasH3 || hasMdH3 || isH3(line)) {
-				const textContent = hasH3 || hasMdH3 ? cleanText : line
+			if (isExplicitH3(line) || isMdH3(line) || isH3(line)) {
+				const textContent = isExplicitH3(line) ? stripExplicitHeading(line) : isMdH3(line) ? stripMdHeading(line) : line
+				elements.push(<h3 key={`h3-${i}`} className={styles.h3}>{renderWithLinks(textContent, `h3-${i}`)}</h3>)
+				continue
+			}
+
+			// Explicit bold paragraph [[b]]
+			if (isExplicitBold(line)) {
+				const textContent = stripExplicitBold(line)
 				elements.push(
-					<h3 key={`h3-${i}`} className={classNames(styles.h3, combinedClassName)}>
-						{renderWithLinks(textContent, `h3-${i}`)}
-					</h3>
+					<p key={`pb-${i}`} className={styles.p}>
+						<b>{renderWithLinks(textContent, `pb-${i}`)}</b>
+					</p>
 				)
 				continue
 			}
 
-			// Regular paragraph or div with combined styles
-			if (combinedClassName) {
-				elements.push(
-					<div key={`combined-${i}`} className={combinedClassName}>
-						{renderWithLinks(cleanText, `combined-${i}`)}
-					</div>
-				)
-			} else {
-				elements.push(<p key={`p-${i}`} className={styles.p}>{renderWithLinks(line, `p-${i}`)}</p>)
-			}
+			// Paragraph fallback
+			elements.push(<p key={`p-${i}`} className={styles.p}>{renderWithLinks(line, `p-${i}`)}</p>)
 		}
 
 		return elements
