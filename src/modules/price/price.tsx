@@ -174,7 +174,7 @@ const Price: FC<PriceProps> = ({
       if (saved) {
         scrollRef.current.scrollLeft = parseFloat(saved) || 0
       }
-    } catch { }
+    } catch { /* noop: sessionStorage may be unavailable */ }
 
     const onResize = () => {
       measure()
@@ -195,7 +195,7 @@ const Price: FC<PriceProps> = ({
     }
     try {
       sessionStorage.setItem('Price:scrollLeft', String(el.scrollLeft))
-    } catch { }
+    } catch { /* noop: sessionStorage may be unavailable */ }
   }
 
   // Автоматическое пролистывание карусели на мобильных (скроллом)
@@ -276,7 +276,7 @@ const Price: FC<PriceProps> = ({
             gsap.killTweensOf(el)
             gsap.killTweensOf(el.children)
           })
-        } catch { /* noop */ }
+        } catch { /* noop: optional GSAP not available */ }
         el.textContent = targetText
         prevPricesRef.current[id] = value
         return
@@ -341,7 +341,7 @@ const Price: FC<PriceProps> = ({
             ; (tlRef.current as { kill: () => void }).kill()
           }
           if (splitRef.current?.revert) splitRef.current.revert()
-        } catch { /* noop */ }
+        } catch { /* noop: optional GSAP cleanup */ }
       }
     }, [id, value])
 

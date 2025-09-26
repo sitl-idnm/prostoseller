@@ -52,7 +52,7 @@ const PlusMinus: FC<PlusMinusProps> = ({
         const w = slideWidthRef.current || scrollRef.current.clientWidth
         if (w > 0) setCurrentSlide(Math.max(0, Math.min(pairs.length - 1, Math.round(left / w))))
       }
-    } catch { }
+    } catch { /* noop: sessionStorage may be unavailable */ }
 
     const onResize = () => {
       measure()
@@ -145,7 +145,7 @@ const PlusMinus: FC<PlusMinusProps> = ({
     }
     try {
       sessionStorage.setItem('PlusMinus:scrollLeft', String(el.scrollLeft))
-    } catch { }
+    } catch { /* noop: sessionStorage may be unavailable */ }
   }
 
   const goToSlide = (index: number) => {
