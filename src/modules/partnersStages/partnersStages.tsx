@@ -85,10 +85,39 @@ const PartnersStages: FC<PartnersStagesProps> = ({
         end: 'bottom 20%',
         toggleActions: 'play none none none',
         invalidateOnRefresh: true,
-        onEnter: (self) => self.animation?.restart(),
-        onEnterBack: (self) => self.animation?.restart(),
-        onLeave: (self) => self.animation?.pause(0),
-        onLeaveBack: (self) => self.animation?.pause(0),
+        onEnter: (self) => {
+          if (lineRef.current) gsap.set(lineRef.current, { width: '0%' })
+          // reset active circles/texts to initial desktop state
+          if (secondStageRef.current) gsap.set(secondStageRef.current, { opacity: 0 })
+          if (thirdStageRef.current) gsap.set(thirdStageRef.current, { opacity: 0 })
+          if (secondStageTextRef.current) gsap.set(secondStageTextRef.current, { opacity: 0.5 })
+          if (thirdStageTextRef.current) gsap.set(thirdStageTextRef.current, { opacity: 0.5 })
+          self.animation?.restart()
+        },
+        onEnterBack: (self) => {
+          if (lineRef.current) gsap.set(lineRef.current, { width: '0%' })
+          if (secondStageRef.current) gsap.set(secondStageRef.current, { opacity: 0 })
+          if (thirdStageRef.current) gsap.set(thirdStageRef.current, { opacity: 0 })
+          if (secondStageTextRef.current) gsap.set(secondStageTextRef.current, { opacity: 0.5 })
+          if (thirdStageTextRef.current) gsap.set(thirdStageTextRef.current, { opacity: 0.5 })
+          self.animation?.restart()
+        },
+        onLeave: (self) => {
+          if (lineRef.current) gsap.set(lineRef.current, { width: '0%' })
+          if (secondStageRef.current) gsap.set(secondStageRef.current, { opacity: 0 })
+          if (thirdStageRef.current) gsap.set(thirdStageRef.current, { opacity: 0 })
+          if (secondStageTextRef.current) gsap.set(secondStageTextRef.current, { opacity: 0.5 })
+          if (thirdStageTextRef.current) gsap.set(thirdStageTextRef.current, { opacity: 0.5 })
+          self.animation?.pause(0)
+        },
+        onLeaveBack: (self) => {
+          if (lineRef.current) gsap.set(lineRef.current, { width: '0%' })
+          if (secondStageRef.current) gsap.set(secondStageRef.current, { opacity: 0 })
+          if (thirdStageRef.current) gsap.set(thirdStageRef.current, { opacity: 0 })
+          if (secondStageTextRef.current) gsap.set(secondStageTextRef.current, { opacity: 0.5 })
+          if (thirdStageTextRef.current) gsap.set(thirdStageTextRef.current, { opacity: 0.5 })
+          self.animation?.pause(0)
+        },
         markers: false
       }
     })
@@ -96,6 +125,8 @@ const PartnersStages: FC<PartnersStagesProps> = ({
     if (!isMobile) {
       // Десктопная анимация
       if (lineRef.current) {
+        // Скрываем активную линию до старта анимации, чтобы не было рывка
+        gsap.set(lineRef.current, { width: '0%' })
         tl.fromTo(lineRef.current, {
           width: '0%',
         }, {
@@ -103,9 +134,16 @@ const PartnersStages: FC<PartnersStagesProps> = ({
           duration: 1,
           ease: 'power2.inOut',
           delay: 3,
+          immediateRender: false,
         })
 
-        tl.to([secondStageRef.current, secondStageTextRef.current], {
+        tl.to(secondStageRef.current, {
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power2.inOut',
+        }, '-=0.5')
+
+        tl.to(secondStageTextRef.current, {
           opacity: 1,
           duration: 0.8,
           ease: 'power2.inOut',
@@ -118,9 +156,16 @@ const PartnersStages: FC<PartnersStagesProps> = ({
           duration: 1,
           ease: 'power2.inOut',
           delay: 3,
+          immediateRender: false,
         })
 
-        tl.to([thirdStageRef.current, thirdStageTextRef.current], {
+        tl.to(thirdStageRef.current, {
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power2.inOut',
+        }, '-=0.5')
+
+        tl.to(thirdStageTextRef.current, {
           opacity: 1,
           duration: 0.8,
           ease: 'power2.inOut',
@@ -128,27 +173,59 @@ const PartnersStages: FC<PartnersStagesProps> = ({
       }
     } else {
       // Мобильная анимация без линий
-      const mobSecondEls = [MobileSecondStageRef.current, MobileSecondStageTextRef.current].filter((el): el is HTMLDivElement => !!el)
-      const mobThirdEls = [MobileThirdStageRef.current, MobileThirdStageTextRef.current].filter((el): el is HTMLDivElement => !!el)
+      const secondCircle = MobileSecondStageRef.current
+      const secondText = MobileSecondStageTextRef.current
+      const thirdCircle = MobileThirdStageRef.current
+      const thirdText = MobileThirdStageTextRef.current
 
-      if (mobSecondEls.length) {
-        tl.set(mobSecondEls, { opacity: 0.5 })
-        tl.to(mobSecondEls, {
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power2.inOut',
-          delay: 3,
-        })
+      // Проставляем стартовые состояния сразу (до старта tl), чтобы текст 3-го шага был полупрозрачным
+      if (secondCircle) gsap.set(secondCircle, { opacity: 0 })
+      if (secondText) gsap.set(secondText, { opacity: 0.5 })
+      if (thirdCircle) gsap.set(thirdCircle, { opacity: 0 })
+      if (thirdText) gsap.set(thirdText, { opacity: 0.5 })
+
+      // Second stage: first circle, then text
+      if (secondCircle || secondText) {
+        if (secondCircle) tl.set(secondCircle, { opacity: 0 })
+        if (secondText) tl.set(secondText, { opacity: 0.5 })
+
+        if (secondCircle) {
+          tl.to(secondCircle, {
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.inOut',
+            delay: 3,
+          })
+        }
+        if (secondText) {
+          tl.to(secondText, {
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.inOut',
+          })
+        }
       }
 
-      if (mobThirdEls.length) {
-        tl.set(mobThirdEls, { opacity: 0.5 })
-        tl.to(mobThirdEls, {
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power2.inOut',
-          delay: 3,
-        })
+      // Third stage: first circle, then text
+      if (thirdCircle || thirdText) {
+        if (thirdCircle) tl.set(thirdCircle, { opacity: 0 })
+        if (thirdText) tl.set(thirdText, { opacity: 0.5 })
+
+        if (thirdCircle) {
+          tl.to(thirdCircle, {
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.inOut',
+            delay: 3,
+          })
+        }
+        if (thirdText) {
+          tl.to(thirdText, {
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.inOut',
+          })
+        }
       }
     }
   }, [isMobile])

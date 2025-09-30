@@ -151,6 +151,7 @@
 
 .card {
 	border-radius: func.rem(12);
+	overflow: hidden;
 
 	display: flex;
 	flex-direction: row;
@@ -169,6 +170,7 @@
 		margin-bottom: 0;
 
 		border-radius: 8px;
+		overflow: hidden;
 		// remove fixed min-height to avoid clipping large text
 		min-height: auto;
 		flex: 1;
@@ -216,13 +218,20 @@
 	flex: 0 0 auto;
 
 	@include mobile-large {
-		width: 24px;
-		height: 24px;
+		width: 28px;
+		height: 28px;
+		background: transparent;
+		box-shadow: none;
+		border: 0;
+		border-radius: 6px;
+		overflow: hidden;
 	}
 
 	svg {
 		width: 100%;
 		height: 100%;
+		display: block;
+		overflow: visible;
 	}
 }
 

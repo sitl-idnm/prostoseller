@@ -1,0 +1,53 @@
+@use '@styles/func';
+@use '@styles/mixins';
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.table th,
+.table td {
+  border: 1px solid #C9C9C9;
+  padding: 8px 10px;
+  vertical-align: top;
+  word-break: break-word;
+}
+
+.table thead th {
+  background: #FFEBA1;
+  text-align: center;
+}
+
+.priceRow th {
+  background: #FFF4C7;
+}
+
+.featuresRow ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.addon {
+  text-decoration: underline;
+}
+
+@media (max-width: 965px) {
+  .table {
+    min-width: 820px;
+    font-size: 12px;
+  }
+  .table th,
+  .table td {
+    padding: 6px 8px;
+  }
+  .priceRow th {
+    white-space: nowrap;
+  }
+}

@@ -42,7 +42,15 @@ const Contacts: FC<ContactsProps> = ({
               className={styles.form}
               buttonWidth="70%"
             />
-            <Image src="/images/contacts.png" alt="Контакты" width={500} height={500} className={styles.image} />
+            <Image
+              src="/images/contacts.png"
+              alt="Контакты"
+              width={500}
+              height={500}
+              className={styles.image}
+              sizes="(max-width: 768px) 100vw, 665px"
+              style={{ height: 'auto' }}
+            />
           </div></div>
         <ContactInfo />
       </Wrapper>
