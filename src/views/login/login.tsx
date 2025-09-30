@@ -71,7 +71,7 @@ const Login: FC<LoginProps> = ({
         { id: 'phone', type: 'tel', label: 'Ваш телефон', placeholder: '+7 (___) ___-__-__' },
         { id: 'password', type: 'password', label: 'Введите пароль', placeholder: 'Ваш пароль', required: true },
         { id: 'password2', type: 'password', label: 'Повторите пароль', placeholder: 'Ваш пароль', required: true },
-        { id: 'agree', type: 'checkbox', placeholder: 'Я даю согласие на обработку моей персональной информации на условиях, определенных политикой конфиденциальности, согласен с условиями оферты для партнерской программы', gridColumn: '1 / -1', required: true },
+        { id: 'agree', type: 'checkbox', placeholder: 'Я даю согласие на обработку моей персональной информации на условиях, определенных политикой конфиденциальности', gridColumn: '1 / -1', required: true },
         { id: 'agree', type: 'checkbox', placeholder: 'Я согласен с условиями оферты для партнерской программы', gridColumn: '1 / -1', required: true },
         { id: 'marketing', type: 'checkbox', placeholder: 'Я даю согласие на информационную и рекламную рассылку', gridColumn: '1 / -1' }
       ],
@@ -117,14 +117,14 @@ const Login: FC<LoginProps> = ({
                 }}
                 submitLabel={<span>{formConfig.submit}</span>}
                 checkboxesAfterSubmit={active !== 'auth'}
-                buttonWidth={active === 'auth' ? '100%' : '460px'}
+                buttonWidth={'460px'}
                 className={styles.formButton}
               />
               {formConfig.aux && (
                 <div className={classNames(styles.ctaNote, active === 'register' && styles.ctaNoteCentered)} style={{ gridColumn: '1 / -1' }}>
                   {formConfig.aux.text}
                   <div style={{ marginTop: 8 }}>
-                    <Button type="button" variant="gradientOutline" onClick={() => switchMode(formConfig.aux!.to)} buttonWidth={active === 'auth' ? '100%' : '460px'}>
+                    <Button type="button" variant="gradientOutline" onClick={() => switchMode(formConfig.aux!.to)} buttonWidth={'460px'}>
                       {formConfig.aux!.cta}
                     </Button>
                   </div>

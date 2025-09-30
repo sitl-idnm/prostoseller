@@ -250,7 +250,24 @@
 			top: 0;
 			left: -5%;
 
+			// desktop/default: keep original glow
 			filter: drop-shadow(0 0 21px #e046e8);
+
+			// iOS/mobile fix: replace filter with pseudo shadow
+			@include mobile-large {
+				filter: none;
+				&::after {
+					content: '';
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+					box-shadow: 0 0 21px #e046e8;
+					pointer-events: none;
+				}
+			}
 		}
 
 		.second {
@@ -266,8 +283,23 @@
 				height: 100%;
 
 				opacity: 0;
-
+				// desktop/default glow
 				filter: drop-shadow(0 0 21px #e046e8);
+				// mobile: pseudo shadow instead of filter
+				@include mobile-large {
+					filter: none;
+					&::after {
+						content: '';
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						border-radius: 50%;
+						box-shadow: 0 0 21px #e046e8;
+						pointer-events: none;
+					}
+				}
 			}
 		}
 
@@ -281,8 +313,21 @@
 				left: 0;
 
 				opacity: 0;
-
 				filter: drop-shadow(0 0 21px #e046e8);
+				@include mobile-large {
+					filter: none;
+					&::after {
+						content: '';
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						border-radius: 50%;
+						box-shadow: 0 0 21px #e046e8;
+						pointer-events: none;
+					}
+				}
 			}
 		}
 	}
@@ -383,8 +428,21 @@
 			.stageActive {
 				@include mobile-large {
 					opacity: 0;
-
 					filter: drop-shadow(0 0 21px #e046e8);
+					@include mobile-large {
+						filter: none;
+						&::after {
+							content: '';
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
+							border-radius: 50%;
+							box-shadow: 0 0 21px #e046e8;
+							pointer-events: none;
+						}
+					}
 				}
 			}
 
@@ -419,11 +477,21 @@
 				}
 			}
 
-			.first {
-				@include mobile-large {
-					filter: drop-shadow(0 0 21px #e046e8);
+				.first {
+					@include mobile-large {
+						&::after {
+							content: '';
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
+							border-radius: 50%;
+							box-shadow: 0 0 21px #e046e8;
+							pointer-events: none;
+						}
+					}
 				}
-			}
 
 			svg {
 				@include mobile-large {

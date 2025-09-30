@@ -135,7 +135,10 @@
 
 .image {
   display: block;
-  width: 665px;
+  max-width: 665px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
   margin: 0 auto;
 
   @include mixins.tablet-small {

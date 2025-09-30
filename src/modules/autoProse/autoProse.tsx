@@ -174,13 +174,21 @@ const AutoProse: FC<AutoProseProps> = ({ className, text, children }) => {
 			}
 			// Explicit and markdown-style headings
 			if (isExplicitH2(line) || isMdH2(line) || isH2(line)) {
-				const textContent = isExplicitH2(line) ? stripExplicitHeading(line) : isMdH2(line) ? stripMdHeading(line) : line
-				elements.push(<h2 key={`h2-${i}`} className={styles.h2}>{renderWithLinks(textContent, `h2-${i}`)}</h2>)
+				// use cleanText so that alignment and margin markers are stripped and classes applied
+				elements.push(
+					<h2 key={`h2-${i}`} className={classNames(styles.h2, combinedClassName)}>
+						{renderWithLinks(cleanText, `h2-${i}`)}
+					</h2>
+				)
 				continue
 			}
 			if (isExplicitH3(line) || isMdH3(line) || isH3(line)) {
-				const textContent = isExplicitH3(line) ? stripExplicitHeading(line) : isMdH3(line) ? stripMdHeading(line) : line
-				elements.push(<h3 key={`h3-${i}`} className={styles.h3}>{renderWithLinks(textContent, `h3-${i}`)}</h3>)
+				// use cleanText so that alignment and margin markers are stripped and classes applied
+				elements.push(
+					<h3 key={`h3-${i}`} className={classNames(styles.h3, combinedClassName)}>
+						{renderWithLinks(cleanText, `h3-${i}`)}
+					</h3>
+				)
 				continue
 			}
 
@@ -188,15 +196,19 @@ const AutoProse: FC<AutoProseProps> = ({ className, text, children }) => {
 			if (isExplicitBold(line)) {
 				const textContent = stripExplicitBold(line)
 				elements.push(
-					<p key={`pb-${i}`} className={styles.p}>
+					<p key={`pb-${i}`} className={classNames(styles.p, combinedClassName)}>
 						<b>{renderWithLinks(textContent, `pb-${i}`)}</b>
 					</p>
 				)
 				continue
 			}
 
-			// Paragraph fallback
-			elements.push(<p key={`p-${i}`} className={styles.p}>{renderWithLinks(line, `p-${i}`)}</p>)
+			// Paragraph fallback (apply combined classes and use cleaned text)
+			elements.push(
+				<p key={`p-${i}`} className={classNames(styles.p, combinedClassName)}>
+					{renderWithLinks(cleanText, `p-${i}`)}
+				</p>
+			)
 		}
 
 		return elements

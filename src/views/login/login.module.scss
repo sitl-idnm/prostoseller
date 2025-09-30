@@ -80,6 +80,11 @@
   margin-top: func.rem(12);
   font-size: func.rem(14);
   color: rgba(0,0,0,0.6);
+
+  div {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .ctaNoteCentered {
