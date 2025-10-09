@@ -72,7 +72,7 @@ const Login: FC<LoginProps> = ({
         { id: 'password', type: 'password', label: 'Введите пароль', placeholder: 'Ваш пароль', required: true },
         { id: 'password2', type: 'password', label: 'Повторите пароль', placeholder: 'Ваш пароль', required: true },
         { id: 'agree', type: 'checkbox', placeholder: 'Я даю согласие на обработку моей персональной информации на условиях, определенных политикой конфиденциальности', gridColumn: '1 / -1', required: true },
-        { id: 'agree', type: 'checkbox', placeholder: 'Я согласен с условиями оферты для партнерской программы', gridColumn: '1 / -1', required: true },
+        { id: 'agree2', type: 'checkbox', placeholder: 'Я согласен с условиями оферты для партнерской программы', gridColumn: '1 / -1', required: true },
         { id: 'marketing', type: 'checkbox', placeholder: 'Я даю согласие на информационную и рекламную рассылку', gridColumn: '1 / -1' }
       ],
       submit: 'Создать аккаунт партнера'
