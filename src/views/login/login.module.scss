@@ -73,7 +73,9 @@
   }
 }
 
-.formCol {}
+.formCol {
+  min-width: 0; // allow grid column to shrink below intrinsic content width
+}
 .imageCol {}
 
 .ctaNote {
@@ -84,6 +86,15 @@
   div {
     display: flex;
     justify-content: center;
+
+    // Ensure CTA button doesn't force column to 460px
+    @include mixins.tablet {
+      button { width: 100% !important; }
+    }
+
+    @include mixins.mobile-large {
+      button { width: 100% !important; }
+    }
   }
 }
 
