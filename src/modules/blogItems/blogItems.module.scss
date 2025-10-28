@@ -10,6 +10,8 @@
 
 .grid {
   width: 100%;
+  min-width: 0; // Prevent overflow in Safari grid
+  align-items: start; // выравниваем карточки по верху, чтобы ряды совпадали
 
   @include mixins.mobile-large {
     display: flex !important;
