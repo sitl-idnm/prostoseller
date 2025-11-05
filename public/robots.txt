@@ -1,2 +1,415 @@
-User-agent: *
+User-Agent: *
+Allow: *.css
+Allow: *.ttf
+Allow: *.svg
+Allow: *.jpg
+Allow: *.png
+Allow: *.webp
+Allow: *.woff
+Allow: /_next/static/
+Allow: /_next/image/
+Allow: /images/
+Allow: /icons/
+Disallow: /*search*
+Disallow: /*lk*
+Disallow: /*searcharticle*
+Disallow: /404/
+Disallow: /api/
+Disallow: /login
+Disallow: /approve
+Host: prostoseller.com
+Sitemap: https://prostoseller.com/sitemap.xml
+
+
+User-agent: Yandex
+Allow: *.css
+Allow: *.ttf
+Allow: *.svg
+Allow: *.jpg
+Allow: *.png
+Allow: *.webp
+Allow: *.woff
+Allow: /_next/static/
+Allow: /_next/image/
+Allow: /images/
+Allow: /icons/
+Disallow: /*search*
+Disallow: /*lk*
+Disallow: /*searcharticle*
+Disallow: /404/
+Disallow: /api/
+Disallow: /login
+Disallow: /approve
+Clean-param: _openstat /*
+Clean-param: 3d-foto /*
+Clean-param: actionpay /*
+Clean-param: added /*
+Clean-param: aip /*
+Clean-param: block /*
+Clean-param: bye /*
+Clean-param: from /*
+Clean-param: gclid /*
+Clean-param: pclid /*
+Clean-param: get_price /*
+Clean-param: key /*
+Clean-param: OFFER_ID /*
+Clean-param: option /*
+Clean-param: price /*
+Clean-param: resp /*
+Clean-param: respcount /*
+Clean-param: rr_mailid /*
+Clean-param: showbanner /*
+Clean-param: source /*
+Clean-param: tagpage_id /*
+Clean-param: uid /*
+Clean-param: utm_referrer /*
+Clean-param: utm_campaign /*
+Clean-param: utm_content /*
+Clean-param: utm_medium /*
+Clean-param: utm_source /*
+Clean-param: utm_term /*
+Clean-param: video /*
+Clean-param: yandex /*
+Clean-param: ym_playback /*
+Clean-param: ym_reqid /*
+Clean-param: ymclid /*
+Clean-param: utm_expid /*
+Clean-param: ab_test /*
+Clean-param: click_id /*
+Clean-param: ipp_uid /*
+Clean-param: ipp_uid1 /*
+Clean-param: ipp_uid2 /*
+Clean-param: ipp_guid /*
+Clean-param: ipp_static_key /*
+Clean-param: ipp_uid_tst /*
+Clean-param: fa821dba_ipp_key /*
+Clean-param: fa821dba_ipp_uid /*
+Clean-param: fa821dba_ipp_uid1 /*
+Clean-param: fa821dba_ipp_uid2 /*
+Clean-param: yclid /*
+Clean-param: hid /*
+Clean-param: rb_clickid /*
+Clean-param: frommarket /*
+Clean-param: MailTrackingId /*
+Clean-param: publisher_id /*
+Clean-param: mindbox-click-id /*
+Clean-param: sort /*
+Clean-param: formType /*
+Clean-param: src_pof /*
+Clean-param: clid /*
+Clean-param: sorting /*
+Clean-param: tduid /*
+Clean-param: etext /*
+Clean-param: adv /*
+Clean-param: ds /*
+Clean-param: external_browser_redirect /*
+Clean-param: customChooseRepresent /*
+Clean-param: amp /*
+Clean-param: ab_experiment /*
+Clean-param: ab_variant /*
+Clean-param: wbraid /*
+Clean-param: spm /*
+Clean-param: statusBarHeight /*
+Clean-param: _dognoseId /*
+Clean-param: _currency /*
+Clean-param: _lang /*
+Clean-param: fromApp /*
+Clean-param: tpclid /*
+Clean-param: text /*
+Clean-param: true_url_scheme /*
+Clean-param: ui /*
+Clean-param: appsearch_header /*
+Clean-param: uuid /*
+Clean-param: internal_browser_enabled /*
+Clean-param: app_req_id /*
+Clean-param: lr /*
+Clean-param: service /*
+Clean-param: options /*
+Clean-param: hcheck /*
+Clean-param: request_datetime /*
+Clean-param: request_ip /*
+Clean-param: request_id /*
+Clean-param: gtm_debug /*
+Clean-param: oirutpspid /*
+Clean-param: oirutpspsc /*
+Clean-param: hl /*
+Clean-param: client /*
+Clean-param: q /*
+Clean-param: mda /*
+Clean-param: suggest_reqid /*
+Clean-param: redircnt /*
+Clean-param: yandex_market /*
+Clean-param: schwarz /*
+Clean-param: bt /*
+Clean-param: tl /*
+Clean-param: sa /*
+Clean-param: t /*
+Clean-param: yadclid /*
+Clean-param: yadordid /*
+Clean-param: office_id /*
+Clean-param: utm_camp /*
+Clean-param: authOkRetailRocket /*
+Clean-param: solid /*
+Clean-param: target /*
+Clean-param: frm /*
+Clean-param: act /*
+Clean-param: good /*
+Clean-param: cat /*
+Clean-param: cls /*
+Clean-param: u /*
+Clean-param: f /*
+Clean-param: utm_fomedium /*
+Clean-param: ut /*
+Clean-param: _boch /*
+Clean-param: trk /*
+Clean-param: lang /*
+Clean-param: ref /*
+Clean-param: hhtmFrom /*
+Clean-param: utm_ban /*
+Clean-param: utm_supercamp /*
+Clean-param: zarsrc /*
+Clean-param: utm_medi /*
+Clean-param: utm_ /*
+Clean-param: s_trk /*
+Clean-param: eparser_competitor_id /*
+Clean-param: ues /*
+Clean-param: ttclid /*
+Clean-param: ts /*
+Clean-param: afh /*
+Clean-param: utm /*
+Clean-param: af_lang /*
+Clean-param: af_ua /*
+Clean-param: af_ip /*
+Clean-param: sub_id /*
+Clean-param: tracking_url /*
+Clean-param: family /*
+Clean-param: pos /*
+Clean-param: rpt /*
+Clean-param: img_url /*
+Clean-param: back /*
+Clean-param: as_qdr /*
+Clean-param: as_occt /*
+Clean-param: safe /*
+Clean-param: as_q /*
+Clean-param: channel /*
+Clean-param: cto_pld /*
+Clean-param: mlid /*
+Clean-param: oid /*
+Clean-param: ycl /*
+Clean-param: stzid /*
+Clean-param: lon /*
+Clean-param: advertiser_id /*
+Clean-param: creative_id /*
+Clean-param: sign /*
+Clean-param: logid /*
+Clean-param: orderid /*
+Clean-param: ishidden /*
+Clean-param: fullcost /*
+Clean-param: referrer /*
+Clean-param: rating /*
+Clean-param: response /*
+Clean-param: __cf_chl_tk /*
+Clean-param: mindbox-message-key /*
+Clean-param: erid /*
+Clean-param: yandex-source /*
+Clean-param: ym_tracking_id /*
+Clean-param: cm_id /*
+Clean-param: disableGlobalInfoCollect /*
+Clean-param: rname /*
+Clean-param: vutm_content /*
+Clean-param: mobileApp /*
+Clean-param: _x_tr_sl /*
+Clean-param: _x_tr_tl /*
+Clean-param: _x_tr_hl /*
+Clean-param: _x_tr_pto /*
+Clean-param: distr_type /*
+Clean-param: pp /*
+Clean-param: mclid /*
+Clean-param: cpa /*
+Clean-param: email /*
+Clean-param: erir /*
+Clean-param: gsaid /*
+Clean-param: _gs_ref /*
+Clean-param: _gs_cttl /*
+Clean-param: query /*
+Clean-param: redir /*
+Clean-param: yc /*
+Clean-param: cbir_id /*
+Clean-param: url /*
+Clean-param: cd /*
+Clean-param: ct /*
+Clean-param: gl /*
+Clean-param: __cf_chl_f_tk /*
+Clean-param: m_source /*
+Clean-param: cat_style /*
+Clean-param: s /*
+Clean-param: _ym_debug /*
+Clean-param: T /*
+Clean-param: representId /*
+Clean-param: _sm_au_ /*
+Clean-param: strprtl /*
+Clean-param: token /*
+Clean-param: msclkid /*
+Clean-param: fmode /*
+Clean-param: keyno /*
+Clean-param: l10n /*
+Clean-param: la /*
+Clean-param: mime /*
+Clean-param: tld /*
+Clean-param: tm /*
+Clean-param: push_id /*
+Clean-param: utm_sup_project /*
+Clean-param: utm_sup_source /*
+Clean-param: utm_sup_type /*
+Clean-param: ISCI /*
+Clean-param: MSISDN /*
+Clean-param: pid /*
+Clean-param: c /*
+Clean-param: af_click_lookback /*
+Clean-param: af_siteid /*
+Clean-param: af_ad /*
+Clean-param: af_sub_siteid /*
+Clean-param: utm_s /*
+Clean-param: __cf_chl_rt_tk /*
+Clean-param: refund /*
+Clean-param: ysclid /*
+Clean-param: noRedirect /*
+Clean-param: utm_banner /*
+Clean-param: utm_supercampaign /*
+Clean-param: adrclid /*
+Clean-param: hookUrl /*
+Clean-param: wid /*
+Clean-param: statid /*
+Clean-param: ___ /*
+Clean-param: ____ /*
+Clean-param: copts_0 /*
+Clean-param: copts_1 /*
+Clean-param: copts_2 /*
+Clean-param: utm_channel /*
+Clean-param: instagram /*
+Clean-param: placement /*
+Clean-param: what /*
+Clean-param: gb /*
+Clean-param: yad /*
+Clean-param: ______ /*
+Clean-param: utm__ban /*
+Clean-param: _____ /*
+Clean-param: ________ /*
+Clean-param: utm_campname /*
+Clean-param: utm_c___ /*
+Clean-param: ____________ /*
+Clean-param: _________ /*
+Clean-param: __________ /*
+Clean-param: _______ /*
+Clean-param: yadc /*
+Clean-param: page /*
+Clean-param: v /*
+Clean-param: tagtag_uid /*
+Clean-param: ycli /*
+Clean-param: yclid11571 /*
+Clean-param: _market /*
+Clean-param: clickid /*
+Clean-param: sub /*
+
+User-agent: grapeshot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: Riddler (http://riddler.io/about)
+Disallow: /
+
+User-agent: Python-urllib/2.6
+Disallow: /
+
+User-agent: DISCo Pump
+Disallow: /
+
+User-agent: Wget
+Disallow: /
+
+User-agent: Teleport Pro
+Disallow: /
+
+User-agent: psbot
+Disallow: /
+
+User-agent: Twiceler
+Disallow: /
+
+User-agent: NetinfoBot
+Disallow: /
+
+User-agent: UbiCrawler
+Disallow: /
+
+User-agent: DOC
+Disallow: /
+
+User-agent: Zao
+Disallow: /
+
+User-agent: sitecheck.internetseer.com
+Disallow: /
+
+User-agent: Zealbot
+Disallow: /
+
+User-agent: MSIECrawler
+Disallow: /
+
+User-agent: SiteSnagger
+Disallow: /
+
+User-agent: WebStripper
+Disallow: /
+
+User-agent: WebCopier
+Disallow: /
+
+User-agent: Fetch
+Disallow: /
+
+User-agent: Offline Explorer
+Disallow: /
+
+User-agent: Teleport
+Disallow: /
+
+User-agent: linko
+Disallow: /
+
+User-agent: HTTrack
+Disallow: /
+
+User-agent: Microsoft.URL.Control
+Disallow: /
+
+User-agent: Xenu
+Disallow: /
+
+User-agent: larbin
+Disallow: /
+
+User-agent: libwww
+Disallow: /
+
+User-agent: ZyBORG
+Disallow: /
+
+User-agent: Download Ninja
+Disallow: /
+
+User-agent: grub-client
+Disallow: /
+
+User-agent: NPBot
+Disallow: /
+
+User-agent: WebReaper
+Disallow: /
+
+# Restrict select bad/legacy bots
+User-agent: Google-Extended
 Disallow: /
