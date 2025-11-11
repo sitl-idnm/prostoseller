@@ -50,7 +50,7 @@ const Price: FC<PriceProps> = ({
           { label: 'Графики и дашборды', state: 'included' },
           { label: 'Статусы товаров', state: 'included' },
           { label: 'Импорт себестоимости', state: 'included' },
-          { label: 'Аналитика продаж, ABC-анализ', state: 'included' },
+          { label: 'Аналитика продаж', state: 'included' },
           { label: 'Начисления', state: 'included' },
           { label: 'Внесение дополнительных расходов', state: 'included' },
           { label: 'Внесение и учёт самовыкупов', state: 'included' },
@@ -61,7 +61,8 @@ const Price: FC<PriceProps> = ({
           { label: 'Управление планированием', state: 'included' },
           { label: 'Расчёт оборачиваемости товаров и планирование поставок', state: 'included' },
           { label: 'Расходы на рекламу (детализировано)', state: 'included' },
-          { label: 'Калькулятор доходности и планирование цен', state: 'included' }
+          { label: 'Калькулятор доходности и планирование цен', state: 'included' },
+          { label: 'ABC-анализ', state: 'included' }
         ],
         priceByPeriod: { month: 0, sixMonths: 0 }
       },
@@ -77,7 +78,7 @@ const Price: FC<PriceProps> = ({
           { label: 'Графики и дашборды', state: 'included' },
           { label: 'Статусы товаров', state: 'included' },
           { label: 'Импорт себестоимости', state: 'included' },
-          { label: 'Аналитика продаж, ABC-анализ', state: 'included' },
+          { label: 'Аналитика продаж', state: 'included' },
           { label: 'Начисления', state: 'included' },
           { label: 'Внесение дополнительных расходов', state: 'included' },
           { label: 'Внесение и учёт самовыкупов', state: 'included' },
@@ -88,6 +89,7 @@ const Price: FC<PriceProps> = ({
           { label: 'Управление планированием', state: 'absent' },
           { label: 'Расчёт оборачиваемости товаров и планирование поставок', state: 'absent' },
           { label: 'Расходы на рекламу (детализировано)', state: 'absent' },
+          { label: 'ABC-анализ', state: 'absent' },
           { label: 'Калькулятор доходности и цен <strong>990 руб</strong>', state: 'addon' },
           { label: `Каждый дополнительный магазин <strong>990 руб</strong>`, state: 'addon' }
         ],
@@ -105,7 +107,7 @@ const Price: FC<PriceProps> = ({
           { label: 'Графики и дашборды', state: 'included' },
           { label: 'Статусы товаров', state: 'included' },
           { label: 'Импорт себестоимости', state: 'included' },
-          { label: 'Аналитика продаж, ABC-анализ', state: 'included' },
+          { label: 'Аналитика продаж', state: 'included' },
           { label: 'Начисления', state: 'included' },
           { label: 'Внесение дополнительных расходов', state: 'included' },
           { label: 'Внесение и учёт самовыкупов', state: 'included' },
@@ -117,6 +119,7 @@ const Price: FC<PriceProps> = ({
           { label: 'Расчёт оборачиваемости товаров и планирование поставок', state: 'included' },
           { label: 'Расходы на рекламу (детализировано)', state: 'included' },
           { label: 'Калькулятор доходности и планирование цен', state: 'included' },
+          { label: 'ABC-анализ', state: 'included' },
           { label: 'Каждый дополнительный магазин <strong>990 руб</strong>', state: 'addon' }
         ],
         priceByPeriod: { month: 3990, sixMonths: 3190 }
