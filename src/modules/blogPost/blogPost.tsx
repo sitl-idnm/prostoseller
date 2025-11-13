@@ -18,6 +18,7 @@ const BlogPost: FC<BlogPostProps> = ({ className, title, author, authorRole, aut
 	const contentRef = useRef<HTMLDivElement | null>(null)
 	const [toc, setToc] = useState<TocItem[]>([])
 	const [activeId, setActiveId] = useState<string | null>(null)
+	const manualActiveUntilRef = useRef<number | null>(null)
 
 	// Используем хук для управления просмотрами с сервера
 	const { views: currentViews } = useServerViews(currentId || '', typeof views === 'number' ? views : 0)
@@ -33,6 +34,27 @@ const BlogPost: FC<BlogPostProps> = ({ className, title, author, authorRole, aut
 		setToc(items)
 	}, [children])
 
+	// Активировать якорь при загрузке/смене хеша (клик по ссылке в содержании)
+	useEffect(() => {
+		// установить активный из текущего хеша при наличии
+		const setFromHash = () => {
+			if (typeof window === 'undefined') return
+			const hash = window.location.hash
+			if (hash && hash.startsWith('#')) {
+				const id = hash.slice(1)
+				// проверяем, что такой id есть в TOC
+				if (toc.some(i => i.id === id)) {
+					setActiveId(id)
+					// на короткое время блокируем перезапись от IntersectionObserver
+					manualActiveUntilRef.current = Date.now() + 800
+				}
+			}
+		}
+		setFromHash()
+		window.addEventListener('hashchange', setFromHash)
+		return () => window.removeEventListener('hashchange', setFromHash)
+	}, [toc])
+
 	// Observe headings and highlight active TOC item when section is in view
 	useEffect(() => {
 		const root = contentRef.current
@@ -42,6 +64,10 @@ const BlogPost: FC<BlogPostProps> = ({ className, title, author, authorRole, aut
 
 		const observer = new IntersectionObserver(
 			(entries) => {
+				// если недавно был клик/прыжок по якорю — не перезаписываем активный раздел
+				if (manualActiveUntilRef.current && Date.now() < manualActiveUntilRef.current) {
+					return
+				}
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
 						setActiveId((entry.target as HTMLElement).id)
@@ -116,6 +142,10 @@ const BlogPost: FC<BlogPostProps> = ({ className, title, author, authorRole, aut
 								<Link
 									key={item.id}
 									href={`#${item.id}`}
+									onClick={() => {
+										setActiveId(item.id)
+										manualActiveUntilRef.current = Date.now() + 800
+									}}
 									className={classNames(styles.tocLink, { [styles.tocLinkActive]: activeId === item.id })}
 									aria-current={activeId === item.id ? 'true' : undefined}
 								>
