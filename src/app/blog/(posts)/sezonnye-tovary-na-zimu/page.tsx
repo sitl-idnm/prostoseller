@@ -1,6 +1,7 @@
 import { BlogPost } from '@/modules/blogPost'
 import { getPosts } from '@/app/blog/posts'
 import type { Metadata } from 'next'
+import { guardPostByDate } from '@/app/blog/utils'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import meta from './meta.json'
 
@@ -10,6 +11,8 @@ export const metadata: Metadata = {
 }
 
 export default async function PostPage() {
+	guardPostByDate(meta.date)
+
 	const currentId = 'sezonnye-tovary-na-zimu'
 	const posts = await getPosts()
 	const related = posts

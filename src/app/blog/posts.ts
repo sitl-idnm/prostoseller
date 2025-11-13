@@ -2,6 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import { unstable_cache, revalidateTag } from 'next/cache'
 import type { BlogPostMeta } from '@/shared/types/common'
+import { getTodayIsoLocal } from '@/app/blog/utils'
 
 export interface DiscoveredPost extends BlogPostMeta {
 	id: string
@@ -33,9 +34,11 @@ export async function discoverPosts(): Promise<DiscoveredPost[]> {
 				continue
 			}
 		}
-		// sort by date desc if present
-		posts.sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
-		return posts
+		// filter out posts scheduled in the future (based on local date), then sort by date desc
+		const todayIso = getTodayIsoLocal()
+		const visiblePosts = posts.filter(p => !p.date || p.date <= todayIso)
+		visiblePosts.sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
+		return visiblePosts
 	} catch {
 		return []
 	}
