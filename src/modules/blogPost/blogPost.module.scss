@@ -156,14 +156,22 @@
   color: #4a4a4a;
   text-decoration: none;
   transition: color 0.2s ease;
+  text-decoration: none;
+  background-color: #f3f3f3;
+  padding: 15px 10px;
+  border-radius: 12px;
+  text-align: center;
+  color: black;
 
   &:hover {
-    color: #6c5ce7;
+    color: white;
+    background-color: #A452D7;
   }
 }
 
 .tocLinkActive {
-  color: #6c5ce7; // активный пункт — фирменный цвет
+  background-color: #A452D7;
+  color: white; // активный пункт — фирменный цвет
   font-weight: 600;
 }
 

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default async function PostPage() {
 	guardPostByDate(meta.date)
 
-	const currentId = 'gde-nahodyatsya-sklady-ozon'
+	const currentId = 'gde-nahodyatsya-sklady-wb'
 	const posts = await getPosts()
 	const related = posts
 		.filter(p => p.id !== currentId)
@@ -32,7 +32,7 @@ export default async function PostPage() {
 			title="Где находятся склады Ozon"
 			author="Александр Петров"
 			authorRole="Учредитель компании"
-			date="11.09.2024"
+			date="11.14.2025"
 			readTimeMin={5}
 			views={4327}
 			imageSrc="/images/blog/prioritet-skladov-ozon-1.jpeg"

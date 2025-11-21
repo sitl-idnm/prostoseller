@@ -20,16 +20,16 @@
     "lastUpdated": 1703123456789
   },
   "sezonnye-tovary-na-marketpleysah": {
-    "views": 1893,
-    "lastUpdated": 1756629702449
+    "views": 1894,
+    "lastUpdated": 1763726433710
   },
   "kak-otgruzit-tovar-na-ozon": {
     "views": 2165,
     "lastUpdated": 1703123456789
   },
   "gde-nahodyatsya-sklady-ozon": {
-    "views": 4327,
-    "lastUpdated": 1703123456789
+    "views": 4328,
+    "lastUpdated": 1763726427429
   },
   "trebovaniya-k-upakovke-tovara-na-ozon": {
     "views": 7122,
@@ -38,5 +38,9 @@
   "seasonal-products": {
     "views": 1,
     "lastUpdated": 1756629687622
+  },
+  "gde-nahodyatsya-sklady-wb": {
+    "views": 1,
+    "lastUpdated": 1763726454199
   }
 }
