@@ -15,7 +15,7 @@ const SocialLinks: FC<SocialLinksProps> = ({
 
   return (
     <div className={rootClassName}>
-      <a href="https://t.me/+79033637386" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+      <a href="https://t.me/prostoseller_com1" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
         <IconTg />
       </a>
       <a href="https://wa.me/message/E3CSFZG7WBDMA1" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">

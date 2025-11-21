@@ -251,7 +251,12 @@
 			left: -5%;
 
 			// desktop/default: keep original glow
+			-webkit-filter: drop-shadow(0 0 21px #e046e8);
 			filter: drop-shadow(0 0 21px #e046e8);
+
+			will-change: filter, transform;
+			transform: translateZ(0);
+			backface-visibility: hidden;
 
 			// iOS/mobile fix: replace filter with pseudo shadow
 			@include mobile-large {
@@ -284,7 +289,12 @@
 
 				opacity: 0;
 				// desktop/default glow
+				-webkit-filter: drop-shadow(0 0 21px #e046e8);
 				filter: drop-shadow(0 0 21px #e046e8);
+
+				will-change: filter, transform;
+				transform: translateZ(0);
+				backface-visibility: hidden;
 				// mobile: pseudo shadow instead of filter
 				@include mobile-large {
 					filter: none;
@@ -313,7 +323,13 @@
 				left: 0;
 
 				opacity: 0;
+				-webkit-filter: drop-shadow(0 0 21px #e046e8);
 				filter: drop-shadow(0 0 21px #e046e8);
+
+				will-change: filter, transform;
+				transform: translateZ(0);
+				backface-visibility: hidden;
+
 				@include mobile-large {
 					filter: none;
 					&::after {
@@ -428,7 +444,13 @@
 			.stageActive {
 				@include mobile-large {
 					opacity: 0;
+					-webkit-filter: drop-shadow(0 0 21px #e046e8);
 					filter: drop-shadow(0 0 21px #e046e8);
+
+					will-change: filter, transform;
+					transform: translateZ(0);
+					backface-visibility: hidden;
+
 					@include mobile-large {
 						filter: none;
 						&::after {

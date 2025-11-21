@@ -26,7 +26,7 @@ const Footer: FC = () => (
             <ul className={styles.links}>
               <li><Link href="/">Главная</Link></li>
               <li><Link href={LINKS.connectFree}>Зарегистрироваться</Link></li>
-              <li><Link href="/login">Войти</Link></li>
+              <li><Link href="https://lk.prostoseller.com/index.php?r=site%2Flogin">Войти</Link></li>
               <li><Link href="/price">Тарифы</Link></li>
               <li><Link href="/#how-it-works">Как работает Prostoseller</Link></li>
             </ul>
