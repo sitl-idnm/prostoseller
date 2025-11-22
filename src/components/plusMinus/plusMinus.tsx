@@ -190,7 +190,7 @@ const PlusMinus: FC<PlusMinusProps> = ({
         </div>
       </div>
       <div className={styles.button}>
-        <Button isRouteLink as='a' isRouteLink  href={LINKS.connectSignup} buttonWidth='460px' variant="gradient" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
+        <Button isRouteLink as='a' href={LINKS.connectSignup} buttonWidth='460px' variant="gradient" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
         <div className={styles.buttonsNote}>
           <p>4 дня бесплатно без привязки карты</p>
         </div>
