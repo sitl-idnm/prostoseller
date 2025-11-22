@@ -26,7 +26,7 @@ const Company: FC<CompanyProps> = ({
           titleTagName="h1"
           titleSize="lgmin"
           subtitle={<><span className={styles.purple}>Prostoseller</span> – это сервис, который показывает реальный <span className={styles.purple}>доход</span> и экономику продаж на <span className={styles.purple}>Wildberries</span> и <span className={styles.ozon}>Ozon</span></>}
-          buttons={<Button as="a" isRouteLink href={LINKS.connectFree} variant="gradient" buttonWidth="70%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>}
+          buttons={<Button as="a" isRouteLink href={LINKS.connectSignup} variant="gradient" buttonWidth="70%" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>}
           imageSrc="/images/photo_team.png"
           imageAlt="Команда Prostoseller"
           className={styles.content}

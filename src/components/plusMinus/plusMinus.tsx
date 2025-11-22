@@ -3,6 +3,7 @@ import classNames from 'classnames'
 
 import styles from './plusMinus.module.scss'
 import { PlusMinusProps } from './plusMinus.types'
+import { LINKS } from '@/shared/const'
 import Button from '@/ui/button/button'
 import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
@@ -189,7 +190,7 @@ const PlusMinus: FC<PlusMinusProps> = ({
         </div>
       </div>
       <div className={styles.button}>
-        <Button isRouteLink as='a' href='https://lk.prostoseller.com/index.php?r=site%2Fsignup-partner' buttonWidth='460px' variant="gradient" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
+        <Button isRouteLink as='a' isRouteLink  href={LINKS.connectSignup} buttonWidth='460px' variant="gradient" icon={<ArrowWhiteIcon />}>Подключить бесплатно</Button>
         <div className={styles.buttonsNote}>
           <p>4 дня бесплатно без привязки карты</p>
         </div>

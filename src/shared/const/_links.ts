@@ -7,7 +7,10 @@ export const LINKS = {
 	supportEmail: 'mailto:info@prostoseller.com',
 
 	// CTAs
-	connectFree: 'https://lk.prostoseller.com/index.php?r=site%2Fsignup-partner',
+	connectSignup: 'https://lk.prostoseller.com/index.php?r=site%2Fsignup',
+	connectSignupPartner: 'https://lk.prostoseller.com/index.php?r=site%2Fsignup-partner',
+	connectLogin: 'https://lk.prostoseller.com/index.php?r=site%2Flogin',
+
 	demoCabinet: '/thanks',
 	becomePartner: '/partners',
 	invite: '/inviteFriend',
