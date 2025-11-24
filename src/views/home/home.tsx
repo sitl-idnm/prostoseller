@@ -48,7 +48,7 @@ const cards = [
     title: 'Начните управлять своим бизнесом уже сегодня!',
     action: (
       <>
-        <Button as="a" isRouteLink href="/login" variant="gradient" size="md" icon={<ArrowWhiteIcon />}>
+        <Button as="a" isRouteLink href={LINKS.connectSignup} variant="gradient" size="md" icon={<ArrowWhiteIcon />}>
           Подключить бесплатно
         </Button>
         <div className={styles.buttonsNote}>4 дня бесплатно без привязки карты</div>
