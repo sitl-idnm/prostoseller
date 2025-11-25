@@ -93,7 +93,7 @@ const Home: FC<HomeProps> = ({ className }) => {
             </>
           }
           buttonsNote="4 дня бесплатно без привязки карты"
-          imageSrc="/images/laptop_prostoseller.png"
+          imageSrc="/images/Group1231.png"
           imageAlt="Скриншот кабинета"
         />
         <TitleHandler

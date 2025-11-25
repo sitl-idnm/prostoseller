@@ -7,6 +7,7 @@ import styles from './calculator.module.scss'
 import { CalculatorProps } from './calculator.types'
 import { Button, RadioButton } from '@/ui'
 import ArrowWhiteIcon from '@icons/arrowWhite.svg'
+import { LINKS } from '@/shared/const'
 
 const Calculator: FC<CalculatorProps> = ({
   className,
@@ -105,7 +106,7 @@ const Calculator: FC<CalculatorProps> = ({
         </span>
       </div>
       <div className={styles.cta}>
-        <Button as="a" href="/partners" isRouteLink variant="gradient" icon={<ArrowWhiteIcon />} buttonWidth='100%'>Стать партнером</Button>
+        <Button as="a" href={LINKS.connectSignupPartner} isRouteLink variant="gradient" icon={<ArrowWhiteIcon />} buttonWidth='100%'>Стать партнером</Button>
       </div>
     </div>
   )
