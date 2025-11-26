@@ -88,12 +88,12 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
           <li className={styles.item}><Link href="/pricing" className={styles.link}>Тарифы</Link></li>
 
           <li className={classNames(styles.item, styles.dropdown)}>
-            <Link href="/partners" className={styles.trigger}>
+            <Link href="/partnerskaya-programma" className={styles.trigger}>
               Партнёрам <span className={styles.caret} aria-hidden>▾</span>
             </Link>
             <ul className={styles.menu}>
-              <li className={styles.menuItem}><Link href="/inviteFriend" className={styles.menuLink}>Пригласи друга</Link></li>
-              <li className={styles.menuItem}><Link href="/partners" className={styles.menuLink}>Партнерская программа</Link></li>
+              <li className={styles.menuItem}><Link href="/priglasi-druzej" className={styles.menuLink}>Пригласи друга</Link></li>
+              <li className={styles.menuItem}><Link href="/partnerskaya-programma" className={styles.menuLink}>Партнерская программа</Link></li>
             </ul>
           </li>
 

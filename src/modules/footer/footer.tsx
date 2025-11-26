@@ -34,8 +34,8 @@ const Footer: FC = () => (
 
           <div className={styles.navCol}>
             <ul className={styles.links}>
-              <li><Link href="/inviteFriend">Пригласи друга</Link></li>
-              <li><Link href="/partners">Партнерская программа</Link></li>
+              <li><Link href="/priglasi-druzej">Пригласи друга</Link></li>
+              <li><Link href="/partnerskaya-programma">Партнерская программа</Link></li>
               <li><Link href="/nasha-kompaniya">О компании</Link></li>
               <li><Link href="/blog">Блог</Link></li>
             </ul>
@@ -43,7 +43,7 @@ const Footer: FC = () => (
 
           <div className={styles.navCol}>
             <ul className={styles.links}>
-              <li><Link href="/contacts">Контакты</Link></li>
+              <li><Link href="/kontakty">Контакты</Link></li>
               <li><SocialLinks /></li>
               <li><Link href="https://wa.me/message/E3CSFZG7WBDMA1" target="_blank" rel="noopener noreferrer">Поддержка</Link></li>
               <li><Link href="mailto:info@prostoseller.com">info@prostoseller.com</Link></li>
