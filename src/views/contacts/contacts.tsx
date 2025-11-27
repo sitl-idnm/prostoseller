@@ -38,6 +38,7 @@ const Contacts: FC<ContactsProps> = ({
               submitLabel={<span>Отправить</span>}
               onSubmit={(v) => console.log('contacts form', v)}
               enableEmailSubmit
+              emailTo="zvonarev.dev@gmail.com"
               emailSubject="Сообщение с контактной формы"
               className={styles.form}
               buttonWidth="70%"

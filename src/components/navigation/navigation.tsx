@@ -99,7 +99,7 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
 
           <li className={classNames(styles.item, styles.dropdown)}>
             <button className={styles.trigger} type="button" onClick={() => {
-              window.location.href = '/company'
+              window.location.href = '/nasha-kompaniya'
             }}>
               О нас <span className={styles.caret} aria-hidden>▾</span>
             </button>
@@ -147,11 +147,11 @@ const Navigation: FC<NavigationProps> = ({ className, isMobile }) => {
                     </div>
 
                     <ul>
-                      <li><Link href="/price" onClick={() => setIsOpen(false)}>Тарифы</Link></li>
-                      <li><Link href="/inviteFriend" onClick={() => setIsOpen(false)}>Пригласи друга</Link></li>
-                      <li><Link href="/partners" onClick={() => setIsOpen(false)}>Партнерская программа</Link></li>
-                      <li><Link href="/company" onClick={() => setIsOpen(false)}>О компании</Link></li>
-                      <li><Link href="/contacts" onClick={() => setIsOpen(false)}>Контакты</Link></li>
+                      <li><Link href="/pricing" onClick={() => setIsOpen(false)}>Тарифы</Link></li>
+                      <li><Link href="/priglasi-druzej" onClick={() => setIsOpen(false)}>Пригласи друга</Link></li>
+                      <li><Link href="/partnerskaya-programma" onClick={() => setIsOpen(false)}>Партнерская программа</Link></li>
+                      <li><Link href="/nasha-kompaniya" onClick={() => setIsOpen(false)}>О компании</Link></li>
+                      <li><Link href="/kontakty" onClick={() => setIsOpen(false)}>Контакты</Link></li>
                       <li><Link href="/blog" onClick={() => setIsOpen(false)}>Блог</Link></li>
                     </ul>
                   </div>

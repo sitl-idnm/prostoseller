@@ -470,11 +470,11 @@ const Price: FC<PriceProps> = ({
                   </div>
                   {showConnectButtons && (
                     onConnect ? (
-                      <Button as={Link} href={'https://lk.prostoseller.com/index.php?r=site%2Flogin'} icon={<ArrowWhiteIcon />} buttonWidth="100%" variant="gradient">
+                      <Button as={Link} href={'https://lk.prostoseller.com/index.php?r=user%2Ftarif'} icon={<ArrowWhiteIcon />} buttonWidth="100%" variant="gradient">
                         Подключить
                       </Button>
                     ) : (
-                      <Button as={Link} href={'https://lk.prostoseller.com/index.php?r=site%2Flogin'} isRouteLink icon={<ArrowWhiteIcon />} buttonWidth="100%" variant="gradient">
+                      <Button as={Link} href={'https://lk.prostoseller.com/index.php?r=user%2Ftarif'} isRouteLink icon={<ArrowWhiteIcon />} buttonWidth="100%" variant="gradient">
                         Подключить
                       </Button>
                     )
