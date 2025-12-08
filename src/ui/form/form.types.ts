@@ -29,6 +29,9 @@ export interface FormProps {
   enableEmailSubmit?: boolean
   emailTo?: string // recipient; default can be set in env on server
   emailSubject?: string
+  // Optional Telegram forwarding in addition to email
+  telegramBotToken?: string
+  telegramChatId?: string | number
   // If true, all checkbox fields will be rendered after the submit button
   checkboxesAfterSubmit?: boolean
   buttonWidth?: string

@@ -38,8 +38,10 @@ const Contacts: FC<ContactsProps> = ({
               submitLabel={<span>Отправить</span>}
               onSubmit={(v) => console.log('contacts form', v)}
               enableEmailSubmit
-              emailTo="info@prostoseller.com"
+              emailTo="zvonarev.dev@gmail.com"
               emailSubject="Сообщение с контактной формы"
+              telegramBotToken="8244608457:AAGAd9qGvbaHhLD6f1EPyELKlO_kyz1upkg"
+              telegramChatId={-1003035823798}
               className={styles.form}
               buttonWidth="70%"
             />

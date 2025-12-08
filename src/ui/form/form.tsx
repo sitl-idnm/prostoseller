@@ -8,6 +8,36 @@ import { FormProps } from './form.types'
 import { Input, Button } from '@/ui'
 import ArrowWhiteIcon from '@icons/arrowWhite.svg'
 
+// Map query keys to human-readable labels for email output
+const UTM_QUERY_TO_LABEL: Record<string, string> = {
+  utm_source: 'UTM source',
+  utm_medium: 'UTM medium',
+  utm_campaign: 'UTM campaign'
+}
+
+function collectUtmParams(): Record<string, string> {
+  // Runs only in browser
+  if (typeof window === 'undefined') return {}
+  const result: Record<string, string> = {}
+  try {
+    const searchParams = new URLSearchParams(window.location.search)
+    Object.entries(UTM_QUERY_TO_LABEL).forEach(([queryKey, label]) => {
+      let value = searchParams.get(queryKey) || ''
+      // fallback to first-touch value
+      try {
+        const stored = typeof localStorage !== 'undefined' ? localStorage.getItem(queryKey) : null
+        if (!value && stored) value = stored
+        if (value) {
+          result[label] = value
+          // persist for future pages if not already stored
+          if (!stored) localStorage.setItem(queryKey, value)
+        }
+      } catch { /* storage can fail in some environments */ }
+    })
+  } catch { /* ignore malformed search params */ }
+  return result
+}
+
 const Form: FC<FormProps> = ({
   className,
   grid,
@@ -18,6 +48,8 @@ const Form: FC<FormProps> = ({
   enableEmailSubmit,
   emailTo,
   emailSubject,
+  telegramBotToken,
+  telegramChatId,
   checkboxesAfterSubmit,
   buttonWidth
 }) => {
@@ -92,6 +124,9 @@ const Form: FC<FormProps> = ({
 
     // Optional built-in email sender
     if (enableEmailSubmit) {
+      // Attach UTM fields only for lead/request forms (email submits)
+      const utm = collectUtmParams()
+      Object.assign(values, utm)
       setSubmitting(true)
       try {
         const res = await fetch('/api/sendForm', {
@@ -100,7 +135,9 @@ const Form: FC<FormProps> = ({
           body: JSON.stringify({
             values,
             to: emailTo,
-            subject: emailSubject
+            subject: emailSubject,
+            telegramBotToken,
+            telegramChatId
           })
         })
         if (!res.ok) {
