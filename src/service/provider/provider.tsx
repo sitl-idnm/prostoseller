@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, ReactNode, useEffect } from 'react'
+import { FC, ReactNode, useEffect, Suspense } from 'react'
 import { DeviceSize, SCALING_BREAKPOINTS } from '@/shared/const'
 import { isDeviceAtom } from '@atoms/deviceAtom'
 import { useScaling } from '@hooks/index'
@@ -41,7 +41,9 @@ const ScalingLayout: FC<{ children: ReactNode }> = ({ children }) => {
 export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <JotaiProvider>
-      <UtmCapture />
+      <Suspense fallback={null}>
+        <UtmCapture />
+      </Suspense>
       <ScalingLayout>{children}</ScalingLayout>
     </JotaiProvider>
   )
